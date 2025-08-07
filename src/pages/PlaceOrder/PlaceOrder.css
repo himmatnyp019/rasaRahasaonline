@@ -1,0 +1,210 @@
+.place-order {
+    padding: 0 140px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: start;
+    gap: 50px;
+    margin: 100px 0;
+}
+
+.place-order-left {
+    width: 100%;
+    max-width: max(30%, 500px);
+    flex: 1;
+    
+    .order-info-contact{
+        background: 
+        linear-gradient(
+            0deg,
+            rgba(200, 200, 200, 0.1) 20%,
+            rgba(177, 177, 177, 0.1) 20%
+            );
+            padding: 20px;
+            border-radius: 15px;
+    
+   }
+}
+.circle{
+    height: 30px;
+    width: 30px;
+    background-color: tomato;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    scale: 2;
+    margin: 0 auto;
+}
+.place-order-left .title {
+    font-size: 30px;
+    font-weight: 600;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-bottom: 0px;
+}
+
+.place-order-left input {
+    margin-bottom: 15px;
+    width: 100%;
+    padding: 15px ;
+    border: none;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    outline-color: tomato;
+    font-size: 16px;
+}
+
+.place-order-left .multi-fields {
+    display: flex;
+    gap: 10px;
+}
+
+.text-notice {
+    font-size: 14px;
+    margin-bottom: 30px;
+    color: grey;
+}
+
+.place-order-right {
+    width: 100%;
+    max-width: max(40%, 500px);
+    flex: 1;
+}
+
+.place-order .cart-total button {
+    margin-top: 30px;
+    width: 100%;
+}
+
+.cart-items-quick {
+    overflow-x: scroll;
+}
+
+.active-address-this {
+    h4 {
+        font-size: 16px;
+        font-weight: 500;
+        color: #1f1f1f;
+        margin: 5px 0;
+    }
+}
+
+.active-address-box {
+    margin-bottom: 15px;
+    width: 100%;
+    padding: 15px 10px;
+    /* border: 1px solid #cfcfcf; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: rgb(255, 224, 218);
+    border-radius: 15px;
+
+    h4 {
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .change-default-address {
+        color: rgb(30, 88, 235);
+        font-weight: 500;
+        font-size: 14px;
+    }
+}
+
+@media (max-width:1000px) {
+    .place-order {
+        margin: 30px 0;
+        padding: 0 10%;
+    }
+
+}
+
+
+/* ----------------- payment box design----------------- */
+.payment-method-container {
+    border-radius: 10px;
+    padding: 10px;
+      background: 
+    linear-gradient(
+      0deg,
+      rgba(200, 200, 200, 0.1) 20%,
+      rgba(177, 177, 177, 0.1) 20%
+    );
+    border-radius: 15px;
+    padding: 15px;
+    /* margin-top: 20px; */
+
+    h3 {
+        font-size: clamp(16px, 2vw, 22px);
+        font-weight: 600;
+    }
+
+    p {
+        color: #039422;
+        font-size: 14px;
+    }
+
+    .payment-options-container {
+        display: flex;
+        justify-content: center;
+        align-items: start;
+        flex-direction: column;
+        width: 100%;
+        gap: 20px;
+        padding: 10px 10px;
+
+        .payment-option-box {
+            width: 100%;
+            gap: 20px;
+            /* border: 2px solid transparent; */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            cursor: pointer;
+            background-color: #fff;
+            border-radius: 15px;
+
+            p {
+                width: 100%;
+                font-size: clamp(16px, 2vw, 18px);
+                font-weight: 600;
+                color: #1f1f1f;
+            }
+
+            .img-warper {
+                width: 100px;
+                height: 40px;
+                border: 2px solid #fdece9;
+                background-color: #fff;
+
+                img {
+                    height: 100%;
+                    width: 100%;
+                    object-fit: contain;
+                }
+            }
+
+            .checkbox {
+                width: 25px;
+                height: 25px;
+                padding: 25px;
+            }
+
+            .checkbox.checked {
+                padding: 0;
+
+            }
+        }
+    }
+}
+
+.payment-option-box.checked {
+    border: 2px solid tomato;
+    background-color: rgb(255, 242, 240);
+}

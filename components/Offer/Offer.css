@@ -1,0 +1,112 @@
+.offer-container{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* border-bottom: 2px solid #e2e2e2; */
+   
+}
+.delivery-system{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    position: relative;
+    width: max-content;
+    border-radius: 20px;
+    padding: 10px 15px;
+    background-color: #fffaf9;
+    border: 1px solid #f9d9d3;
+    transition: all .3s ease-in-out;
+
+    &:hover{
+        background-color: #fceeeb;
+        border: 1px solid #fccdc4;
+    }
+    h1{
+        font-size: 18px;
+        font-weight: 600;margin: 0;
+        color: rgb(45, 45, 45);
+    }
+    ul li{
+        padding: 8px;
+        margin: 5px 0;
+        text-decoration: none;
+        color: #FF6347;
+        h3{
+            font-size: 16px;
+            font-weight: 500;
+        }
+        div{
+            color: #626262;
+            display: flex;
+            gap: 5px;
+            p{
+                font-size: 16px;
+                margin: 2px 0;
+            }
+            .cut-price{
+                position: relative;
+            }
+            .cut-price::after{
+                content: '';
+                display: table;
+                position: absolute;
+                height: 2px;
+                width: 80%;
+                background-color: red;
+                top: 50%;
+                left:14px ;
+                opacity: .4;
+            }
+           
+        }
+         .closed-days{
+                color: grey;
+            }
+    }
+   
+}
+.delivery-system::before{
+    content: "";
+    display: table;
+    height: 5px;
+    width: 100%;
+    left: 0px;
+    bottom: -30px;
+    position: absolute;
+    background-color: rgba(128, 128, 128, 0.884);
+    border-radius: 50%;
+    box-shadow:  0px 0px 10px 10px rgba(128, 128, 128, 0.885);
+    opacity: .1;
+    transform: scale(.8) rotateY(15deg);
+
+}
+.delivery-system.gone{
+    display: none;
+}
+@media (max-width:460px) {
+    .delivery-system{
+        padding: 2%;
+    }
+  .delivery-system ul li{
+    div{
+        display: flex;
+        flex-direction: column;
+
+        .cut-price{
+            width: max-content;
+        }
+    }
+    p{
+        font-size: 14px;
+    }
+    h3{
+    font-size: 16px;
+  }}
+ 
+    
+}

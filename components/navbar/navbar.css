@@ -1,0 +1,109 @@
+.navbar {
+    padding: 0px 140px;
+    display: flex;
+    height: max-content;
+    justify-content: space-between;
+    align-items: center;
+}
+
+ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 18px;
+    color: #49557e;
+
+    li {
+        cursor: pointer;
+    }
+}
+
+.logo {
+    width: 250px;
+    object-fit: cover;
+    margin: 0;
+
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.navbar .profile-button {
+    text-decoration: none;
+    background-color: tomato;
+    font-size: 16px;
+    outline: none;
+    border: 4px solid transparent;
+    cursor: pointer;
+    color: #fff;
+    font-weight: 600;
+    padding: 7px 15px;
+    border-radius: 50px;
+    transition: .4s all ease;
+
+    &:hover {
+        background-color: transparent;
+        color: tomato;
+        border: 4px solid tomato;
+
+    }
+}
+
+.navbar .active {
+    padding-bottom: 2px;
+    border-bottom: 4px solid tomato;
+}
+
+.navbar-search-icon {
+    position: relative;
+}
+
+.navbar-search-icon .dot {
+    position: absolute;
+    min-width: 10px;
+    min-height: 10px;
+    background-color: tomato;
+    border-radius: 50%;
+    right: -8px;
+    top: -8px;
+}
+@media (max-width:360px) {
+    
+    .navbar{
+        padding: 0px 10px;
+        padding-top: 10px;
+        justify-content: space-between;
+        align-items: center;
+        .logo{
+            width: 200px;
+        }
+        
+}
+}
+
+@media (max-width:1100px) {
+   .navbar .profile-button{
+            display: none;
+        }
+        .navbar{
+            padding: 0 80px;
+        }
+    
+    .navbar-right{
+        display: none;
+    }
+    .navbar-menu{
+        display: none;
+    }
+    
+}
+@media (max-width:860px) {
+    .navbar{
+        padding: 0 30px;
+    }
+    
+}

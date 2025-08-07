@@ -1,0 +1,41 @@
+.food-display{
+    margin-top: 30px;
+    width: auto;
+}
+.food-display h2{
+    font-size: max(2vw, 24px);
+    font-weight: 600;
+}
+.food-display-list{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    row-gap: 20px;
+}
+.food-display-title{
+    position: relative;
+    width: max-content;
+    margin-bottom: 30px;
+}
+.food-display-title::after{
+      content: "";
+    display: table;
+    position: absolute;
+    left: 0;
+    bottom: 4px;
+    height: 30%;
+    width: 90%;
+    background-color: rgba(255, 99, 71, 0.549);
+    border-radius: 2px;
+    z-index: -1;
+}
+@media (max-width:360px) {
+    .food-display-title{
+        font-size: 26px;
+    }
+    .food-display-list{
+        display: flex;
+    }
+    
+}

@@ -1,0 +1,34 @@
+.reviews-container{
+    width: 100%;
+    padding: 0;
+
+    .reviews-title h2{
+       font-size: max(2vw, 24px);
+      font-weight: 600;
+      position: relative;
+      width: max-content;
+    }
+    .reviews-title h2::before{
+         content: "";
+    display: table;
+    position: absolute;
+    left: 0;
+    bottom: 4px;
+    height: 15px;
+    width: 80%;
+    background-color: rgba(255, 99, 71, 0.649);
+    border-radius: 5px;
+    z-index: -1;
+    }
+    .reviews-star{
+        background-color: #FAEDE2;
+        border-radius: 20px;
+        padding: 15px 20px;
+        width: max-content;
+        color:#2e354f;
+        margin: 10px;
+        p{
+            color: #49557E;
+        }
+    }
+}

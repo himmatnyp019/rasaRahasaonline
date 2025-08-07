@@ -1,0 +1,18 @@
+119:: friday (6/20/2025)
+143:: saturday (7/05/2025)
+740::  monday (4/8/2025)
+
+the link ::: https://youtu.be/DBMPXJJfQEA?si=QdkXF6rQgFdvxGjy
+
+-----  ----Later Task--------
+204 ::: is responsive for Home Page
+300 ::: is responsive for Cart Page
+done >>
+
+----------ui change
+1. max-height for the slider view  -done
+
+
+ongoing
+updating the address... error
+

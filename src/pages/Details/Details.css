@@ -1,0 +1,237 @@
+.product-detail {
+    width: 100%;
+    padding: 0 140px;
+    display: flex;
+    flex-direction: column;
+    margin: 50px 0;
+}
+
+.about-product-detail {
+    width: 100%;
+    justify-content: center;
+    align-items: start;
+    gap: 20px;
+}
+
+.left {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-wrap: wrap;
+    height: 100%;
+    gap: 5%;
+
+
+
+    .main-product-image {
+        height: 100%;
+        flex: 1;
+        display: flex;
+        justify-content: end;
+        gap: 10px;
+
+        .main-product-img {
+           .main-big-img {
+                border-radius: 10px;
+                margin: 0 10px;
+                width: 100%;
+                height: 100%;
+                min-width: 300px;
+                object-fit: cover;
+            }
+        }
+    }
+
+    .offer-area {
+        width: 100%;
+    }
+
+}
+.image-index{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .image-i{
+               width: 90px;
+                height: 90px;
+                border-radius: 10px;
+                padding: 2px;
+                object-fit: cover;
+                border: 2px solid rgba(180, 178, 178, 0.422);
+                background-color: transparent;
+                transition: all .3s ease-in-out;
+
+                &:hover {
+                    border: 2px solid tomato;
+                }
+    }
+}
+.about-product-detail .product-info {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border: 2px solid rgb(255, 232, 228);
+    border-radius: 20px;
+    width: 100%;
+    flex: 1;
+
+    .weekday-text {
+        background-color: tomato;
+        color: #fff;
+        padding: 0 15px;
+        border-top-right-radius: 20px;
+        border-top-left-radius: 20px;
+
+        h2 {
+            font-size: 16px;
+        }
+    }
+
+    .price-area {
+        display: flex;
+        justify-content: start;
+        align-items: end;
+        margin: 0 20px;
+
+        h2 {
+            font-size: 28px;
+            margin: 0;
+            font-weight: 500;
+        }
+    }
+
+    .item-title {
+        font-size: 26px;
+        margin-left: 20px;
+        margin-top: 10px;
+    }
+
+    .description-area {
+        width: 80%;
+        color: #717171;
+        font-size: 16px;
+        margin: 10px;
+    }
+
+    .product-buttons {
+        margin: 20px 5%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        width: auto;
+
+        .food-item-counterrrr {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+            width: min-content;
+
+        }
+
+        .cart {
+            height: auto;
+            position: relative;
+            width: 230px;
+            flex: 1;
+
+
+            button {
+                position: absolute;
+                left: 0;
+                flex: 1;
+            }
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            flex: 1;
+            outline: none;
+            height: 45px;
+            min-width: 230px;
+            max-width: 231px;
+            padding-left: 25px;
+            background-color: tomato;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 500;
+            border-radius: 40px;
+            display: flex;
+            justify-content: end;
+            align-items: center;
+            transition: all .4s ease-in-out;
+            gap: 20px;
+
+            img {
+                width: 46px;
+                margin: 0;
+                transform: translateX(3px);
+            }
+
+
+        }
+
+        button:nth-child(2) {
+            img {
+                background-color: #fff;
+                border-radius: 50px;
+                padding: 7px;
+            }
+        }
+
+    }
+}
+
+.bottom {
+    height: 100%;
+
+    .food-display h2 {
+        position: relative;
+        width: max-content;
+    }
+
+    .food-display h2::before {
+        content: "";
+        display: table;
+        position: absolute;
+        left: 0;
+        bottom: 4px;
+        height: 15px;
+        width: 70%;
+        background-color: rgba(255, 99, 71, 0.649);
+        border-radius: 5px;
+        z-index: -1;
+    }
+}
+
+@media (max-width:1460px) {
+    .product-detail {
+        padding: 0 5%;
+    }
+}
+@media (max-width:560px) {
+    .main-product-image{
+        flex-direction: column;
+
+         .image-index {
+            display: flex;
+            height: auto;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+
+         .main-product-img   .main-big-img {
+              overflow: hidden;
+              width: 100%
+            }
+        
+    
+    }
+   
+    
+}

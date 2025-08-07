@@ -1,0 +1,27 @@
+.main-home{
+    padding: 0;
+}
+.padded-layout{
+    padding: 0 140px;
+}
+@media (max-width:1160px) {
+    .padded-layout{
+        padding: 0 80px;
+        margin: 0  auto;
+    }
+    
+}
+@media (max-width:860px) {
+    .padded-layout{
+        padding: 0 30px;
+        margin: 0  auto;
+    }
+    
+}
+@media (max-width:360px) {
+    .padded-layout{
+        padding: 0 10px;
+        margin: 0  auto;
+    }
+    
+}

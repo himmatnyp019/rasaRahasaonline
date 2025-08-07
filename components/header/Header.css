@@ -1,0 +1,153 @@
+
+/* src/components/Slider.css */
+.slider-container {
+  width: 100%;
+  height: 70vh;
+  position: relative;
+  background-color: black;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+  margin: 10px 0;
+}
+
+.slider-background {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+   padding: 20px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: end;
+  align-items: end;
+}
+
+.slider-icons {
+  padding: 20px 25px;
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  z-index: 2;
+}
+.icon-img {
+  width: 62px;
+  height: 62px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+
+.icon-button {
+  font-size: 24px;
+  cursor: pointer;
+  opacity: 0.6;
+  transform: scale(1);
+  transition: all 0.3s ease;
+}
+.icon-button.active,
+.icon-button:hover {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+.slider-text {
+    width: 100%;
+  padding: 20px 25px;
+  border-radius: 10px;
+  color: white;
+  text-align: left;
+  height: min-content;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.slider-text h2 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.slider-text p {
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+.view-button {
+  background-color:tomato;
+  color: #fff;
+  border: none;
+  padding: 15px 40px;
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.view-button:hover {
+  background-color: tomato;
+  color: #fff;
+
+}
+
+/* Fade animation */
+.fade-in {
+  animation: fadeEffect 0.8s ease-in-out;
+}
+
+@keyframes fadeEffect {
+  from {
+    opacity: 0.6;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (max-width:560px) {
+  .slider-container{
+    margin: 0;
+    height: 30vh;
+  }
+  .slider-background{
+    padding: 0px;
+  }
+  .slider-icons{
+    padding: 5px;
+    .icon-img{
+      width: 25px;
+      height: 25px;
+    }
+  }
+  .slider-text{
+      padding: 8px 10px;
+      overflow: visible;
+      position: relative;
+      height: 50%;
+      h2{
+        font-size: 16px;
+         position: absolute;
+        top: 0;
+        left: 10px;
+        width:200px;
+      }
+      p{
+        font-size: 14px;
+        width: 250px;
+        position: absolute;
+        top: 15px;
+        left: 10px;
+      }
+      .view-button{
+        padding: 7px 15px;
+        font-size: 14px;
+        position: absolute;
+        top: 60px;
+      }
+    }
+  .icon-button{
+      font-size: 14px;
+    }
+}

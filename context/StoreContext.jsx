@@ -27,7 +27,7 @@ const StoreContextProvider = (props) => {
     const [showChat,setShowChat] = useState(false);
 
 
-    const url = "http://localhost:5000";
+    const url = "https://rrobackend.onrender.com";
     // ------------------------------ //
     // ✅ CART LOGIC
     // ------------------------------ //

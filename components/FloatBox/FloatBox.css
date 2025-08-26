@@ -7,7 +7,7 @@
     position: fixed;
     top: 0%;
     left: 20px;
-    align-items: end;
+    align-items: start;
     z-index: 2;
     pointer-events: fill;
 

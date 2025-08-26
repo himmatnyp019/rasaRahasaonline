@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
-import { food_list, our_product, userInfo, orderHistory, deliveryAddress } from "../src/assets/assets";
+import { our_product, deliveryAddress } from "../src/assets/assets";
 import axios from "axios";
+import { isTokenExpired } from "../src/hooks/auth.js"
 
 // ✅ Creating Context
 export const StoreContext = createContext("null");
@@ -12,23 +13,21 @@ const StoreContextProvider = (props) => {
     // ✅ STATE MANAGEMENT
     // ------------------------------ //
     const [food_list, setFoodList] = useState([]);
-    const [activeAddress, setActiveAddress] = useState(1);
+    const [activeAddress, setActiveAddress] = useState("");
+    const [orderHistory, setOrderHistory] = useState([]);
     const [userData, setUserData] = useState({});
     const [cartItems, setCartItems] = useState({});
     const [token, setToken] = useState("");
     const [langauge, setLanguage] = useState("English");
+    const [historyItemsId, setHistoryItemsId] = useState([]);
+    const [itemReview, setItemReview] = useState([]);
+    const [ownReview, setOwnReview] = useState({});
+    const [allOwnReview, setAllOwnReview] = useState([]);
+    const [myMessage, setMyMessage] = useState([]);
+    const [showChat,setShowChat] = useState(false);
+
 
     const url = "http://localhost:5000";
-
-    const savedAddress = localStorage.getItem("activeAddress");
-
-    const [user, setUser] = useState({
-        address1: userInfo.address1,
-        address2: userInfo.address2,
-        address3: userInfo.address3,
-        activeAddress: savedAddress || "",
-    });
-
     // ------------------------------ //
     // ✅ CART LOGIC
     // ------------------------------ //
@@ -62,18 +61,25 @@ const StoreContextProvider = (props) => {
 
     // 💰 Calculate cart totals [discounted total, original total]
     const getTotalCartAmount = () => {
-        let totalAmount = 0;
         let amountBeforeDiscount = 0;
-
+        let totalAmount = 0;
+        let deliveryPrice = 3000;
         for (const item in cartItems) {
             if (cartItems[item] > 0) {
-                let itemInfo = food_list.find(product => product._id === item);
-                amountBeforeDiscount += itemInfo.price * cartItems[item];
-                totalAmount += itemInfo.price * cartItems[item] - (itemInfo.discount * cartItems[item]);
+                let itemInfo = food_list.find(product => String(product._id) === String(item));
+
+                if (itemInfo) {   // ✅ check before using
+                    amountBeforeDiscount += itemInfo.price * cartItems[item];
+                    totalAmount += (itemInfo.price - itemInfo.discount) *cartItems[item];
+
+                    if (totalAmount >= 100000) {
+                        deliveryPrice = 0;
+                    }
+                }
             }
         }
 
-        return [totalAmount, amountBeforeDiscount];
+        return [totalAmount, amountBeforeDiscount, deliveryPrice];
     };
 
     // 🧾 Get total discount value
@@ -82,8 +88,13 @@ const StoreContextProvider = (props) => {
 
         for (let item in cartItems) {
             if (cartItems[item] > 0) {
-                let itemInfo = food_list.find(product => product._id === item);
-                totalDiscount += itemInfo.discount * cartItems[item];
+                let itemInfo = food_list.find(
+                    product => String(product._id) === String(item)
+                );
+
+                if (itemInfo) { // ✅ safety check
+                    totalDiscount += itemInfo.discount * cartItems[item];
+                }
             }
         }
 
@@ -105,6 +116,16 @@ const StoreContextProvider = (props) => {
     // ------------------------------ //
     // ✅ USER DATA ACCESSING
     // ------------------------------ //
+    //checking use login expired or not
+    useEffect(() => {
+        const token = localStorage.getItem("authToken");
+
+        if (!token || isTokenExpired(token)) {
+            localStorage.removeItem("authToken");
+            localStorage.removeItem("userId");
+            //   window.location.href = "/Login"; // redirect to login
+        }
+    }, []);
 
     // 🛒 Load user data from DB using token
     const loadUserData = async (token) => {
@@ -113,15 +134,30 @@ const StoreContextProvider = (props) => {
                 headers: { token }
             });
             setUserData(response.data.user);
-            localStorage.setItem("userInfo", response.data.user);
-
+            localStorage.setItem("userInfo", JSON.stringify(response.data.user));
+            activeAddr(JSON.parse(localStorage.getItem("userInfo")))
         } catch (error) {
             console.error("Error loading user data:", error.response?.data || error.message);
         }
     };
+    function activeAddr(parms) {
+        const index = parms.address.findIndex(obj => obj.active === true);
+        setActiveAddress(parms.address[index].address)
+    }
+    useEffect(() => {
+        let savedData1 = localStorage.getItem("userInfo")
+        if (savedData1) {
+            let userInfo = JSON.parse(savedData1);
+            if (userInfo.address.address) {
+                let ThreeAddr = userInfo.address
+                const index = ThreeAddr.findIndex(obj => obj.active === true)
+                const activeAddr = ThreeAddr[index].address;
+                setActiveAddress(activeAddr);
+            }
 
+        }
 
-
+    }, [userData, activeAddress]);
     //user address updating
     const upadateAddress = async (index, address, active) => {
         if (localStorage.getItem("token")) {
@@ -138,11 +174,54 @@ const StoreContextProvider = (props) => {
             });
         }
     };
+    // 🛒 Load history of the user from DB using token
+    const loadOrderHistory = async (token) => {
+        const response = await axios.get(`${url}/api/history/get`, { headers: { token } })
+        setOrderHistory(response.data.orderHistory);
+        setHistoryItemsId(response.data.keys);
+
+    }
+
+    // ------------------------------ //
+    // ✅ REVIEW LOGIC
+    // ------------------------------ //
+
+    //get all the review
+    const loadReviewData = async (token, itemId) => {
+        const response = await axios.post(`${url}/api/review/get`, { itemId }, {
+            headers: { token }
+        });
+        setItemReview(response.data.reviews);
+        setAllOwnReview(response.data.allOwnReview);
+        setOwnReview(response.data.ownReview);
+
+
+        // return (response.data.reviews, response.data.allOwnReview, response.data.ownReview)
+    }
+
+    // ------------------------------ //
+    // ✅ GET ALL MY CHAT MESSAGE
+    // ------------------------------ //
+
+    const loadMyMessage = async (token) =>{
+        const response = await axios.get(`${url}/api/chat/me`,{headers: {token}})
+        setMyMessage(response.data.data);
+    }
+
+    const passProductID = async (id) => {
+        const storedToken = localStorage.getItem("token");
+        if (storedToken) {
+            await loadReviewData(storedToken, id);
+
+        }    
+    }    
+
 
     // ------------------------------ //
     // ✅ INIT DATA LOADING ON MOUNT
     // ------------------------------ //
     useEffect(() => {
+
         async function loadData() {
             await fetchFoodList();
 
@@ -151,24 +230,26 @@ const StoreContextProvider = (props) => {
                 setToken(storedToken);
                 await loadCartData(storedToken);
                 await loadUserData(storedToken);
+                await loadOrderHistory(storedToken);
+                await loadMyMessage(storedToken)
+                // await loadReviewData(storedToken);
             }
         }
 
         loadData();
     }, []);
-
     // ------------------------------  //
     //   ✅ CONTEXT VALUE EXPORT      //
     // ------------------------------ //
+
     const contextValue = {
         food_list,
         setFoodList,
         our_product,
         cartItems,
         addToCart,
-        user,
         deliveryAddress,
-        setUser,
+        activeAddress,
         orderHistory,
         setCartItems,
         removeFromCart,
@@ -182,8 +263,16 @@ const StoreContextProvider = (props) => {
         upadateAddress,
         userData,
         setUserData,
-        userInfo,
-        loadUserData
+        loadUserData,
+        setActiveAddress,
+        historyItemsId,
+        passProductID,
+        itemReview,
+        ownReview,
+        allOwnReview, 
+        //message(chat)
+        loadMyMessage,
+        myMessage,showChat,setShowChat
     };
 
     // ------------------------------ //

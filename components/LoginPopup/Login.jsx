@@ -45,20 +45,40 @@ const Login = ({ setShowLogin }) => {
   return (
     <div className='login'>
       <form className="login-container" onSubmit={onLoin}>
+
+         <div className="login-left">
+          <div className="image-container">
+            <h1>Shop what the nature gave</h1>
+            <p>Fresh - Healthy - Best</p>
+          </div>
+        </div>
+
+
+        <div className="login-right">
+             <img className='close-btn' onClick={() => setShowLogin(false)} src={assets.cross_icon} alt="" />
         <div className="login-title">
-          <h2>{currState} </h2>
-          <img onClick={() => setShowLogin(false)} src={assets.cross_icon} alt="" />
+            <h1>ආයුබෝවන්</h1>
+       <br />
         </div>
         <div className="login-inputs">
+          <p>{currState} with email </p>
           {
-            currState === "Log In" ? <></> :
+            currState === "Log In" ? <> <input type="email" name='email' onChange={onChangeHandler} value={data.email} placeholder='Enter your Email Address'/></> :
               <div>
+                 <input type="email" name='email' onChange={onChangeHandler} value={data.email} placeholder='Enter your Email Address' required />
                 <input type="text" name="name" onChange={onChangeHandler} value={data.name} placeholder='Your Full Name' required />
 
-                <input type='number' name="phone" onChange={onChangeHandler} value={data.phone} placeholder='Enter Mobile Number' required />
               </div>
           }
-          <input type="email" name='email' onChange={onChangeHandler} value={data.email} placeholder='Enter your Email Address' required />
+         
+          {
+            currState === "Log In"? <>
+           <p className='or-text'>or</p>
+           <p>{currState} with phone </p>
+            <input type='number' name="phone" onChange={onChangeHandler} value={data.phone} placeholder='Enter Mobile Number' />
+            </> :  <input type='number' name="phone" onChange={onChangeHandler} value={data.phone} placeholder='Enter Mobile Number' required />
+          }
+         
           <input type="password" name='password' onChange={onChangeHandler} value={data.password} placeholder='Enter Password' required />
         </div>
         <button type='submit'>{currState === 'Sign Up' ? "Create an Account" : "Log In"}</button>
@@ -71,9 +91,10 @@ const Login = ({ setShowLogin }) => {
           : <p className='join-option'>Already have an Account ? <br /> <span onClick={() => setCurrState('Log In')}>Login now</span></p>
         }
 
+       </div>
       </form>
     </div>
   )
 }
 
-export default Login
+export default Login;

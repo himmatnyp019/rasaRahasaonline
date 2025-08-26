@@ -1,9 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&display=swap');
+
+
+
 .login {
     position: fixed;
     z-index: 3;
     width: 100%;
     height: 100%;
-    background-color: #00000090;
+    background-color: #000000bb;
     display: grid;
 }
 
@@ -13,23 +17,144 @@
     color: #686767;
     background-color: #fff;
     display: flex;
-    flex-direction: column;
     gap: 15px;
-    padding: 25px 30px;
-    border-radius: 8px;
+    border-radius: 20px;
+    font-size: 14px;
+    width: 70%;
+    height: 80%;
+    position: relative;
+    transition: all .4s ease-in-out;
+    animation: fadeIn .5s;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+.login-container::after {
+    content: '';
+    position: absolute;
+    background-color: #cecccc;
+    border-radius: 20px;
+    height: 100px;
+    width: 150px;
+    top: -30px;
+    left: -30px;
+    z-index: -1;
+    box-shadow: 10px 10px 10px grey;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+
+.login-container::before {
+    content: '';
+    position: absolute;
+    background-color: #cecccc;
+    border-radius: 20px;
+    height: 100px;
+    width: 150px;
+    bottom: -30px;
+    right: -30px;
+    z-index: -1;
+    box-shadow: 10px 10px 10px grey;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+
+
+.login-right {
+    place-self: center;
+    width: 50%;
+    height: 100%;
+    color: #686767;
+    background-color: #fff;
+    display: flex;
+    gap: 15px;
+    border-radius: 20px;
+     padding: 15px 10px;
     font-size: 14px;
     transition: all .4s ease-in-out;
     animation: fadeIn .5s;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .close-btn{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
 }
 
-.login-title {
+    h1 {
+        font-size: clamp(16px, 4vw, 30px);
+        font-weight: 800;
+        color: grey;
+
+    }
+
+    p {
+        font-weight: 600;
+    }
+}
+
+.login-left {
+    width: 50%;
+    height: 100%;
+
+    .image-container {
+        background-image: url("../../../src//assets/sigiria.jpg");
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 15px 10px;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+
+        h1 {
+            color: #fff;
+            font-size: clamp(16px, 4vw, 24px);
+            font-family: "Delius Swash Caps", cursive;
+            font-weight: 700;
+            font-style: normal;
+            font-weight: 700;
+        }
+
+        p {
+            color: rgb(43, 43, 43);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            opacity: 0.8;
+        }
+    }
+
+}
+.login-right .login-title {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     color: #000;
+    width: 100%;
+    img{
+        width: 100%;
+        height: 25px;
+        object-fit: contain;
+        object-position: right;
+    }
 
-    h2 {
-        font-size: 2.4rem;
+    p {
+        font-size: 16px;
+        color: #686767;
+        margin-top: 10px;
     }
 }
 
@@ -42,48 +167,67 @@
 .login-inputs {
     display: flex;
     flex-direction: column;
-    gap: 0px;
+    gap: 0;
+    width: 100%;
+    max-width: 300px;
+    .or-text{
+        width: 100%;
+        text-align: center;
+    }
 }
 
 .login-inputs input {
     outline: none;
-    border: 1px solid #e9e9e9;
-    border-radius: 8px;
-    padding: 15px;
-    font-size: 16px;
+    border: none;
     width: 100%;
-    margin: 7px 0;
-    font-weight: 500;
-    background-color: #FAEDE2;
-    transition: 0.3s all ease-in-out;
-
-    &:hover {
-        background-color: #f5d7bc;
-    }
-
-    &:focus {
-        background-color: #ffe1c8;
-        border: 1px solid #c1c1c1;
-    }
-
+    padding: 15px 10px;
+    background-color: transparent;
+    font-size: 16px;
+    margin: 10px 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    border: 2px solid #cecccc;
 }
 
+input:focus {
+    border: 2px solid tomato;
+}
+
+
 .login-container button {
-    border: none;
-    pad: 10px;
-    border-radius: 4px;
-    color: #fff;
-    background-color: tomato;
+    padding: 10px;
+   max-width: 300px;
     font-size: 16px;
+    font-weight: 700;
+    outline: none;
+    border: none;
+    margin-top: 10px;
+    color: #fff;
     cursor: pointer;
-    padding: 10px 0;
-    font-weight: 600;
+    background: #d46653;
+    transition: all 0.3s ease-in-out;
+    background: linear-gradient(63deg, rgba(212, 102, 83, 1) 0%, rgba(255, 99, 71, 1) 86%);
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+
+    &:hover {
+        background: #d46653;
+        background: linear-gradient(63deg, rgba(212, 102, 83, 1) 59%, rgba(255, 99, 71, 1) 100%);
+    }
 }
 
 .login-condition {
     display: flex;
     align-items: start;
     gap: 8px;
+    width: 300px;
     margin-top: -6px;
 
     input {
@@ -107,10 +251,36 @@
     text-align: center;
     font-size: 16px;
 }
-@media (max-width:760px) {
-    .login-container{
+
+@media (max-width:960px) {
+    .login-container {
         width: 90%;
-        padding: 20px 25px;
+        padding: 0px;
     }
+
+}
+@media (max-width:740px) {
+    .login-container{
+        flex-direction: column;
     
+    }
+    .login-right{
+        width: 100%;
+    }
+    .login-left{
+        width: 100%;
+        .image-container{
+            justify-content: end;
+            flex-direction: column-reverse;
+            width: 100%;
+            border: 0px;
+            border-bottom-left-radius: 0px;
+            border-top-right-radius: 20px;
+            border-top-left-radius: 20px;
+            padding: 5px 0;
+            p{
+                color: #fff;
+            }
+        }
+    }
 }

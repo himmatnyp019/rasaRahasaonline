@@ -1,0 +1,241 @@
+:root {
+  --primary-color: #ff6347; /* tomato theme */
+  --secondary-color: #fff2f0;
+}
+
+.chat-container {
+  max-width: 600px;
+  margin: auto;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  height: 98vh;
+  overflow: hidden;
+  /* background: linear-gradient(to bottom, #fff2f0 0%, #fff 100%); */
+  /* box-shadow: 0 6px 20px rgba(0,0,0,0.15); */
+  font-family: "Arial", sans-serif;
+}
+
+/* Header */
+.chat-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 50%;
+  background: var(--primary-color);
+  color: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  border-top-right-radius: 30px;
+}
+.profile-img {
+  width: 45px;
+  height: 45px;
+  border-bottom-right-radius: 20px;
+  object-fit: cover;
+}
+
+/* Chat body */
+
+.chat-body {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-top-right-radius: 30px;
+  scrollbar-width: none;
+  background: url("https://www.transparenttextures.com/patterns/white-wall.png"); /* subtle pattern */
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.821);
+}
+
+/* Message bubbles */
+.chat-message {
+  display: flex;
+}
+.chat-message.me {
+  justify-content: flex-end;
+}
+.chat-message.admin {
+  justify-content: flex-start;
+}
+.message-content {
+  position: relative;
+  max-width: 70%;
+  width: max-content;
+  background: var(--secondary-color);
+  padding: 12px 18px;
+  border-radius: 20px;   
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.chat-message.me .message-content {
+  background: var(--primary-color);
+  color: white;
+}
+.message-content:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+.text {
+  margin: 0;
+  width: 100%;
+  text-align: end;
+}
+.msg-image {
+  max-width: 100%;
+  margin-top: 5px;
+  border-radius: 12px;
+}
+
+/* Product box */
+.product-box {
+  display: flex;
+  background: #fff0f0;
+  padding: 8px;
+  margin-top: 8px;
+  border-radius: 12px;
+  gap: 10px;
+  align-items: center;
+  animation: scaleIn 0.3s ease;
+}
+.product-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.product-info h4 {
+  margin: 0;
+  font-size: 14px;
+  color: #555;
+}
+.product-info p {
+  margin: 0;
+  font-size: 12px;
+  color: #555;
+}
+
+.time {
+  font-size: 10px;
+  opacity: 0.6;
+  width: max-content;
+  width: 100%;
+  text-align: end;
+
+}
+
+.delete-icon {
+  position: absolute;
+  top: 3px;
+  right: 10px;
+  font-size: 12px;
+  opacity: 0.6;
+  cursor: pointer;
+}
+.delete-icon:hover {
+  opacity: 1;
+}
+
+/* Input area */
+.chat-input-area {
+  display: flex;
+  gap: 10px;
+  padding: 12px;
+  background: #fff;
+  align-items: center;
+  border-top: 1px solid #ddd;
+}
+.chat-input-area input[type="text"] {
+  flex: 1;
+  padding: 10px 15px;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 16px;
+}
+.chat-input-area button {
+  background: var(--primary-color);
+  border: none;
+  color: white;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+}
+.chat-input-area button:hover {
+  transform: scale(1.1);
+}
+
+/* Image upload preview */
+.image-preview {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: 10px;
+}
+.image-preview img {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+.image-preview button {
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Image upload icon */
+.image-upload input[type="file"] {
+  display: none;
+}
+.image-upload {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  color: #555;
+}
+
+/* Animations */
+@keyframes scaleIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .chat-container {
+    width: 100%;
+    height: 85vh;
+  }
+  .message-content {
+    max-width: 85%;
+  }
+  .product-img {
+    width: 45px;
+    height: 45px;
+  }
+}
+@media (max-width:1100px) {
+    .chat-container{
+        height: 90vh;
+    }
+    
+}

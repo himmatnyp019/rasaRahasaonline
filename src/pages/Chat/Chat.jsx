@@ -58,7 +58,7 @@ const Chat = () => {
       if (newMsg) formData.append("message", newMsg);
       if (newImage) formData.append("uploadImage", newImage); // same key as multer.single()
       if (productId) formData.append("productId", productId);
-      const res = await axios.post("http://localhost:5000/api/chat/add", formData, {
+      const res = await axios.post(url +"/api/chat/add", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           token

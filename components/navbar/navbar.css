@@ -1,8 +1,9 @@
 .navbar {
     padding: 0px 140px;
+    width: 100%;
     display: flex;
     height: max-content;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
 
@@ -31,7 +32,27 @@ ul {
     align-items: center;
     gap: 40px;
 }
+.navbar .track-orders{
+    cursor: pointer;
+    width: max-content;
+    height: 75px;
+    overflow: hidden;
+    transition: 0.4s all ease-in-out;
+    .track-order-image{
+        width: 100px;
+    }
 
+    p{
+    color: grey;
+    font-weight: 500;
+    padding: 5px 10px;
+    background-color: rgb(240, 240, 240);
+    border-radius:5px ;
+    }
+    &:hover{
+    height: 120px;
+    }
+}
 .navbar .profile-button {
     text-decoration: none;
     background-color: tomato;

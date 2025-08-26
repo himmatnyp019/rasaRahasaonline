@@ -6,8 +6,16 @@ import { useToast } from '../../context/ToastContext';
 
 
 const Bill = ({data, setShowBill}) => {
-    const { userInfo,food_list } = useContext(StoreContext)
+    const { userData,food_list } = useContext(StoreContext)
     
+    if (!data) {
+        return null
+    }
+    console.log(data);
+    
+    if (JSON.stringify(data)==="[]") {
+        return null
+    }
   const {showToast} = useToast()
     let totalPrice = 0;
     let totalQuantity = 0;
@@ -80,8 +88,8 @@ const handleScreenshot = async () => {
             <br />
             <hr />
             <br />
-            <h3>Name : <span>........{userInfo.name}....... </span> </h3>
-            <h3>Phone Number : <span>........{userInfo.phone}.......</span> </h3>
+            <h3>Name : <span>........{userData.name}....... </span> </h3>
+            <h3>Phone Number : <span>........{userData.phone}.......</span> </h3>
             <h3>Total Amount : <span>........{data.totalPrice + data.deliveryCharge}.........</span> </h3>
             <h3>Date : <span>.......{data.date}........</span> </h3>
             <br />

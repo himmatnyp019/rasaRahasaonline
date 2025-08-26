@@ -11,47 +11,46 @@ import FloatBox from '../components/FloatBox/FloatBox';
 import SearchBox from '../components/SearchBox/SearchBox';
 import BottomNavigation from '../components/BottomNavigation/BottomNavigation';
 import Profile from './pages/Profile/Profile';
+import Chat from './pages/Chat/Chat';
 import Bill from '../components/Bill/Bill';
+import CatView from './pages/Category/CatView';
 import useAOS from "./hooks/useAOS";
 import AOS from "aos";
-import "aos/dist/aos.css"; 
-
-
+import "aos/dist/aos.css";
 
 const App = () => {
   const [showLogin, setShowLogin] = useState(false)
   const [showSearch, setSearchBox] = useState(false)
   const [showBill, setShowBill] = useState(false)
   const [billData, setBillData] = useState(null)
-  
- useAOS();
+
+  useAOS();
   const location = useLocation();
 
   useEffect(() => {
     AOS.refresh(); // refresh when route changes
-    console.log("Current route:", location.pathname);
-  }, [location]);
-
-
+    console.log(location.pathname);
+    if (location.pathname === "/Chat") {
+    }
+  }, [location.pathname]);
   return (
-    <div className={`app ${location.pathname==="/PlaceOrder" ? "set-back": ""}`}>
+    <div className={`app ${location.pathname === "/PlaceOrder" ? "set-back" : ""}`}>
+      {showLogin ? <Login setShowLogin={setShowLogin}></Login> : <></>}
+      {showSearch ? <SearchBox setSearchBox={setSearchBox}></SearchBox> : <></>}
+      {showBill && <Bill setShowBill={setShowBill} data={billData} />}
       <BottomNavigation setShowLogin={setShowLogin} setSearchBox={setSearchBox}></BottomNavigation>
-      {showLogin?<Login setShowLogin={setShowLogin}></Login>:<></>}
-      {showSearch?<SearchBox setSearchBox={setSearchBox}></SearchBox> :<></>}
-       {showBill && <Bill setShowBill={setShowBill} data={billData} />}
-       
+      <FloatBox />
       <Navbar setShowLogin={setShowLogin} setSearchBox={setSearchBox} setShowBill={setShowBill}></Navbar>
-      <FloatBox/>
-
       <Routes>
-        <Route path='/' element={<Home/>}></Route>
-       <Route path="/Cart" element={<Cart setShowBill={setShowBill} setBillData={setBillData} />} />
-        <Route path='/PlaceOrder' element={<PlaceOrder/>}></Route>
+        <Route path='/' element={<Home />}></Route>
+        <Route path="/Cart" element={<Cart setShowBill={setShowBill} setShowLogin={setShowLogin} setBillData={setBillData} />} />
+        <Route path='/PlaceOrder' element={<PlaceOrder setShowLogin={setShowLogin} />}></Route>
         <Route path='/Details' element={<Details/>}></Route>
-         <Route path='/Profile' element={<Profile></Profile>}></Route>
+        <Route path='/Profile' element={<Profile></Profile>}></Route>
+        <Route path='/catview' element={<CatView></CatView>}></Route>
+        <Route path='/Chat' element={<Chat setShowLogin={setShowLogin} ></Chat>}></Route>
       </Routes>
       <Footer></Footer>
-
     </div>
   )
 }

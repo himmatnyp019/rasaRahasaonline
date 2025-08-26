@@ -19,19 +19,6 @@ a{
   width: 100%;
   margin: auto;
 }
-/* .app.set-back{
-   background: 
-    linear-gradient(
-      0deg,
-      rgba(0, 0, 0, 0.6) 50%,
-      rgba(0, 0, 0, 0.6) 50%
-    ),
-    url("./assets/back_img.webp");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-
-} */
 @keyframes fadeIn {
     0%{
         opacity: 0;
@@ -39,7 +26,6 @@ a{
     100%{
         opacity: 1;
     }
-    
 }
 [data-aos] {
   opacity: 0;

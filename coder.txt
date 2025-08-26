@@ -13,6 +13,3 @@ done >>
 1. max-height for the slider view  -done
 
 
-ongoing
-updating the address... error
-

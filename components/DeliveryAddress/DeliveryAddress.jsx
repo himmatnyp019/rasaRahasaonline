@@ -6,7 +6,7 @@ import { useToast } from '../../context/ToastContext';
 
 
 const DeliveryAddress = ({addressData}) => {
-  const { user, setUser, deliveryAddress } = useContext(StoreContext);
+  const { user, setUser, deliveryAddress,activeAddress } = useContext(StoreContext);
   const [showModal, setShowModal] = useState(false);
   const [selectedKey, setSelectedKey] = useState(null);
   const [isEdit, setIsEdit] = useState(false);

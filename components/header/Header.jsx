@@ -1,27 +1,50 @@
 import React, { useEffect, useState } from "react";
-import sliderData from "./UniversalData";
+import axios from "axios"; // import axios
 import "./Header.css";
 
 const Header = () => {
+  const [sliderData, setSliderData] = useState([]); // state to store slider data
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [fade, setFade] = useState(false); // Add fade state
+  const [fade, setFade] = useState(false);
+
+  // Fetch slider data from backend
+  useEffect(() => {
+    const fetchSliderData = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/api/sliders/all"); // your GET endpoint
+        if (response.data.success) {
+          setSliderData(response.data.data);
+        }
+      } catch (error) {
+        console.error("Failed to fetch slider data:", error);
+      }
+    };
+
+    fetchSliderData();
+  }, []);
 
   // Change slide automatically
   useEffect(() => {
+    if (sliderData.length === 0) return; // don't start timer if data not loaded
+
     const timer = setInterval(() => {
       handleSlideChange((currentSlide + 1) % sliderData.length);
     }, 4000);
-    return () => clearInterval(timer);
-  }, [currentSlide]);
 
-  // Change slide with fade animation
+    return () => clearInterval(timer);
+  }, [currentSlide, sliderData]);
+
   const handleSlideChange = (index) => {
-    setFade(false); // Reset fade to trigger re-animation
+    setFade(false);
     setTimeout(() => {
       setCurrentSlide(index);
-      setFade(true); // Trigger fade after state update
-    }, 50); // Slight delay for the fade to reset
+      setFade(true);
+    }, 50);
   };
+
+  if (sliderData.length === 0) {
+    return <div className="slider-container">Loading...</div>; // simple loading state
+  }
 
   return (
     <div data-aos="fade-right" className="slider-container">
@@ -32,7 +55,7 @@ const Header = () => {
         <div className="slider-icons">
           {sliderData.map((slide, index) => (
             <div
-              key={slide.id}
+              key={slide._id} // changed to _id from database
               className={`icon-button ${currentSlide === index ? "active" : ""}`}
               onClick={() => handleSlideChange(index)}
             >
@@ -54,17 +77,17 @@ const Header = () => {
         </div>
       </div>
 
-      <hr style={{
-        width:'50%',
-        margin:"20px auto",
-        height:'5px',
-        border:"none",
-        outline:'none',
-        borderRadius:"10px",
-        backgroundColor:"#e2e2e295"
-
-
-      }}/>
+      <hr
+        style={{
+          width: "50%",
+          margin: "20px auto",
+          height: "5px",
+          border: "none",
+          outline: "none",
+          borderRadius: "10px",
+          backgroundColor: "#e2e2e295",
+        }}
+      />
     </div>
   );
 };

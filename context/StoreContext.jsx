@@ -24,7 +24,8 @@ const StoreContextProvider = (props) => {
     const [ownReview, setOwnReview] = useState({});
     const [allOwnReview, setAllOwnReview] = useState([]);
     const [myMessage, setMyMessage] = useState([]);
-    const [showChat,setShowChat] = useState(false);
+    const [showChat, setShowChat] = useState(false);
+    const [myOrders, setMyOrders] = useState([]);
 
 
     const url = "https://rrobackend.onrender.com";
@@ -70,7 +71,7 @@ const StoreContextProvider = (props) => {
 
                 if (itemInfo) {   // ✅ check before using
                     amountBeforeDiscount += itemInfo.price * cartItems[item];
-                    totalAmount += (itemInfo.price - itemInfo.discount) *cartItems[item];
+                    totalAmount += (itemInfo.price - itemInfo.discount) * cartItems[item];
 
                     if (totalAmount >= 100000) {
                         deliveryPrice = 0;
@@ -203,8 +204,8 @@ const StoreContextProvider = (props) => {
     // ✅ GET ALL MY CHAT MESSAGE
     // ------------------------------ //
 
-    const loadMyMessage = async (token) =>{
-        const response = await axios.get(`${url}/api/chat/me`,{headers: {token}})
+    const loadMyMessage = async (token) => {
+        const response = await axios.get(`${url}/api/chat/me`, { headers: { token } })
         setMyMessage(response.data.data);
     }
 
@@ -213,10 +214,12 @@ const StoreContextProvider = (props) => {
         if (storedToken) {
             await loadReviewData(storedToken, id);
 
-        }    
-    }    
-
-
+        }
+    }
+    // ------------------------------ //
+    // ✅ GET ALL MY Orders
+    // ------------------------------ //
+       
     // ------------------------------ //
     // ✅ INIT DATA LOADING ON MOUNT
     // ------------------------------ //
@@ -269,10 +272,10 @@ const StoreContextProvider = (props) => {
         passProductID,
         itemReview,
         ownReview,
-        allOwnReview, 
+        allOwnReview,
         //message(chat)
         loadMyMessage,
-        myMessage,showChat,setShowChat
+        myMessage, showChat, setShowChat
     };
 
     // ------------------------------ //

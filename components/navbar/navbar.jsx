@@ -30,10 +30,10 @@ const Navbar = ({setSearchBox,setShowLogin}) => {
                 <div className={totalAmount===0?"":"dot"}></div>
                   <Link to='/Cart'>   <img data-aos="fade-down"  src={assets.basket_icon} /></Link>
                 </div>
-            <div className="track-orders">
+            <Link to='/track' className="track-orders">
               <img className='track-order-image' src={assets.trackTruck} alt="track-order" />
               <p>Track Order</p>
-            </div>
+            </Link>
             </div>
             {token
             ?<Link data-aos="fade-down" className='profile-button'  to='/Profile'> <p>Profile </p></Link>

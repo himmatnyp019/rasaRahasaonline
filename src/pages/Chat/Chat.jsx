@@ -10,14 +10,13 @@ import { useToast } from '../../../context/ToastContext'
 
 const Chat = () => {
   const { userData, loadMyMessage, myMessage, url } = useContext(StoreContext);
-  const CURRENT_USER_ID = userData._id;
+  const CURRENT_USER_ID = userData._id;  // userID of that user that we are going to send message ??
   const [newMsg, setNewMsg] = useState("");
   const [newImage, setNewImage] = useState(null);
   const chatEndRef = useRef();
   const { showToast } = useToast();
   const productId = '';
   const [messages, setMessages] = useState(myMessage);
-
 
   const formatDisplayTime = (date) => {
     try {
@@ -40,6 +39,7 @@ const Chat = () => {
   if (!token) {
     showToast("Please Login First");
   }
+
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
@@ -54,10 +54,11 @@ const Chat = () => {
     try {
       // Prepare form data because image might be included
       const formData = new FormData();
-      formData.append("userId", CURRENT_USER_ID);
+      formData.append("userId", CURRENT_USER_ID); 
       if (newMsg) formData.append("message", newMsg);
       if (newImage) formData.append("uploadImage", newImage); // same key as multer.single()
       if (productId) formData.append("productId", productId);
+      
       const res = await axios.post(url +"/api/chat/add", formData, {
         headers: {
           "Content-Type": "multipart/form-data",

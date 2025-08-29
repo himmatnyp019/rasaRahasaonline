@@ -4,7 +4,6 @@ import { StoreContext } from '../../../context/StoreContext'
 import { assets } from '../../assets/assets';
 import DeliveryAddress from '../../../components/DeliveryAddress/DeliveryAddress';
 import History from '../../../components/History/History';
-
 import { useNavigate } from 'react-router-dom';
 import Settings from '../../../components/Settings/Settings';
 
@@ -24,7 +23,6 @@ const Profile = () => {
     } else {
       loadUserData(token);
     }
-
     const LoginExpired = () => {
       navigate("/")
     }
@@ -61,7 +59,6 @@ const Profile = () => {
         height: "2px",
         backgroundColor: "#e2e2e2",
         border: "none"
-
       }} />
 
       <div className="user-shop-info">
@@ -71,9 +68,7 @@ const Profile = () => {
         <div className="div">
           <History count={4}></History>
           <br />
-
           <button className='view-more' onClick={() => setShowAllHistory(true)}>View More</button>
-
           {showAllHistory && (
             <div className="view-all-history active">
               <p className='close-history' onClick={() => setShowAllHistory(false)}>X</p>
@@ -82,9 +77,7 @@ const Profile = () => {
               </div>
             </div>
           )}
-
         </div>
-
       </div>
 
       <hr style={{
@@ -94,7 +87,6 @@ const Profile = () => {
         height: "2px",
         backgroundColor: "#e2e2e2",
         border: "none"
-
       }} />
 
       <div className="profile-options">

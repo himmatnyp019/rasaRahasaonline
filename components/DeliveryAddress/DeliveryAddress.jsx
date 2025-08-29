@@ -36,6 +36,9 @@ const DeliveryAddress = ({addressData}) => {
     setShowModal(true);
     setIndex(key)
   };
+  if (!addressData) {
+    addressData = [{},{},{}]
+  }
 
   const handleSaveAddress = (fullAddress) => {
     setUser((prev) => ({

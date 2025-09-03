@@ -1,0 +1,130 @@
+  .rs-slide.s {
+      width: 100%;
+      display: flex;
+      flex: 1;
+      min-width: 250px;
+      justify-content: center;
+      align-items: end;
+      flex-direction: row;
+      cursor: pointer;
+      padding: 0;
+      align-items: center;
+      transition: .4s ease-in-out;
+
+      .top-image {
+          height: 150px;
+          position: absolute;
+          left: 0;
+          top: 0;
+          transition: .4s ease-in-out;
+          animation: upANDdown 3s infinite ease-in-out;
+
+          img {
+              height: 100%;
+          }
+
+          .extra-vegs {
+              height: 30px;
+              width: 30px;
+          }
+      }
+
+      .bottom-contents {
+          width: 100%;
+          margin: 60px 0;
+          height: max-content;
+          display: flex;
+          justify-content: center;
+          z-index: -1;
+          align-items: start;
+          flex-direction: column;
+          padding-left: 100px;
+          padding-bottom: 10px;
+          transform: translateX(50px);
+          border-radius: 10px;
+          background-color: rgba(11, 197, 11, 0.100);
+          transition: all .4s ease-in-out;
+
+          h1 {
+              font-size: clamp(16px, 4vw, 22px);
+              font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+              font-weight: 600;
+              opacity: .7;
+              text-align: center;
+              margin: 5px 0;
+          }
+
+          p {
+              font-size: clamp(12px, 4vw, 17px);
+              color: #6f6e6eb9;
+              width: 100%;
+              text-align: left;
+          }
+      }
+  }
+
+  .masala-section {
+      .rs-slide {
+          .bottom-contents {
+              background-color: rgba(241, 231, 25, 0.2);
+          }
+      }
+  }
+
+  .meat-section {
+      .rs-slide {
+          .bottom-contents {
+              background-color: rgba(230, 180, 170, 0.2);
+          }
+      }
+  }
+
+  .drink-section {
+      .rs-slide {
+          .bottom-contents {
+              background-color: rgba(0, 150, 255, 0.2);
+          }
+      }
+  }
+
+  @keyframes upANDdown {
+      0% {
+          transform: translateY(0);
+      }
+
+      50% {
+          transform: translateY(-10px);
+      }
+
+      100% {
+          transform: translateY(0);
+      }
+
+  }
+
+  @media (max-width:860px) {
+      .rs-slide.s {
+          padding: 0;
+
+          .bottom-contents {
+              padding-left: 130px;
+              transform: translateX(20px);
+          }
+      }
+  }
+
+  @media (max-width:400px) {
+      .rs-slide.s {
+          padding: 0;
+
+          .top-image {
+              height: 120px;
+
+          }
+
+          .bottom-contents {
+              padding-left: 130px;
+              transform: translateX(0px);
+          }
+      }
+  }

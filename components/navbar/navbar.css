@@ -24,7 +24,6 @@ ul {
     width: 250px;
     object-fit: cover;
     margin: 0;
-
 }
 
 .navbar-right {
@@ -32,44 +31,81 @@ ul {
     align-items: center;
     gap: 40px;
 }
-.navbar .track-orders{
-    cursor: pointer;
-    width: max-content;
-    height: 75px;
-    overflow: hidden;
-    transition: 0.4s all ease-in-out;
-    .track-order-image{
-        width: 100px;
-    }
 
-    p{
-    color: grey;
-    font-weight: 500;
-    padding: 5px 10px;
-    background-color: rgb(240, 240, 240);
-    border-radius:5px ;
-    }
+.cart-button {
+    margin: 4px;
+    padding: 10px 10px;
+    background-color: tomato;
+    color: #fff;
+    border-radius: 50px;
+    position: relative;
+    transition:  all 0.3s ease-in-out;
+    font-weight: 600;
+    border: 2px solid transparent;
+
     &:hover{
-    height: 120px;
+        background-color: transparent;
+        color: tomato;
+        border: 2px solid tomato;
     }
 }
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar .track-orders {
+    cursor: pointer;
+    width: max-content;
+    height: 60px;
+    overflow: hidden;
+    transition: 0.4s all ease-in-out;
+    gap: 0;
+
+    .track-order-image {
+        margin: 0 auto;
+        width: 70px;
+        object-fit: contain;
+        transform: rotateY(180deg);
+    }
+
+    p {
+        color: grey;
+        font-weight: 500;
+        padding: 5px 10px;
+        background-color: rgb(240, 240, 240);
+        border-radius: 5px;
+    }
+
+    &:hover {
+        height: 120px;
+    }
+}
+
 .navbar .profile-button {
     text-decoration: none;
     background-color: tomato;
     font-size: 16px;
     outline: none;
-    border: 4px solid transparent;
+    border: 2px solid transparent;
     cursor: pointer;
     color: #fff;
     font-weight: 600;
-    padding: 7px 15px;
+    padding: 10px 15px;
     border-radius: 50px;
-    transition: .4s all ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+    transition: all 0.4s ease-in-out;
+    height: max-content;
 
     &:hover {
         background-color: transparent;
         color: tomato;
-        border: 4px solid tomato;
+        border: 2px solid tomato;
 
     }
 }
@@ -83,7 +119,7 @@ ul {
     position: relative;
 }
 
-.navbar-search-icon .dot {
+ .dot {
     position: absolute;
     min-width: 10px;
     min-height: 10px;
@@ -92,39 +128,44 @@ ul {
     right: -8px;
     top: -8px;
 }
+
 @media (max-width:360px) {
-    
-    .navbar{
+
+    .navbar {
         padding: 0px 10px;
         padding-top: 10px;
         justify-content: space-between;
         align-items: center;
-        .logo{
+
+        .logo {
             width: 200px;
         }
-        
-}
+
+    }
 }
 
 @media (max-width:1100px) {
-   .navbar .profile-button{
-            display: none;
-        }
-        .navbar{
-            padding: 0 80px;
-        }
-    
-    .navbar-right{
+    .navbar .profile-button {
         display: none;
     }
-    .navbar-menu{
+
+    .navbar {
+        padding: 0 80px;
+    }
+
+    .navbar-right {
         display: none;
     }
-    
+
+    .navbar-menu {
+        display: none;
+    }
+
 }
+
 @media (max-width:860px) {
-    .navbar{
+    .navbar {
         padding: 0 30px;
     }
-    
+
 }

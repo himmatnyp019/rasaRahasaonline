@@ -8,7 +8,7 @@ const RotatingSlide = () => {
     <div className="rotator-slide-container">
       <div className="slide-contents">
 
-        <Link to='/CatView' state={{ category: "vegetable" }} data-aos='fade-up' className="rs-slide">
+        <a href='#vegetable-section' state={{ category: "vegetable" }} data-aos='fade-up' className="rs-slide">
           <div className="top-image">
             <img src={assets.vegetable} alt="" />
           </div>
@@ -16,9 +16,9 @@ const RotatingSlide = () => {
             <h1>Vegetables & Fruits</h1>
             <p>All fresh vegetables and fruits <br /> from motherland.</p>
           </div>
-        </Link>
+        </a>
 
-        <Link to="/CatView" state={{ category: "spices" }} data-aos='fade-up' data-aos-delay="300" className="rs-slide">
+        <a href='#masala-section' state={{ category: "spices" }} data-aos='fade-up' data-aos-delay="300" className="rs-slide">
           <div className="top-image">
             <img src={assets.species} alt="" />
           </div>
@@ -26,9 +26,9 @@ const RotatingSlide = () => {
             <h1>Species, Masala</h1>
             <p>masala, turmeric, oils, sauces <br /> kitchen things</p>
           </div>
-        </Link>
+        </a>
 
-        <Link to="/CatView" state={{ category: "meat" }} data-aos='fade-up' data-aos-delay="600" className="rs-slide">
+        <a href="#meat-section" state={{ category: "meat" }} data-aos='fade-up' data-aos-delay="600" className="rs-slide">
           <div className="top-image">
             <img src={assets.meat} alt="" />
           </div>
@@ -36,17 +36,17 @@ const RotatingSlide = () => {
             <h1>Meat and Fish</h1>
             <p>All fresh meats & fishes<br /> delivery with safety</p>
           </div>
-        </Link>
+        </a>
 
-        <Link to="/CatView" state={{ category: "drinks" }} data-aos='fade-up' data-aos-delay='900' className="rs-slide">
+        <a href="#drink-section" state={{ category: "drinks" }} data-aos='fade-up' data-aos-delay='900' className="rs-slide">
           <div className="top-image">
-            <img src={assets.vegetable} alt="" />
+            <img src={assets.drinks} alt="" />
           </div>
           <div className="bottom-contents">
-            <h1>Vegetables & Fruits</h1>
-            <p>All fresh vegetables and fruits <br /> from motherland.</p>
+            <h1>Cold Drinks</h1>
+            <p>All delicous and sweet drinks <br /> pup and drink.</p>
           </div>
-        </Link>
+        </a>
 
       </div>
     </div>

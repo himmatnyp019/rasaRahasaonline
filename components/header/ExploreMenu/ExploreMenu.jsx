@@ -11,7 +11,6 @@ const ExploreMenu = ({category, setCategory}) => {
         </p>
         <div className="exploreMenu-List">
             {menu_list.map((item,index)=>{
-
                 return (
                     <a  data-aos="fade-up"data-aos-delay={index * 100} href='#food-display' onClick={()=>{setCategory(prev=>prev===item.menu_name?"All":item.menu_name)}} key={index} className="exploreMenu-List-Item">
                         <img className={category===item.menu_name?"active":" "} src={item.menu_image} alt={`${item.menu_name}-img` }/>

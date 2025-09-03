@@ -23,28 +23,6 @@ import food_7 from './food_7.png'
 import food_8 from './food_8.png'
 import food_9 from './food_9.png'
 import food_10 from './food_10.png'
-import food_11 from './food_11.png'
-import food_12 from './food_12.png'
-import food_13 from './food_13.png'
-import food_14 from './food_14.png'
-import food_15 from './food_15.png'
-import food_16 from './food_16.png'
-import food_17 from './food_17.png'
-import food_18 from './food_18.png'
-import food_19 from './food_19.png'
-import food_20 from './food_20.png'
-import food_21 from './food_21.png'
-import food_22 from './food_22.png'
-import food_23 from './food_23.png'
-import food_24 from './food_24.png'
-import food_25 from './food_25.png'
-import food_26 from './food_26.png'
-import food_27 from './food_27.png'
-import food_28 from './food_28.png'
-import food_29 from './food_29.png'
-import food_30 from './food_30.png'
-import food_31 from './food_31.png'
-import food_32 from './food_32.png'
 import poster from './poster.jpg'
 import add_icon_white from './add_icon_white.png'
 import add_icon_green from './add_icon_green.png'
@@ -70,6 +48,7 @@ import search from "./search.png"
 import search_tomato from "./search_tomato.png"
 import cart_tomato from "./cart.png"
 import home_tomato from "./home.png"
+import track_tomato from './truck.png'
 import profile_tomato from "./profile.png"
 import dommy_profile from './dommy-profile.JPG'
 import tick from './tick.png'
@@ -87,7 +66,6 @@ import veg_5 from "./chilli.png"
 import veg_6 from "./tomato.png"
 import veg_7 from "./potato.png"
 import veg_slide from "./vegeslide.png"
-import { useEffect } from 'react'
 // import cloud_1 from "./cloud1.png"
 
 import trackTruck from './tracktruck.gif'
@@ -95,6 +73,7 @@ import trackTruck from './tracktruck.gif'
 import vegetable from './ChatGPT Image Jul 31, 2025, 11_04_17 AM.png'
 import meat from './ChatGPT Image Jul 31, 2025, 11_12_28 AM.png'
 import species from './ChatGPT Image Jul 31, 2025, 01_37_20 PM.png'
+import drinks from './Drinks Icon.png'
 
 export const assets = {
     logo,
@@ -103,6 +82,7 @@ export const assets = {
     bill_end,
     poster,
     tick,
+    drinks,
     trackTruck,
     cash_pay,
     card_pay,
@@ -112,6 +92,7 @@ export const assets = {
     home_tomato,
     profile_icon,
     profile_tomato,
+    track_tomato,
     search,
     checkbox,
     basket_icon,

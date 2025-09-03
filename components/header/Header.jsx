@@ -1,17 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios"; // import axios
 import "./Header.css";
+import { StoreContext } from "../../context/StoreContext";
 
 const Header = () => {
   const [sliderData, setSliderData] = useState([]); // state to store slider data
   const [currentSlide, setCurrentSlide] = useState(0);
   const [fade, setFade] = useState(false);
+  const { url }  = useContext(StoreContext);
 
   // Fetch slider data from backend
   useEffect(() => {
     const fetchSliderData = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/sliders/all"); // your GET endpoint
+        const response = await axios.get(url + "/api/sliders/all"); // your GET endpoint
         if (response.data.success) {
           setSliderData(response.data.data);
         }
@@ -50,15 +52,13 @@ const Header = () => {
     <div data-aos="fade-right" className="slider-container">
       <div
         className={`slider-background ${fade ? "fade-in" : ""}`}
-        style={{ backgroundImage: `url(${sliderData[currentSlide].image})` }}
-      >
+        style={{ backgroundImage: `url(${sliderData[currentSlide].image})` }}>
         <div className="slider-icons">
           {sliderData.map((slide, index) => (
             <div
               key={slide._id} // changed to _id from database
               className={`icon-button ${currentSlide === index ? "active" : ""}`}
-              onClick={() => handleSlideChange(index)}
-            >
+              onClick={() => handleSlideChange(index)} >
               <img src={slide.icon} alt="icon" className="icon-img" />
             </div>
           ))}

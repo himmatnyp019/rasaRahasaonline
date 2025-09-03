@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import './FoodDisplay.css'
 import { StoreContext } from '../../context/StoreContext'
 import FoodItem from '../FoodItem/FoodItem';
+import MainItems from '../MainItems/MainItems';
 
 
 
@@ -20,6 +21,7 @@ const FoodDisplay = ({category}) => {
           border: "none"
 
         }} />
+        <MainItems></MainItems>
         <h2 className='food-display-title'>Top items near you</h2>
       <div className="food-display-list">
         {food_list.map((item, index)=>{

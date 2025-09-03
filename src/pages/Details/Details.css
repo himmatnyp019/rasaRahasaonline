@@ -31,7 +31,7 @@
         gap: 10px;
 
         .main-product-img {
-           .main-big-img {
+            .main-big-img {
                 border-radius: 10px;
                 margin: 0 10px;
                 width: 100%;
@@ -47,26 +47,28 @@
     }
 
 }
-.image-index{
+
+.image-index {
     display: flex;
     flex-direction: column;
     gap: 10px;
 
-    .image-i{
-               width: 90px;
-                height: 90px;
-                border-radius: 10px;
-                padding: 2px;
-                object-fit: cover;
-                border: 2px solid rgba(180, 178, 178, 0.422);
-                background-color: transparent;
-                transition: all .3s ease-in-out;
+    .image-i {
+        width: 90px;
+        height: 90px;
+        border-radius: 10px;
+        padding: 2px;
+        object-fit: cover;
+        border: 2px solid rgba(180, 178, 178, 0.422);
+        background-color: transparent;
+        transition: all .3s ease-in-out;
 
-                &:hover {
-                    border: 2px solid tomato;
-                }
+        &:hover {
+            border: 2px solid tomato;
+        }
     }
 }
+
 .about-product-detail .product-info {
     display: flex;
     justify-content: center;
@@ -74,7 +76,7 @@
     border-radius: 20px;
     width: 100%;
     flex: 1;
-     background: linear-gradient(135deg, #ffffffcc, #f8fbff);
+    background: linear-gradient(135deg, #ffffffcc, #f8fbff);
     border-radius: 18px;
     /* padding: 22px; */
     padding-top: 0;
@@ -118,8 +120,12 @@
     .description-area {
         width: 80%;
         color: #717171;
-        font-size: 16px;
-        margin: 10px;
+
+        p {
+            font-size: clamp(16px,4vw,18px);
+            margin: 10px;
+            padding: 2%;
+        }
     }
 
     .product-buttons {
@@ -222,11 +228,12 @@
 
     }
 }
+
 @media (max-width:560px) {
-    .main-product-image{
+    .main-product-image {
         flex-direction: column;
 
-         .image-index {
+        .image-index {
             display: flex;
             height: auto;
             flex-direction: row;
@@ -234,13 +241,13 @@
             align-items: center;
         }
 
-         .main-product-img   .main-big-img {
-              overflow: hidden;
-              width: 95%
-            }
-        
-    
+        .main-product-img .main-big-img {
+            overflow: hidden;
+            width: 95%
+        }
+
+
     }
-   
-    
+
+
 }

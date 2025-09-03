@@ -1,7 +1,7 @@
 .food-item {
     width: min-content;
     margin: auto;
-    min-width: 270px;
+    min-width: 210px;
     border-radius: 15px;
     box-shadow: 0px 0px 10px #4a4a4a1b;
     transition: all 0.4s ease-in;
@@ -9,7 +9,6 @@
     border: 2px solid transparent;
     overflow: hidden;
     background-color: #f9f9f9cf;
-
     &:hover {
         border: 2px solid rgba(128, 128, 128, 0.321);
         background-color: #fff;
@@ -21,16 +20,17 @@
 }
 
 .food-item-image {
-    height: 250px;
-    width: 270px;
+    height: 190px;
+    width: 210px;
     object-fit: cover;
 }
 
 .food-item-name-rating {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: start;
     margin-bottom: 7px;
+    flex-direction: column;
 
     p {
         font-size: 18px;

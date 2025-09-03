@@ -143,6 +143,8 @@ const Tracking = () => {
 
             {/* --- Items --- */}
             {/* --- Items Grid --- */}
+            <div className="middle-part">
+
             <div className="items-container">
               {order.items.map((item, idx) => (
                 <div key={idx} className="item-card">
@@ -168,6 +170,7 @@ const Tracking = () => {
               <p className="user-phone">📞 {order.info?.[0]?.phone}</p>
               <p className="user-address"> {order.info?.[0]?.address}</p>
             </div>
+            </div>
 
 
             {/* --- Amount & Payment --- */}
@@ -179,7 +182,7 @@ const Tracking = () => {
             {/* --- Action Buttons --- */}
             <div className="actions">
               {order.status !== "Delivered" && (
-                <button className="cancel-btn">Cancel</button>
+                <button className="cancel-btn">Cancel Order</button>
               )}
               <button className="contact-btn">Contact</button>
             </div>

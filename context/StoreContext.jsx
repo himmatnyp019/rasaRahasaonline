@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { our_product, deliveryAddress } from "../src/assets/assets";
 import axios from "axios";
 import { isTokenExpired } from "../src/hooks/auth.js"
+import { useScroll } from "framer-motion";
 
 // ✅ Creating Context
 export const StoreContext = createContext("null");
@@ -25,10 +26,11 @@ const StoreContextProvider = (props) => {
     const [allOwnReview, setAllOwnReview] = useState([]);
     const [myMessage, setMyMessage] = useState([]);
     const [showChat, setShowChat] = useState(false);
+    const [showDetails, setShowDetails] = useState({id:"", name:"", price:"", description:"", image:"", image3:"", image2:"", category:"", discount:""});
     const [myOrders, setMyOrders] = useState([]);
 
 
-    const url = "https://rrobackend.onrender.com";
+    const url = "http://localhost:5000";
     // ------------------------------ //
     // ✅ CART LOGIC
     // ------------------------------ //
@@ -275,6 +277,8 @@ const StoreContextProvider = (props) => {
         allOwnReview,
         //message(chat)
         loadMyMessage,
+        showDetails,
+        setShowDetails,
         myMessage, showChat, setShowChat
     };
 

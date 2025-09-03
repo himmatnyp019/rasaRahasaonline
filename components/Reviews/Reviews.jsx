@@ -18,8 +18,6 @@ export default function ReviewBox({ itemId }) {
       userName = userInfo.name
     }
   }
-
-
   const [name, setName] = useState(userName);
   const [isOwnReview, setIsOwnReview] = useState(false);
   const [maskedName, setMaskedName] = useState(maskName(name));

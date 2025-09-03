@@ -1,4 +1,4 @@
-import { useContext,useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import "./Details.css"
 import { useLocation } from "react-router-dom";
 import { StoreContext } from '../../../context/StoreContext';
@@ -12,11 +12,11 @@ import DiscountText from '../../../components/DiscountText/DiscountText';
 
 const Details = () => {
   const location = useLocation();
-  const { name, id, description, image, image3, image2, price, category, discount } = location.state || {};
-  const transData = {name,id,description,image,image3,image2,price,category,discount};
+  let { name, id, description, image, image3, image2, price, category, discount } = location.state || {};
+  // const transData = { name, id, description, image, image3, image2, price, category, discount };
   const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   const today = new Date().getDay(); // 0 = Sunday, 1 = Monday, ...
-  const { cartItems, addToCart, food_list, removeFromCart, url, setShowChat, showChat } = useContext(StoreContext);
+  const { cartItems, addToCart, food_list, removeFromCart, url, setShowChat, showChat, showDetails } = useContext(StoreContext);
   const [bigImg, setBigImg] = useState(image);
   const [productMsg, setProductMsg] = useState({
     productId: "",
@@ -25,11 +25,28 @@ const Details = () => {
     discount: "",
     image: ""
   });
-useEffect(() => {
-  console.log(transData);
-  
- 
-}, [location.state]);
+  if (!location.state) {
+    let productId = localStorage.getItem("view-product")
+    let productInfo = food_list.find((item) => item._id === productId);
+    console.log("product info", productInfo);
+    
+    name = productInfo.name || "error "
+    id = productInfo.id
+    description = productInfo.description
+    image = productInfo.image
+    image2 = productInfo.image2
+    image3 = productInfo.image3
+    price = productInfo.price    
+    category = productInfo.category
+    discount = productInfo.discount
+  }
+  useEffect(() => {
+    // console.log(transData);
+    console.log("id : ", localStorage.getItem('view-product'));
+
+
+  }, [location.state]);
+
   const productMsgHandler = async (id, name, image, price, discount) => {
     setProductMsg({
       productId: id,

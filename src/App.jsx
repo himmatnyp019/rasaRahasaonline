@@ -16,6 +16,8 @@ import Bill from '../components/Bill/Bill';
 import CatView from './pages/Category/CatView';
 import useAOS from "./hooks/useAOS";
 import AOS from "aos";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 import "aos/dist/aos.css";
 import Tracking from './pages/Tracking/Tracking';
 import { isTokenExpired } from "./hooks/auth.js";
@@ -45,6 +47,18 @@ const App = () => {
   }, [location.pathname]);
   return (
     <div className={`app ${location.pathname === "/PlaceOrder" ? "set-back" : ""}`}>
+         <ToastContainer
+        position="top-right"   // other: top-left, bottom-right, bottom-left
+        autoClose={3000}       // auto close in ms
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"        // light, dark, colored
+      />
       {showLogin ? <Login setShowLogin={setShowLogin}></Login> : <></>}
       {showSearch ? <SearchBox setSearchBox={setSearchBox}></SearchBox> : <></>}
       {showBill && <Bill setShowBill={setShowBill} data={billData} />}

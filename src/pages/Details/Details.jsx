@@ -16,36 +16,30 @@ const Details = () => {
   // const transData = { name, id, description, image, image3, image2, price, category, discount };
   const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   const today = new Date().getDay(); // 0 = Sunday, 1 = Monday, ...
-  const { cartItems, addToCart, food_list, removeFromCart, url, setShowChat, showChat, showDetails } = useContext(StoreContext);
+  const { cartItems, addToCart, food_list, removeFromCart, url, setShowChat, productMsg, setProductMsg, showDetails } = useContext(StoreContext);
   const [bigImg, setBigImg] = useState(image);
-  const [productMsg, setProductMsg] = useState({
-    productId: "",
-    name: "",
-    price: "",
-    discount: "",
-    image: ""
-  });
+  let productId;
   if (!location.state) {
-    let productId = localStorage.getItem("view-product")
+    productId = localStorage.getItem('view-product');
     let productInfo = food_list.find((item) => item._id === productId);
-    console.log("product info", productInfo);
-    
-    name = productInfo.name || "error "
-    id = productInfo.id
-    description = productInfo.description
-    image = productInfo.image
-    image2 = productInfo.image2
-    image3 = productInfo.image3
-    price = productInfo.price    
-    category = productInfo.category
-    discount = productInfo.discount
+    if (productInfo) {
+
+      name = productInfo.name || "error "
+      id = productInfo.id
+      description = productInfo.description
+      image = productInfo.image
+      image2 = productInfo.image2
+      image3 = productInfo.image3
+      price = productInfo.price
+      category = productInfo.category
+      discount = productInfo.discount
+    }
   }
+
   useEffect(() => {
-    // console.log(transData);
-    console.log("id : ", localStorage.getItem('view-product'));
+    productId = localStorage.getItem('view-product');
 
-
-  }, [location.state]);
+  }, [location.state, productId]);
 
   const productMsgHandler = async (id, name, image, price, discount) => {
     setProductMsg({
@@ -55,6 +49,7 @@ const Details = () => {
       price: price,
       discount: discount,
     });
+
     setShowChat(true)
   };
 
@@ -71,17 +66,17 @@ const Details = () => {
   }
 
   return (
-    <div className='product-detail'>
+    <div className='product-detail' id='detail-top'>
       <div className="about-product-detail">
         <div className="left">
           <div className="main-product-image">
             <div className="image-index">
-              <img className='image-i' onClick={() => handleImgChange(1)} src={url + "/images/" + image} alt="image1" />
-              <img className='image-i' onClick={() => handleImgChange(2)} src={url + "/images/" + image2} alt="image2" />
-              <img className='image-i' onClick={() => handleImgChange(3)} src={url + "/images/" + image3} alt="image3" />
+              {image && <img className='image-i' onClick={() => handleImgChange(1)} src={image} alt="image1" />}
+              {image2 && <img className='image-i' onClick={() => handleImgChange(2)} src={image2} alt="image2" />}
+              {image3 && <img className='image-i' onClick={() => handleImgChange(3)} src={image3} alt="image3" />}
             </div>
             <div className="main-product-img">
-              <img className='main-big-img' src={url + "/images/" + bigImg} alt="image" />
+              <img className='main-big-img' src={bigImg} alt="image" />
             </div>
           </div>
           <div className="box product-info">

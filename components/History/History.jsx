@@ -38,7 +38,7 @@ const History = ({ count }) => {
 
                 <h5 className="history-total-price">Total Price: {key.totalPrice}₩</h5>
                 <p className="history-delivery-address">Address: {key.deliveryAddress}</p>
-                <p className="history-delivered-by"> by {key.deliveredBy}</p>
+                <p className="history-delivered-by"> by {key.deliveredTo}</p>
                 <button
                   onClick={() => {
                     let data = {
@@ -59,6 +59,9 @@ const History = ({ count }) => {
             );
           })
         }
+        {/* { JSON.stringify(orderHistory) != "{}" &&(
+        <p>No history data found. Please purchase some product to see the contents here. </p>
+        )} */}
      
        
 

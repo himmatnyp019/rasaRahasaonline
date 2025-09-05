@@ -4,6 +4,7 @@ import { StoreContext } from '../../../context/StoreContext'
 import { Link, Links } from 'react-router-dom';
 import { assets } from '../../assets/assets'
 import DiscountText from '../../../components/DiscountText/DiscountText';
+import { useToast } from '../../../context/ToastContext';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUpDown
@@ -12,11 +13,13 @@ import axios from 'axios';
 import PortOne from "@portone/browser-sdk/v2";
 
 const PlaceOrder = () => {
-  const [checked, setChecked] = useState(1);
+  const [checked, setChecked] = useState(-1);
   const { getTotalCartAmount, token, food_list, activeAddress, cartItems, userData, loadUserData, getTotalDiscount, url } = useContext(StoreContext)
   let mainAddr = ""
   const [totalAmount, amountBeforeDiscount, deliveryPrice] = getTotalCartAmount();
   const [paymentUrl, setPaymentUrl] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState("")
+  const { showToast } = useToast()
   const [tid, setTid] = useState("");
   const [data, setData] = useState({
     firstName: "",
@@ -42,7 +45,6 @@ const PlaceOrder = () => {
       loadUserData(token);
     }
   }
-
   const startPayment = async () => {
     try {
       const res = await axios.post("http://localhost:5000/pay");
@@ -53,11 +55,9 @@ const PlaceOrder = () => {
     }
   };
   const onChangeHandler = (event) => {
-
     const name = event.target.name;
     const value = event.target.value;
     setData(data => ({ ...data, [name]: value }))
-
   }
 
   useEffect(() => {
@@ -68,59 +68,64 @@ const PlaceOrder = () => {
     }));
   }, []);
 
-  
+
   function randomId() {
     return [...crypto.getRandomValues(new Uint32Array(2))]
       .map((word) => word.toString(16).padStart(8, "0"))
       .join("")
   }
 
-  const placeOrder = async (event) => {
-    event.preventDefault();
-    let orderItems = [];
-    food_list.map((item, index) => {
-      if (cartItems[item._id] > 0) {
-        let itemInfo = {};
-        itemInfo['quantity'] = cartItems[item._id];
-        itemInfo['id']= food_list[index]._id;
-        itemInfo['name'] = item.name
-        itemInfo['discount'] = item.discount
-        itemInfo['price'] =item.price
-        itemInfo['image'] = item.image
-        orderItems.push(itemInfo);
+  const placeOrder = async (event,paymentMethod) => {
+    if (!paymentMethod) {
+      showToast("Please select payment method.")
+    }else{
+      
+      event.preventDefault();
+      let orderItems = [];
+      food_list.map((item, index) => {
+        if (cartItems[item._id] > 0) {
+          let itemInfo = {};
+          itemInfo['quantity'] = cartItems[item._id];
+          itemInfo['id'] = food_list[index]._id;
+          itemInfo['name'] = item.name
+          itemInfo['discount'] = item.discount,
+            itemInfo['price'] = item.price
+          itemInfo['image'] = item.image
+          orderItems.push(itemInfo);
+        }
+      })
+      let orderData = {
+        userId: userData._id,
+        info: data,
+        items: orderItems,
+        deliveryCharge: deliveryPrice,
+        paymentMethod: paymentMethod,
+        amount: totalAmount + deliveryPrice,
       }
-    })
-    let orderData = {
-      userId: userData._id,
-      info: data,
-      items: orderItems,
-      amount: totalAmount + deliveryPrice,
-    }
-    console.log(orderData);
-    let response = await axios.post(
-      url + "/api/order/place",
-      orderData,
-      {
-        headers: { token: token } 
-      }
-    );
-
-
-    if (response.data.success) {
-     let resP =  response.data.order
-     let price = resP.amount
-     let currency = "krw"
-     let id = resP._id;
-     const name = resP.items.map((item) => item.name).join(',');
-     handlePayment(name,price,currency,id)
-
-    } else {
-      alert("something went wrong.")
-    }
-
-  }
+      console.log(orderData);
+      let response = await axios.post(
+        url + "/api/order/place",
+        orderData,
+        {
+          headers: { token: token }
+        }
+      );
   
-    const handlePayment = async (e, name, price,currency,id) => {
+      if (response.data.success) {
+        let resP = response.data.order
+        let price = resP.amount
+        let currency = "krw"
+        let id = resP._id;
+        const name = resP.items.map((item) => item.name).join(',');
+        handlePayment(name, price, currency, id)
+  
+      } else {
+        alert("something went wrong.")
+      }
+    }
+  }
+
+  const handlePayment = async (e, name, price, currency, id) => {
     e.preventDefault();
     setPaymentStatus({ status: "PENDING" })
     const paymentId = randomId()
@@ -130,10 +135,10 @@ const PlaceOrder = () => {
       paymentId,
       orderName: name,
       totalAmount: price,
-      currency:currency,
+      currency: currency,
       payMethod: "CARD",
       customData: {
-        item:id,
+        item: id,
       },
     })
     if (payment.code !== undefined) {
@@ -165,7 +170,11 @@ const PlaceOrder = () => {
     }
   }
 
+  const paymentMethodHandler = (index, method) => {
+    setPaymentMethod(method);
+    setChecked(index);
 
+  }
   return (
     <form className='place-order' >
       <div className="place-order-title">
@@ -221,9 +230,9 @@ const PlaceOrder = () => {
           }} />
           <br />
           <div data-aos="fade-right" className="payment-options-container">
-            <div onClick={() => setChecked(1)} className={`payment-option-box ${checked === 1 ? "checked" : ""}`}> <div className="img-warper"><img src={assets.kakao_pay} alt="icons" /></div> <p>Pay with Kakao Pay</p> <img className={`checkbox ${checked === 1 ? "checked" : ""}`} src={assets.checkbox} alt="" /></div>
-            <div onClick={() => setChecked(2)} className={`payment-option-box ${checked === 2 ? "checked" : ""}`}> <div className="img-warper"><img src={assets.card_pay} alt="icons" /></div><p>Pay with credit / debit Card</p> <img className={`checkbox ${checked === 2 ? "checked" : ""}`} src={assets.checkbox} alt="" /> </div>
-            <div onClick={() => setChecked(3)} className={`payment-option-box ${checked === 3 ? "checked" : ""}`}> <div className="img-warper"><img src={assets.cash_pay} alt="icons" /></div> <p>Pay in Cash</p> <img className={`checkbox ${checked === 3 ? "checked" : ""}`} src={assets.checkbox} alt="" /> </div>
+            <div onClick={() => paymentMethodHandler(1, "Pay with Kakao Pay")} className={`payment-option-box ${checked === 1 ? "checked" : ""}`}> <div className="img-warper"><img src={assets.kakao_pay} alt="icons" /></div> <p>Pay with Kakao Pay</p> <img className={`checkbox ${checked === 1 ? "checked" : ""}`} src={assets.checkbox} alt="" /></div>
+            <div onClick={() => paymentMethodHandler(2, "Pay with credit / debit Card")} className={`payment-option-box ${checked === 2 ? "checked" : ""}`}> <div className="img-warper"><img src={assets.card_pay} alt="icons" /></div><p>Pay with credit / debit Card</p> <img className={`checkbox ${checked === 2 ? "checked" : ""}`} src={assets.checkbox} alt="" /> </div>
+            <div onClick={() => paymentMethodHandler(3, "Pay in Cash")} className={`payment-option-box ${checked === 3 ? "checked" : ""}`}> <div className="img-warper"><img src={assets.cash_pay} alt="icons" /></div> <p>Pay in Cash</p> <img className={`checkbox ${checked === 3 ? "checked" : ""}`} src={assets.checkbox} alt="" /> </div>
           </div>
 
         </div>
@@ -247,7 +256,7 @@ const PlaceOrder = () => {
                     return (
                       <div key={item._id}>
                         <div className="quick-item-check">
-                          <img src={url + "/images/" + item.image} alt="" />
+                          <img src={item.image} alt="" />
                           <div className="quick-price">
                             <p>₩{item.price}</p>
                             <p>x{cartItems[item._id]}</p>
@@ -286,7 +295,7 @@ const PlaceOrder = () => {
               <hr />
               <div className="cart-total-details">
                 <p className='price-tag-text'>Delivery Fee</p>
-                <div className='bill-count'>{deliveryPrice === 0 ? <DiscountText key={2} price={(3000)} discount={3000}></DiscountText>: deliveryPrice}</div>
+                <div className='bill-count'>{deliveryPrice === 0 ? <DiscountText key={2} price={(3000)} discount={3000}></DiscountText> : deliveryPrice}</div>
               </div>
               <hr />
               <div className="cart-total-details">
@@ -295,7 +304,7 @@ const PlaceOrder = () => {
               </div>
             </div>
             <div className="cart-order-btns">
-              <button type='submit' onClick={placeOrder}>MAKE PAYMENT</button>
+              <button type='submit' onClick={()=>placeOrder(event,paymentMethod)}>MAKE PAYMENT</button>
 
             </div>
           </div>

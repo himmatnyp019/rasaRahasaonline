@@ -42,6 +42,7 @@ ul {
     transition:  all 0.3s ease-in-out;
     font-weight: 600;
     border: 2px solid transparent;
+    width: max-content;
 
     &:hover{
         background-color: transparent;
@@ -158,6 +159,9 @@ ul {
     }
 
     .navbar-menu {
+        display: none;
+    }
+    .btn-container{
         display: none;
     }
 

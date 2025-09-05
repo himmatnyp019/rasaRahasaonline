@@ -22,7 +22,7 @@ const FoodItem = ({ id, name, price, description, image, category, discount, ima
             <h6> View More</h6>
             <img src={assets.redirect} alt="" />
           </div>
-          <img src={url + "/images/" + image} className='food-item-image' alt="item-image" />
+          <img src={image} className='food-item-image' alt="item-image" />
         </Link>
         {!cartItems[id]
           ? <div onClick={() => addToCart(id)} data-aos="fade-up" className="add-to-cart">
@@ -40,7 +40,7 @@ const FoodItem = ({ id, name, price, description, image, category, discount, ima
       <div data-aos="fade-up" className="food-item-info">
         <div data-aos="fade-up" className="food-item-name-rating">
           <p>{name}</p>
-          <img src={assets.rating_starts} alt="" />
+          <img src={assets.rating_starts} alt="rating" />
         </div>
         {/* <p data-aos="fade-up" className="food-item-desc">{description}</p> */}
         <DiscountText key={id} price={price} discount={discount}></DiscountText>

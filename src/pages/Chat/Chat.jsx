@@ -9,7 +9,7 @@ import { useToast } from '../../../context/ToastContext'
 
 
 const Chat = () => {
-  const { userData, loadMyMessage, myMessage, url } = useContext(StoreContext);
+  const { userData, loadMyMessage, myMessage, url,productMsg, setProductMsg } = useContext(StoreContext);
   const CURRENT_USER_ID = userData._id;  // userID of that user that we are going to send message ??
   const [newMsg, setNewMsg] = useState("");
   const [newImage, setNewImage] = useState(null);
@@ -17,6 +17,13 @@ const Chat = () => {
   const { showToast } = useToast();
   const productId = '';
   const [messages, setMessages] = useState(myMessage);
+
+
+useEffect(() => {
+  console.log(productMsg, "this  is product");
+  
+
+}, [productMsg]);
 
   const formatDisplayTime = (date) => {
     try {
@@ -60,7 +67,7 @@ const Chat = () => {
       if (productId) formData.append("productId", productId);
       
       const res = await axios.post(url +"/api/chat/add", formData, {
-        headers: {
+        headers: { 
           "Content-Type": "multipart/form-data",
           token
         },
@@ -105,6 +112,8 @@ const Chat = () => {
 
   const handleImageUpload = (e) => {
     if (e.target.files[0]) setNewImage(e.target.files[0]);
+    // console.log(newImage, "file");
+    
   };
 
   return (

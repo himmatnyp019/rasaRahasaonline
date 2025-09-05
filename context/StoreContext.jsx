@@ -21,14 +21,16 @@ const StoreContextProvider = (props) => {
     const [token, setToken] = useState("");
     const [langauge, setLanguage] = useState("English");
     const [historyItemsId, setHistoryItemsId] = useState([]);
-    const [itemReview, setItemReview] = useState([]);
-    const [ownReview, setOwnReview] = useState({});
-    const [allOwnReview, setAllOwnReview] = useState([]);
     const [myMessage, setMyMessage] = useState([]);
     const [showChat, setShowChat] = useState(false);
-    const [showDetails, setShowDetails] = useState({id:"", name:"", price:"", description:"", image:"", image3:"", image2:"", category:"", discount:""});
-    const [myOrders, setMyOrders] = useState([]);
-
+    const [showDetails, setShowDetails] = useState({ id: "", name: "", price: "", description: "", image: "", image3: "", image2: "", category: "", discount: "" });
+    const [productMsg, setProductMsg] = useState({
+        productId: "",
+        name: "",
+        price: "",
+        discount: "",
+        image: ""
+    });
 
     const url = "http://localhost:5000";
     // ------------------------------ //
@@ -163,7 +165,9 @@ const StoreContextProvider = (props) => {
     }, [userData, activeAddress]);
     //user address updating
     const upadateAddress = async (index, address, active) => {
-        if (localStorage.getItem("token")) {
+        let token = localStorage.getItem("token");
+
+        if (token) {
             await axios.post(`${url}/api/address/update`, {
                 index,
                 newAddress: {
@@ -172,7 +176,7 @@ const StoreContextProvider = (props) => {
                 }
             }, {
                 headers: {
-                    token: localStorage.getItem("token")
+                    token
                 }
             });
         }
@@ -182,7 +186,6 @@ const StoreContextProvider = (props) => {
         const response = await axios.get(`${url}/api/history/get`, { headers: { token } })
         setOrderHistory(response.data.orderHistory);
         setHistoryItemsId(response.data.keys);
-
     }
 
     // ------------------------------ //
@@ -190,17 +193,7 @@ const StoreContextProvider = (props) => {
     // ------------------------------ //
 
     //get all the review
-    const loadReviewData = async (token, itemId) => {
-        const response = await axios.post(`${url}/api/review/get`, { itemId }, {
-            headers: { token }
-        });
-        setItemReview(response.data.reviews);
-        setAllOwnReview(response.data.allOwnReview);
-        setOwnReview(response.data.ownReview);
 
-
-        // return (response.data.reviews, response.data.allOwnReview, response.data.ownReview)
-    }
 
     // ------------------------------ //
     // ✅ GET ALL MY CHAT MESSAGE
@@ -210,18 +203,10 @@ const StoreContextProvider = (props) => {
         const response = await axios.get(`${url}/api/chat/me`, { headers: { token } })
         setMyMessage(response.data.data);
     }
-
-    const passProductID = async (id) => {
-        const storedToken = localStorage.getItem("token");
-        if (storedToken) {
-            await loadReviewData(storedToken, id);
-
-        }
-    }
     // ------------------------------ //
     // ✅ GET ALL MY Orders
     // ------------------------------ //
-       
+
     // ------------------------------ //
     // ✅ INIT DATA LOADING ON MOUNT
     // ------------------------------ //
@@ -253,6 +238,7 @@ const StoreContextProvider = (props) => {
         our_product,
         cartItems,
         addToCart,
+        loadOrderHistory,
         deliveryAddress,
         activeAddress,
         orderHistory,
@@ -271,15 +257,14 @@ const StoreContextProvider = (props) => {
         loadUserData,
         setActiveAddress,
         historyItemsId,
-        passProductID,
-        itemReview,
-        ownReview,
-        allOwnReview,
+
+
         //message(chat)
         loadMyMessage,
         showDetails,
         setShowDetails,
-        myMessage, showChat, setShowChat
+        myMessage, showChat, setShowChat,
+        productMsg, setProductMsg
     };
 
     // ------------------------------ //

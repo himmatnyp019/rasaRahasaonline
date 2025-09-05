@@ -49,7 +49,7 @@ const FloatBox = () => {
                       return (
                         <div key={item._id}>
                           <div className="quick-item-check">
-                            <img src={url + "/images/" + item.image} alt="" />
+                            <img src={item.image} alt="" />
                           </div>
                         </div>
                       )

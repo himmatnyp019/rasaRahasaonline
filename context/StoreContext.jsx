@@ -3,6 +3,7 @@ import { our_product, deliveryAddress } from "../src/assets/assets";
 import axios from "axios";
 import { isTokenExpired } from "../src/hooks/auth.js"
 import { useScroll } from "framer-motion";
+import { toast } from "react-toastify";
 
 // ✅ Creating Context
 export const StoreContext = createContext("null");
@@ -168,7 +169,7 @@ const StoreContextProvider = (props) => {
         let token = localStorage.getItem("token");
 
         if (token) {
-            await axios.post(`${url}/api/address/update`, {
+         const res=  await axios.post(`${url}/api/address/update`, {
                 index,
                 newAddress: {
                     address,
@@ -179,6 +180,10 @@ const StoreContextProvider = (props) => {
                     token
                 }
             });
+            if (res.data.success) {
+                toast.success(" Default address updated.");
+                loadUserData(token)
+            }
         }
     };
     // 🛒 Load history of the user from DB using token
@@ -239,6 +244,7 @@ const StoreContextProvider = (props) => {
         cartItems,
         addToCart,
         loadOrderHistory,
+        loadCartData,
         deliveryAddress,
         activeAddress,
         orderHistory,
@@ -257,7 +263,6 @@ const StoreContextProvider = (props) => {
         loadUserData,
         setActiveAddress,
         historyItemsId,
-
 
         //message(chat)
         loadMyMessage,

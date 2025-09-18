@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+
+import logoMain from "./logo-image.png"
 import basket_icon from './basket_icon.png'
 import logo from './logo.png'
 import header_img from './header_img.png'
@@ -12,6 +14,11 @@ import menu_5 from './menu_5.png'
 import menu_6 from './menu_6.png'
 import menu_7 from './menu_7.png'
 import menu_8 from './menu_8.png'
+import menu_9 from './rice and grains.avif'
+import menu_10 from './fruits.png'
+import menu_11 from './Cans.jpg'
+import menu_12 from './choccolates.jpg'
+import menu_13 from './frozen foods.png'
 
 import food_1 from './food_1.png'
 import food_2 from './food_2.png'
@@ -74,16 +81,20 @@ import vegetable from './ChatGPT Image Jul 31, 2025, 11_04_17 AM.png'
 import meat from './ChatGPT Image Jul 31, 2025, 11_12_28 AM.png'
 import species from './ChatGPT Image Jul 31, 2025, 01_37_20 PM.png'
 import drinks from './Drinks Icon.png'
-
+import notify_bell from './notification-bell.gif'
+import cancelled_stamp from './cancelled.png'
 export const assets = {
     logo,
     redirect,
+    logoMain,
     dommy_profile,
     bill_end,
+    notify_bell,
     poster,
     tick,
     drinks,
     trackTruck,
+    cancelled_stamp,
     cash_pay,
     card_pay,
     kakao_pay,
@@ -163,11 +174,11 @@ export const main_section = [
 
 export const menu_list = [
     {
-        menu_name: "Kitchen",
+        menu_name: "Kitchen Items",
         menu_image: menu_1
     },
     {
-        menu_name: "Soya",
+        menu_name: "Soya,String Hoppers",
         menu_image: menu_2
     },
     {
@@ -183,17 +194,37 @@ export const menu_list = [
         menu_image: menu_5
     },
     {
-        menu_name: "Snacks",
+        menu_name: "Biscuit",
         menu_image: menu_6
     },
     {
-        menu_name: "Vegetable",
+        menu_name: "Vegetables",
         menu_image: menu_7
     },
     {
-        menu_name: "Non-Veg",
+        menu_name: "Meat & Fish",
         menu_image: menu_8
-    }]
+    },
+    {
+        menu_name: "Grains & Rice",
+        menu_image: menu_9
+    },
+    {
+        menu_name: "Fruits",
+        menu_image: menu_10
+    },
+    {
+        menu_name: "Drinks & Cans",
+        menu_image: menu_11
+    },{
+        menu_name: "Chocolate",
+        menu_image: menu_12
+    }, 
+    {
+        menu_name: "Roti, Paratha, Frozen",
+        menu_image: menu_13
+    }
+]
 
 
 export const food_list = []

@@ -1,13 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import './PasswordReset.css'
+import "./PasswordReset.css";
 
-const ResetViaPhone = ({ url }) => {
+const ResetViaPhone = ({ url, setUpdateMode }) => {
   const [phone, setPhone] = useState("");
   const [otpSent, setOtpSent] = useState(false);
-  const [otp, setOtp] = useState("");
+  const [otp, setOtp] = useState(new Array(6).fill(""));
   const [newPassword, setNewPassword] = useState("");
+
+  const inputsRef = useRef([]);
+
+  const handleOtpChange = (value, index) => {
+    if (/^\d?$/.test(value)) {
+      const newOtp = [...otp];
+      newOtp[index] = value;
+      setOtp(newOtp);
+
+      if (value && index < 5) {
+        inputsRef.current[index + 1].focus();
+      }
+    }
+  };
+
+  const handleOtpKeyDown = (e, index) => {
+    if (e.key === "Backspace" && !otp[index] && index > 0) {
+      inputsRef.current[index - 1].focus();
+    }
+  };
 
   const sendOtp = async () => {
     try {
@@ -25,9 +45,10 @@ const ResetViaPhone = ({ url }) => {
 
   const verifyOtp = async () => {
     try {
+      const otpCode = otp.join("");
       const res = await axios.post(`${url}/api/auth/verify-otp`, {
         phone,
-        otp,
+        otp: otpCode,
         newPassword,
       });
       if (res.data.success) {
@@ -42,36 +63,61 @@ const ResetViaPhone = ({ url }) => {
 
   return (
     <div className="reset-phone">
-      <h2>Reset Password via Phone</h2>
-
+      <h2 className="title">Reset Password via Phone</h2>
       {!otpSent ? (
         <>
-          <input
-            type="text"
-            placeholder="Enter your Korean phone number"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-            required
-          />
-          <button onClick={sendOtp}>Send OTP</button>
+          <p className="subtitle">
+            Enter your Korean phone number, and we’ll send you a one-time code.
+          </p>
+          <div className="input-group">
+            <input
+              type="text"
+              placeholder=" "
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              required
+            />
+            <label>Phone Number</label>
+          </div>
+          <button className="submit-btn" onClick={sendOtp}>
+            Send OTP
+          </button>
+           <p className="back-link" onClick={() => setUpdateMode("resetPassword")}>
+            ← Back to Options
+          </p>
         </>
       ) : (
         <>
-          <input
-            type="text"
-            placeholder="Enter OTP"
-            value={otp}
-            onChange={(e) => setOtp(e.target.value)}
-            required
-          />
-          <input
-            type="password"
-            placeholder="Enter new password"
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
-            required
-          />
-          <button onClick={verifyOtp}>Verify & Reset</button>
+          <p className="subtitle">Enter the 6-digit code sent to your phone:</p>
+          <div className="otp-container">
+            {otp.map((digit, index) => (
+              <input
+                key={index}
+                type="text"
+                maxLength="1"
+                value={digit}
+                ref={(el) => (inputsRef.current[index] = el)}
+                onChange={(e) => handleOtpChange(e.target.value, index)}
+                onKeyDown={(e) => handleOtpKeyDown(e, index)}
+              />
+            ))}
+          </div>
+
+          <div className="input-group">
+            <input
+              type="password"
+              placeholder=" "
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              required
+            />
+            <label>New Password</label>
+          </div>
+
+          <button className="submit-btn" onClick={verifyOtp}>
+            Verify & Reset
+          </button>
+         
         </>
       )}
     </div>

@@ -11,5 +11,5 @@ done >>
 
 ----------ui change
 1. max-height for the slider view  -done
-
+2. pay in cash system (u)
 

@@ -91,7 +91,21 @@
   /* border-color: #d34a42; */
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
 }
+ .option {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 12px;
+  cursor: pointer;
+  margin-top: 5px;
+  transition: all 0.3s ease;
 
+  span{
+    font-size: 16px;
+    font-weight: 400;
+  }
+}
 .active-address {
   border-color: #d34a42;
   background-color: #fff3f3;

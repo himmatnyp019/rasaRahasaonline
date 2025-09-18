@@ -1,0 +1,95 @@
+.payment-form {
+    width: max-content;
+    margin: 40px auto;
+    padding: 25px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    font-family: "Segoe UI", sans-serif;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.payer-info {
+    display: flex;
+    gap: 10px;
+    padding: 15px 0px;
+
+    input {
+        outline: none;
+        border: 2px solid #ddd;
+        font-size: 16px;
+        padding: 10px 7px;
+        border-radius: 10px;
+    }
+}
+
+.input-box {
+    margin-bottom: 18px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.stripe-input {
+    border: 2px solid #ddd;
+    padding: 12px;
+    border-radius: 10px;
+    width: 100%;
+    font-size: 18px;
+    transition: border-color 0.3s;
+
+    label {
+        font-weight: 500;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+}
+
+.stripe-input:focus {
+    border-color: #d34a42;
+    /* your brand color */
+}
+
+.row {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    .input-box{
+        min-width: 100px;
+    }
+}
+
+.pay-btn {
+    width: 100%;
+    padding: 14px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    background: #d34a42;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.pay-btn:disabled {
+    background: #aaa;
+    cursor: not-allowed;
+}
+
+.status-msg {
+    font-size: 14px;
+    color: green;
+    display: block;
+    margin-top: 6px;
+}
+
+.msg {
+    margin-top: 15px;
+    font-size: 16px;
+    text-align: center;
+}

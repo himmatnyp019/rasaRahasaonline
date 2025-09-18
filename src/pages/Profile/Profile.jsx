@@ -4,12 +4,19 @@ import { StoreContext } from '../../../context/StoreContext'
 import { assets } from '../../assets/assets';
 import DeliveryAddress from '../../../components/DeliveryAddress/DeliveryAddress';
 import History from '../../../components/History/History';
-import { useNavigate } from 'react-router-dom';
+import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 import Settings from '../../../components/Settings/Settings';
+import ProfileUpdate from '../../../components/ProfileUpdate/ProfileUpdate';
+import ForgotPassword from '../../../components/ResetP/ForgotPassword';
+import ResetViaEmail from '../../../components/ResetP/ResetViaEmail';
+import ResetViaPhone from '../../../components/ResetP/ResetViaPhone';
 
 const Profile = () => {
-  const { orderHistory, token, setToken, setShowLogin, userData, url,loadUserData } = useContext(StoreContext);
+  const { orderHistory, token, setToken, setShowLogin, userData, url, loadUserData } = useContext(StoreContext);
   const [showAllHistory, setShowAllHistory] = useState(false);
+  const [showUpdateProfile, setShowUpdateProfile] = useState(false);
+  const [updateMode, setUpdateMode] = useState("updateProfile");
+
   let historyLength = orderHistory.length
   const navigate = useNavigate();
   let userInfo = userData;
@@ -19,7 +26,7 @@ const Profile = () => {
 
     if (savedData) {
       userInfo = JSON.parse(savedData);  // parse because it's stored as string
-      
+
     } else {
       loadUserData(token);
     }
@@ -36,7 +43,7 @@ const Profile = () => {
     <div className='profile'>
       <div className="profile-user-info">
         <div className="water-profile">
-          <img src={assets.dommy_profile} alt="Profile" />
+          <img src={userInfo.image?userInfo.image:assets.dommy_profile} alt="Profile" />
         </div>
         <div className="user-info-text">
           <h1>Hi, {userInfo.name}</h1>
@@ -47,7 +54,7 @@ const Profile = () => {
             <p>Only you can view this information.</p>
           </div>
           <p>
-            <u>edit information</u>
+            <u onClick={() => { setShowUpdateProfile(true), setUpdateMode("updateProfile") }}>edit information</u>
           </p>
         </div>
       </div>
@@ -92,8 +99,17 @@ const Profile = () => {
       <div className="profile-options">
         <Settings></Settings>
       </div>
+      {showUpdateProfile && (
+        <div className="profile-update-container active">
+          <p className='close-update-profile' onClick={() => setShowUpdateProfile(false)}>X</p>
 
+          {updateMode === "updateProfile" && (<ProfileUpdate setUpdateMode={setUpdateMode}></ProfileUpdate>)}
+          {updateMode === "resetPassword" && (<ForgotPassword setUpdateMode={setUpdateMode}></ForgotPassword>)}
+          {updateMode === "resetViaEmail" && (<ResetViaEmail setUpdateMode={setUpdateMode}></ResetViaEmail>)}
+          {updateMode === "resetViaPhone" && (<ResetViaPhone setUpdateMode={setUpdateMode}></ResetViaPhone>)}
 
+        </div>
+      )}
     </div>
 
   )

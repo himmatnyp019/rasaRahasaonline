@@ -59,10 +59,7 @@ const History = ({ count }) => {
             );
           })
         }
-        {/* { JSON.stringify(orderHistory) != "{}" &&(
-        <p>No history data found. Please purchase some product to see the contents here. </p>
-        )} */}
-     
+   
        
 
         {

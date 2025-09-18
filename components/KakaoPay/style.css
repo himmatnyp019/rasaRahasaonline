@@ -1,0 +1,110 @@
+/* Background with animated yellow gradient */
+body {
+    margin: 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.payment-container {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(270deg, #ffecb3, #ffe082, #ffd54f, #ffca28);
+    background-size: 600% 600%;
+    /* animation: gradientMove 20s ease infinite; */
+    padding: 20px;
+    margin: 0;
+}
+
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+.payment-card {
+    background: white;
+    animation: fadeIn 1s ease;
+    padding: 30px 25px;
+    padding-top: 10px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    width: max-content;
+
+    .black-bar-design{
+        height: 15px;
+        width: 100px;
+        border-radius: 20px;
+        background-color: black;
+        margin: 0 auto;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.payment-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* QR box */
+.qr-box {
+    background: #fafafa;
+    padding: 15px;
+    border-radius: 15px;
+    display: inline-block;
+    margin-bottom: 20px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.payment-status {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 10px 0;
+    color: #444;
+}
+
+.payment-timer {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #d35400;
+    margin-top: 5px;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+    .payment-card {
+        padding: 20px 15px;
+    }
+
+    .payment-title {
+        font-size: 1.5rem;
+    }
+
+    .qr-box {
+        padding: 10px;
+    }
+}

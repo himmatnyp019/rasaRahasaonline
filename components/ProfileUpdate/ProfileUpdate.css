@@ -1,0 +1,139 @@
+.profile-update-card {
+  width: 60%;
+  max-width: 600px;
+  background: #fff;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin: 20px auto;
+  text-align: center;
+}
+
+
+.profile-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 22px rgba(0,0,0,0.18);
+}
+
+.profile-title {
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.profile-image-container {
+  position: relative;
+  margin-bottom: 20px;
+}
+.image-warper{
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 3px solid tomato;
+}
+.profile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.upload-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 6px 12px;
+  /* background: tomato; */
+  color: #959595;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.upload-btn:hover {
+    color: #797979;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.input-group {
+  position: relative;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 18px 10px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  outline: none;
+  font-size: 0.99rem;
+  margin-top: 15px;
+  background: rgb(255, 254, 253);
+  transition: border-color 0.3s ease;
+}
+
+.input-group label {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  color: #999;
+  font-size: 18px;
+  transform: translateY(-20%);
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+  border-color: rgb(255, 190, 178);
+  background-color: #ffefee;
+}
+
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label {
+  top: -8px;
+  left: 8px;
+  background: #fff;
+  font-size: 1.1rem;
+  padding: 0 4px;
+  color: tomato;
+}
+
+.update-btn {
+  padding:15px 12px;
+  background: tomato;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.update-btn:hover {
+  background: #b83d36;
+  transform: scale(1.03);
+}
+
+.reset-btn {
+  margin-top: 15px;
+  padding: 10px;
+  background: transparent;
+  border: 2px solid tomato;
+  border-radius: 10px;
+  color: tomato;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.reset-btn:hover {
+  background: tomato;
+  color: white;
+}

@@ -1,25 +1,33 @@
 import React, { useContext, useState, useEffect } from 'react'
 import './PlaceOrder.css'
 import { StoreContext } from '../../../context/StoreContext'
-import { Link, Links } from 'react-router-dom';
+import { Link, Links,useNavigate } from 'react-router-dom';
 import { assets } from '../../assets/assets'
 import DiscountText from '../../../components/DiscountText/DiscountText';
 import { useToast } from '../../../context/ToastContext';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import PaymentPage from '../../../components/KakaoPay/PaymentPage'
+
 import {
   faUpDown
 } from "@fortawesome/free-solid-svg-icons";
 import axios from 'axios';
 import PortOne from "@portone/browser-sdk/v2";
+import ProcessingPayment from '../../../components/ProcessingPayment/ProcessingPayment';
+import { toast } from 'react-toastify';
 
 const PlaceOrder = () => {
   const [checked, setChecked] = useState(-1);
-  const { getTotalCartAmount, token, food_list, activeAddress, cartItems, userData, loadUserData, getTotalDiscount, url } = useContext(StoreContext)
+  const { getTotalCartAmount, token, food_list, activeAddress, cartItems, userData, loadUserData, getTotalDiscount,loadCartData, url } = useContext(StoreContext)
   let mainAddr = ""
+  const navigate = useNavigate();
   const [totalAmount, amountBeforeDiscount, deliveryPrice] = getTotalCartAmount();
   const [paymentUrl, setPaymentUrl] = useState("");
-  const [paymentMethod, setPaymentMethod] = useState("")
-  const { showToast } = useToast()
+  const [paymentMethod, setPaymentMethod] = useState("");
+  const { showToast } = useToast();
+  const [orderItems, setOrderItems] = useState([]);
+  const [orderId, setOrderId] = useState("");
+  const [paymentStatus, setPaymentStatus] = useState({ status: "IDLE" });
   const [tid, setTid] = useState("");
   const [data, setData] = useState({
     firstName: "",
@@ -28,6 +36,7 @@ const PlaceOrder = () => {
     address: "",
     phone: "",
   });
+  const [orderState, setOrderState] = useState("SUBMITTED");
 
   let userInfo = {};
   let ThreeAddr = [];
@@ -45,55 +54,34 @@ const PlaceOrder = () => {
       loadUserData(token);
     }
   }
-  const startPayment = async () => {
-    try {
-      const res = await axios.post("http://localhost:5000/pay");
-      setTid(res.data.tid);
-      setPaymentUrl(res.data.redirect_url);
-    } catch (err) {
-      console.error("Start payment error:", err);
-    }
-  };
   const onChangeHandler = (event) => {
     const name = event.target.name;
     const value = event.target.value;
     setData(data => ({ ...data, [name]: value }))
   }
-
   useEffect(() => {
     setData(prev => ({
       ...prev,
       address: activeAddress,
       userId: userData._id
     }));
-  }, []);
+  }, [mainAddr]);
 
-
-  function randomId() {
-    return [...crypto.getRandomValues(new Uint32Array(2))]
-      .map((word) => word.toString(16).padStart(8, "0"))
-      .join("")
-  }
-
-  const placeOrder = async (event,paymentMethod) => {
-    if (!paymentMethod) {
-      showToast("Please select payment method.")
-    }else{
-      
-      event.preventDefault();
-      let orderItems = [];
-      food_list.map((item, index) => {
-        if (cartItems[item._id] > 0) {
-          let itemInfo = {};
-          itemInfo['quantity'] = cartItems[item._id];
-          itemInfo['id'] = food_list[index]._id;
-          itemInfo['name'] = item.name
-          itemInfo['discount'] = item.discount,
-            itemInfo['price'] = item.price
-          itemInfo['image'] = item.image
-          orderItems.push(itemInfo);
-        }
-      })
+  const placeOrder = async (event) => {
+    event.preventDefault();
+    if (!paymentMethod || JSON.stringify(orderItems).length < 5 || data.name === "" || data.email === "" || data.phone === "" || data.address === "") {
+      if (!paymentMethod) {
+        toast.error("Please select payment method.");
+      }
+      if (JSON.stringify(orderItems).length < 5) {
+        toast.error("Cannot place empty order.");
+      }
+      if (data.firstName === "" || data.lastName === "" || data.email === "" || data.phone === "" || data.address === "") {
+        toast.error("Please fill all the fields.");
+      }
+    } else {
+  
+     
       let orderData = {
         userId: userData._id,
         info: data,
@@ -101,86 +89,187 @@ const PlaceOrder = () => {
         deliveryCharge: deliveryPrice,
         paymentMethod: paymentMethod,
         amount: totalAmount + deliveryPrice,
-      }
-      console.log(orderData);
-      let response = await axios.post(
-        url + "/api/order/place",
-        orderData,
-        {
-          headers: { token: token }
+        message: paymentMethod==="Pay in Cash"? {Notice:"Cash payment should be done within 3 days of order placed date. If is not paid, order will be automatically cancelled.",status:"normal", paid:"false", verify:"none",verifiedDate:"not verified",verifiedBy:"not verified",vId:"none" } :null
         }
-      );
-  
-      if (response.data.success) {
-        let resP = response.data.order
-        let price = resP.amount
-        let currency = "krw"
-        let id = resP._id;
-        const name = resP.items.map((item) => item.name).join(',');
-        handlePayment(name, price, currency, id)
-  
-      } else {
-        alert("something went wrong.")
+        let response = await axios.post(
+          url + "/api/order/place",
+          orderData,
+          {
+            headers: { token: token }
+          }
+        );
+        
+        if (response.data.success) {
+          setOrderId(response.data.orderId);
+          console.log("order ID of recent order :", orderId);
+          handlePayment();
+          toast.success("Order placed successfully.")
+          setOrderState("SUBMITTED");
+          loadCartData(token);
+          // navigate("/");
+          
+          
+        } else {
+          alert("something went wrong.")
+          toast.error(response.data.message);
+        }
       }
     }
+  
+
+  function randomId() {
+    return [...crypto.getRandomValues(new Uint32Array(2))]
+      .map((word) => word.toString(16).padStart(8, "0"))
+      .join("")
   }
 
-  const handlePayment = async (e, name, price, currency, id) => {
-    e.preventDefault();
-    setPaymentStatus({ status: "PENDING" })
-    const paymentId = randomId()
-    const payment = await PortOne.requestPayment({
-      storeId: "store-e4038486-8d83-41a5-acf1-844a009e0d94",
-      channelKey: "channel-key-ebe7daa6-4fe4-41bd-b17d-3495264399b5",
-      paymentId,
-      orderName: name,
-      totalAmount: price,
-      currency: currency,
-      payMethod: "CARD",
-      customData: {
-        item: id,
-      },
-    })
-    if (payment.code !== undefined) {
-      setPaymentStatus({
-        status: "FAILED",
-        message: payment.message,
-      })
-      return
+  const goPaymentMethod = (event) => {
+    console.log(data.firstName, data.lastName, data.email, data.phone, data.address);
+
+    event.preventDefault();
+
+    // ✅ validation checks
+    if (
+      !paymentMethod ||
+      orderItems.length === 0 ||
+       data.firstName === "" ||
+      data.lastName === "" ||
+      data.email === "" ||
+      data.phone === "" ||
+      data.address === ""
+    ) {
+      if (!paymentMethod) toast.error("Please select a payment method.");
+      if (orderItems.length === 0) toast.error("Cannot place empty order.");
+      if (
+        data.firstName === "" ||
+        data.lastName === "" ||
+        data.email === "" ||
+        data.phone === "" ||
+        data.address === ""
+      ) {
+        toast.error("Please fill all the fields.");
+      }
+      return;
     }
-    const completeResponse = await fetch("/api/payment/complete", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        paymentId: payment.paymentId,
-      }),
-    })
-    if (completeResponse.ok) {
-      const paymentComplete = await completeResponse.json()
-      setPaymentStatus({
-        status: paymentComplete.status,
-      })
-    } else {
-      setPaymentStatus({
-        status: "FAILED",
-        message: await completeResponse.text(),
-      })
+
+    //kakao payment starting
+    const startPayment = async () => {
+      try {
+        const res = await axios.post("http://localhost:5000/api/payment/kakao/init");
+        setTid(res.data.tid);
+        setPaymentUrl(res.data.redirect_url);
+      } catch (err) {
+        console.error("Start payment error:", err);
+      }
+    };
+
+
+    if (paymentMethod === "Pay with Kakao Pay") {
+      //here goes kakao pay
+      startPayment()
+    }
+    if (paymentMethod === "Pay with credit / debit Card") {
+      handlePayment(event);
+    }
+    if (paymentMethod === "Pay in Cash") {
+      placeOrder(event)
     }
   }
+ 
+
+  //paying via credit and debit card
+  const handlePayment = async (event) => {
+    event.preventDefault();
+
+    try {
+      setPaymentStatus({ status: "PENDING" });
+
+      const paymentId = randomId();
+
+      // ✅ request payment from PortOne
+      const payment = await PortOne.requestPayment({
+        storeId: "store-e4038486-8d83-41a5-acf1-844a009e0d94",
+        channelKey: "channel-key-ebe7daa6-4fe4-41bd-b17d-3495264399b5",
+        paymentId,
+        orderName: orderItems.map((item) => item.name).join(", "),
+        totalAmount: Number(totalAmount) + Number(deliveryPrice),
+        currency: "KRW",
+        payMethod: "CARD", // dynamic instead of hardcoded "CARD"
+        customData: JSON.stringify({
+          items: orderItems.map((i) => i.id),
+        }),
+      });
+
+      // ✅ handle immediate client-side failure (e.g. user cancels)
+      if (payment.code !== undefined) {
+        setPaymentStatus({
+          status: "FAILED",
+          message: payment.message,
+        });
+        toast.error(`Payment failed: ${payment.message}`);
+        return;
+      }
+
+      // ✅ verify on backend
+      const completeResponse = await post("/api/payment/complete", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ paymentId: payment.paymentId }),
+      });
+
+      if (completeResponse.ok) {
+        const paymentComplete = await completeResponse.json();
+
+        if (paymentComplete.status === "PAID") {
+          setPaymentStatus({ status: "SUCCESS" });
+          toast.success("Payment successful ✅");
+        } else {
+          setPaymentStatus({ status: "FAILED" });
+          toast.error("Payment failed ❌");
+        }
+      } else {
+        const errMsg = await completeResponse.text();
+        setPaymentStatus({ status: "FAILED", message: errMsg });
+        toast.error("Payment verification failed ❌");
+      }
+    } catch (error) {
+      console.error("Payment error:", error);
+      setPaymentStatus({ status: "FAILED", message: error.message });
+      toast.error("Payment process error ❌");
+    }
+  };
+
+  useEffect(() => {
+    let orderingItems = [];
+    food_list.map((item, index) => {
+      if (cartItems[item._id] > 0) {
+        let itemInfo = {};
+        itemInfo['quantity'] = cartItems[item._id];
+        itemInfo['id'] = food_list[index]._id;
+        itemInfo['name'] = item.name
+        itemInfo['discount'] = item.discount,
+          itemInfo['price'] = item.price
+        itemInfo['image'] = item.image
+        orderingItems.push(itemInfo);
+      }
+    });
+    setOrderItems(orderingItems);
+  }, [cartItems, food_list]);
 
   const paymentMethodHandler = (index, method) => {
     setPaymentMethod(method);
     setChecked(index);
 
   }
+
   return (
     <form className='place-order' >
       <div className="place-order-title">
         <h2 className='title-text'>Order Confirmation</h2>
         <p>Details about the order and payment information</p>
       </div>
+      {/* info gathering */}
       <div className="place-order-left">
         <div className="order-info-contact">
           <p data-aos="fade-right" className='title'>Delivery Information</p>
@@ -226,7 +315,6 @@ const PlaceOrder = () => {
             height: "2px",
             backgroundColor: "#e2e2e2",
             border: "none"
-
           }} />
           <br />
           <div data-aos="fade-right" className="payment-options-container">
@@ -237,10 +325,8 @@ const PlaceOrder = () => {
 
         </div>
       </div>
-
-
-
-
+      
+      {/* quick basket */}
       <div className="place-order-right">
         <div className="order-final-container">
 
@@ -251,7 +337,6 @@ const PlaceOrder = () => {
 
               {
                 food_list.map((item, index) => {
-
                   if (cartItems[item._id] > 0) {
                     return (
                       <div key={item._id}>
@@ -261,13 +346,10 @@ const PlaceOrder = () => {
                             <p>₩{item.price}</p>
                             <p>x{cartItems[item._id]}</p>
                           </div>
-
                         </div>
                       </div>
-
                     )
                   }
-
                 })
               }
             </div>
@@ -304,17 +386,27 @@ const PlaceOrder = () => {
               </div>
             </div>
             <div className="cart-order-btns">
-              <button type='submit' onClick={()=>placeOrder(event,paymentMethod)}>MAKE PAYMENT</button>
-
+              <button onClick={() => goPaymentMethod(event)}>MAKE PAYMENT</button>
             </div>
           </div>
 
         </div>
       </div>
+      {orderState === "SUBMITTING" &&
+        <div className="payment-progress-card">
+          {/* <ProcessingPayment orderId={"68b900bccaf9776751b05495"}></ProcessingPayment> */}
+        </div>
+      }
+      {paymentUrl && (
+        <div className="kakao-pay-window">
+          <div className="kakao-close-btn" onClick={() => setPaymentUrl('')} >X</div>
+          <PaymentPage paymentUrl={paymentUrl} tid={tid} />
+        </div>
+      )}
 
 
     </form>
   )
-}
 
+  }
 export default PlaceOrder;

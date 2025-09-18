@@ -65,7 +65,7 @@ const Cart = ({ setShowBill, setShowLogin, setBillData }) => {
                 <div key={item._id}>
                   <div data-aos="fade-up" data-aos-delay={0 + index * 20} className="cart-items-title cart-items-item">
 
-                    <img src={url + "/images/" + item.image} alt="" />
+                    <img src={item.image} alt="" />
                     <p className='title-name'>{item.name}</p>
                     <DiscountText key={item._id} price={item.price} discount={item.discount} ></DiscountText>
                     <p className='sr-1' >x{cartItems[item._id]}</p>

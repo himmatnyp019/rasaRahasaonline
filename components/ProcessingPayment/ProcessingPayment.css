@@ -1,0 +1,31 @@
+.processing-payment {
+    width: max-content;
+    padding: 15px;
+    border-radius: 15px;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.processing-payment-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    .icon-1{
+        color: green;
+    }
+    h3 {
+        font-size: 20px;
+        font-weight: 600;
+        color: #191919;
+        margin: 0;
+        padding: 0;
+        span {
+            font-size: 14px;
+            color: green;
+            font-weight: 300;
+        }
+    }
+}

@@ -1,9 +1,7 @@
 .profile {
-    padding: 50px 140px;
+    padding: 50px 14%;
 
 }
-
-
 .profile-user-info {
     display: flex;
     flex-wrap: wrap;
@@ -194,3 +192,31 @@
     
 }
 
+ /* ----------------update profile component--------------------- */
+.profile-update-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    /* visibility: hidden; */
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 10;
+}
+.close-update-profile {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 1.5rem;
+    color: #fff;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    background-color: tomato;
+    padding: 10px 20px;
+    border-radius: 50%;
+}

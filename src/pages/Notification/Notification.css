@@ -1,0 +1,124 @@
+.notification-container {
+  max-width: 900px;
+  margin: 10px auto;
+  min-height: 100vh;
+  padding: 20px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.notif-title{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    img{
+    width: 100px;
+    height:100px;
+    object-fit: contain;
+  }
+}
+.notif-header {
+  color: #d34a42;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2rem;
+  
+}
+
+.notif-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: max-content;
+}
+
+.notif-card {
+  width: 100%;
+  background: #fff5f5;
+  border-left: 5px solid #d34a42;
+  border-radius: 12px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.notif-card:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.notif-image {
+  width: 70px;
+  height: 70px;
+  border-radius: 10px;
+  object-fit: cover;
+  margin-right: 15px;
+}
+
+.notif-content {
+  flex: 1;
+  gap: 10px;
+}
+
+.notif-title {
+  color: #d34a42;
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.notif-desc {
+  margin: 5px 0;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.notif-date {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+/* Modal */
+.notif-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.notif-modal {
+  background: #fff;
+  padding: 25px 30px;
+  border-radius: 15px;
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+  position: relative;
+}
+
+.notif-html-content {
+  text-align: left;
+  margin-top: 15px;
+}
+
+.close-btn {
+  margin-top: 20px;
+  background: #d34a42;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.close-btn:hover {
+  background: #b73833;
+}

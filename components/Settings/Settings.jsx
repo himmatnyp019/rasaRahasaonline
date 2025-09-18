@@ -14,8 +14,6 @@ import {
   faShareFromSquare
 } from "@fortawesome/free-solid-svg-icons";
 import ForgotPassword from '../ResetP/ForgotPassword';
-import ResetViaEmail from '../ResetP/ResetViaEmail';
-import ResetViaPhone from '../ResetP/ResetViaPhone';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '../../context/ToastContext';
 import { useContext } from 'react';
@@ -44,35 +42,6 @@ const Settings = () => {
         <div>
           <p className="value">English</p>
           <FontAwesomeIcon icon={faAngleDown} />
-
-        </div>
-      </div>
-      <div className="profile-option-lines">
-        <div >
-
-          <FontAwesomeIcon icon={faTruck} />
-          <h3>Track Order</h3>
-        </div>
-
-        <div>
-          <p className="value"></p>
-          <FontAwesomeIcon icon={faAngleRight} />
-
-        </div>
-
-      </div>
-
-
-      <div className="profile-option-lines">
-        <div >
-
-          <FontAwesomeIcon icon={faBagShopping} />
-          <h3>My Orders</h3>
-        </div>
-
-        <div>
-          <p className="value"></p>
-          <FontAwesomeIcon icon={faAngleRight} />
 
         </div>
       </div>
@@ -116,23 +85,10 @@ const Settings = () => {
         </div>
       </div>
       <br />
-      <div className="profile-option-lines">
 
-        <div >
-
-          <FontAwesomeIcon icon={faRightFromBracket} />
-          <h3>Forget/Change Password ?</h3>
-        </div>
-
-        <div>
-          <p className="value"></p>
-          <FontAwesomeIcon icon={faAngleRight} />
-
-        </div>
-      </div>
       <div onClick={logOut} className="profile-option-lines">
         <div >
-
+``
           <FontAwesomeIcon icon={faRightFromBracket} />
           <h3>Sign Out </h3>
         </div>
@@ -143,12 +99,6 @@ const Settings = () => {
 
         </div>
       </div>
-<ForgotPassword></ForgotPassword>
-    <ResetViaEmail></ResetViaEmail>
-    <ResetViaPhone/>
-
-
-
     </div>
   )
 }

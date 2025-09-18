@@ -8,7 +8,9 @@ import Footer from '../components/Footer/Footer';
 import Login from '../components/LoginPopup/Login';
 import Details from './pages/Details/Details';
 import FloatBox from '../components/FloatBox/FloatBox';
+import PaymentPage from '../components/KakaoPay/PaymentPage'
 import SearchBox from '../components/SearchBox/SearchBox';
+import ResetPassword from './pages/ResetPass/ResetPass';
 import BottomNavigation from '../components/BottomNavigation/BottomNavigation';
 import Profile from './pages/Profile/Profile';
 import Chat from './pages/Chat/Chat';
@@ -16,38 +18,46 @@ import Bill from '../components/Bill/Bill';
 import CatView from './pages/Category/CatView';
 import useAOS from "./hooks/useAOS";
 import AOS from "aos";
+import axios from 'axios';
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import "aos/dist/aos.css";
 import Tracking from './pages/Tracking/Tracking';
 import { isTokenExpired } from "./hooks/auth.js";
+import Notification from './pages/Notification/notification.jsx';
+
 
 const App = () => {
   const [showLogin, setShowLogin] = useState(false)
-  const [showSearch, setSearchBox] = useState(false)
+
   const [showBill, setShowBill] = useState(false)
   const [billData, setBillData] = useState(null)
+  const [tid, setTid] = useState("");
 
   useAOS();
-  const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
     AOS.refresh(); // refresh when route changes
     console.log(location.pathname);
-    if (location.pathname === "/Chat") {
-    }
+
     const token = localStorage.getItem("token");
 
     if (!token || isTokenExpired(token)) {
       localStorage.removeItem("token");
       setShowLogin(true);   // ✅ show login page
     }
-
   }, [location.pathname]);
+
+
+ 
   return (
     <div className={`app ${location.pathname === "/PlaceOrder" ? "set-back" : ""}`}>
-         <ToastContainer
+
+
+      
+
+      <ToastContainer
         position="top-right"   // other: top-left, bottom-right, bottom-left
         autoClose={3000}       // auto close in ms
         hideProgressBar={false}
@@ -60,11 +70,12 @@ const App = () => {
         theme="colored"        // light, dark, colored
       />
       {showLogin ? <Login setShowLogin={setShowLogin}></Login> : <></>}
-      {showSearch ? <SearchBox setSearchBox={setSearchBox}></SearchBox> : <></>}
+
       {showBill && <Bill setShowBill={setShowBill} data={billData} />}
-      <BottomNavigation setShowLogin={setShowLogin} setSearchBox={setSearchBox}></BottomNavigation>
+      <BottomNavigation setShowLogin={setShowLogin}></BottomNavigation>
       <FloatBox />
-      <Navbar setShowLogin={setShowLogin} setSearchBox={setSearchBox} setShowBill={setShowBill}></Navbar>
+
+      <Navbar  setShowBill={setShowBill}></Navbar>
       <Routes>
         <Route path='/' element={<Home />}></Route>
         <Route path="/Cart" element={<Cart setShowBill={setShowBill} setShowLogin={setShowLogin} setBillData={setBillData} />} />
@@ -74,6 +85,10 @@ const App = () => {
         <Route path='/catview' element={<CatView></CatView>}></Route>
         <Route path='/Chat' element={<Chat setShowLogin={setShowLogin} ></Chat>}></Route>
         <Route path='/track' element={<Tracking></Tracking>}></Route>
+        <Route path="/reset/:token" element={<ResetPassword></ResetPassword>}></Route>
+        <Route path="/notification" element={<Notification></Notification>}></Route>
+        <Route path='/search' element={<SearchBox/>}>  </Route>
+
       </Routes>
       <Footer></Footer>
     </div>

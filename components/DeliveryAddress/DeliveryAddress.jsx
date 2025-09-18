@@ -6,12 +6,13 @@ import { useToast } from '../../context/ToastContext';
 
 
 const DeliveryAddress = ({ addressData }) => {
-  const { deliveryAddress, activeAddress } = useContext(StoreContext);
   const [showModal, setShowModal] = useState(false);
   const [selectedKey, setSelectedKey] = useState(null);
   const [isEdit, setIsEdit] = useState(false);
   const { showToast } = useToast()
+  const [activeIndex, setActiveIndex] = useState(0)
   const [aIndex, setIndex] = useState(0)
+  const { upadateAddress } = useContext(StoreContext)
 
   const handleAddressClick = (key) => {
     setSelectedKey(key);
@@ -31,9 +32,13 @@ const DeliveryAddress = ({ addressData }) => {
   }
 
   const handleSaveAddress = (fullAddress) => {
-    console.log(fullAddress);  
+    console.log(fullAddress);
     showToast("The address saved successfully.")
   };
+ const handleActiveAddress = (index , address) => {
+    setActiveIndex(index);
+    upadateAddress(index, address, true)
+  }
 
   return (
     <div className="address-info">
@@ -71,29 +76,41 @@ const DeliveryAddress = ({ addressData }) => {
                       }} >
                       <u>Edit address</u>
                     </p>
-                  </>
-                ) : (
-                  <p onClick={() => handleAddressClick(index)}>
-                    Address Not Found! <br />
-                    <span>+ click to add</span>
-                  </p>
+
+                    <div className="option" onClick={() => handleActiveAddress(index, item.address)}>
+
+                    <input
+                      type="radio"
+                      value={index}
+                      checked={item.active}
+                      onChange={(e) => setActiveIndex(e.target.value)}
+                      />
+                    <span>{item.active?"Default address":"Mark as default"}</span>
+                      </div>
+                    
+            </>
+          ) : (
+        <p onClick={() => handleAddressClick(index)}>
+          Address Not Found! <br />
+          <span>+ click to add</span>
+        </p>
                 )}
-              </div>
-            </div>
-          );
-        })}
-
       </div>
-
-      {showModal && (
-        <AddAddressModal
-          onClose={() => setShowModal(false)}
-          onSave={handleSaveAddress}
-          isEdit={isEdit}
-          aIndex={aIndex}
-        />
-      )}
     </div>
+  );
+})}
+
+      </div >
+
+  { showModal && (
+    <AddAddressModal
+      onClose={() => setShowModal(false)}
+      onSave={handleSaveAddress}
+      isEdit={isEdit}
+      aIndex={aIndex}
+    />
+  )}
+    </div >
   );
 }
 

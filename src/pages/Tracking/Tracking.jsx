@@ -3,6 +3,8 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import './Tracking.css'
 import { StoreContext } from "../../../context/StoreContext";
+import { toast } from 'react-toastify'
+import { assets } from "../../assets/assets";
 
 const Tracking = () => {
   const [myOrders, setMyOrders] = useState([]);
@@ -17,11 +19,10 @@ const Tracking = () => {
       setLoading(true);
       setError("");
 
-      const response = await axios.get("http://localhost:5000/api/order/my", { headers: { token } });
+      const response = await axios.get(url + "/api/order/my", { headers: { token } });
 
       if (response.data?.success) {
         setMyOrders(response.data.orders || []);
-        console.log("Orders:", response.data.orders);
       } else {
         throw new Error(response.data?.message || "Failed to fetch orders");
       }
@@ -42,7 +43,26 @@ const Tracking = () => {
     "Order on Delivery",
     "Delivered"
   ];
+  const handlePackingUpdate = async (userId,orderId, status) => {
+    try {
+      const res = await axios.post(`${url}/api/order/update`, {
+        orderId: orderId,   // backend expects "orderId"
+        userId:userId,
+        status: status,
+        refundStatus:null
+      });
+      if (res.data.success) {
+        alert("Order cancelled successfully!");
+      } else {
+        console.log("❌ Cancellation failed at this state:", res.data.message);
+        toast.error(res.data.message);
+      }
+    } catch (error) {
+      console.error("Update error:", error);
+      alert("Server error while updating status.");
+    }
 
+  };
   const getStatusDescription = (STATUS_STEPS) => {
     switch (STATUS_STEPS) {
       case "Order Processing...":
@@ -53,6 +73,8 @@ const Tracking = () => {
         return "Your package is on the way! The courier is delivering it to your address.";
       case "Delivered":
         return "Your order has been successfully delivered. Thank you for shopping with us!";
+      case "Cancelled":
+        return "Payment has been cancelled. Refund process will initialized after checking payment status."
       default:
         return "Order status is being updated. Please check back soon.If you feel something happening wrong, leave us a message.";
     }
@@ -98,9 +120,9 @@ const Tracking = () => {
 
         {/* 6. Moving Truck GIF */}
         <div className="truck-container">
-        <div className="delivery-truck">
-          <img src="https://static.wixstatic.com/media/cd3dbe_9bb29aa8db0a46c9aabbb2fb64f32f84~mv2.gif" alt="Delivery Truck" />
-        </div>
+          <div className="delivery-truck">
+            <img src="https://static.wixstatic.com/media/cd3dbe_9bb29aa8db0a46c9aabbb2fb64f32f84~mv2.gif" alt="Delivery Truck" />
+          </div>
         </div>
       </div>
 
@@ -136,7 +158,7 @@ const Tracking = () => {
             {/* --- Order Details --- */}
             <div className="order-info">
               <h2> {order.time}   </h2>
-              <p><strong>Status</strong> {order.status === "Delivered" ? " Completed" : " Pending"}
+              <p><strong>Status</strong> {order.status==="Cancelled"?order?.refundStatus?.refundMethod:order.status}
               </p>
               <h4 className="status-description-text">{getStatusDescription(order.status)}</h4>
             </div>
@@ -145,31 +167,31 @@ const Tracking = () => {
             {/* --- Items Grid --- */}
             <div className="middle-part">
 
-            <div className="items-container">
-              {order.items.map((item, idx) => (
-                <div key={idx} className="item-card">
-                  <img src={url + '/images/' + item.image} alt={item.name} />
-                  <p>{item.name}</p>
-                  <p className="item-details">
-                    ${item.price} × {item.quantity}
-                  </p>
-                  {item.discount > 0 && (
-                    <p className="item-discount">- ${item.discount}</p>
-                  )}
-                </div>
-              ))}
-            </div>
+              <div className="items-container">
+                {order.items.map((item, idx) => (
+                  <div key={idx} className="item-card">
+                    <img src={item.image} alt={item.name} />
+                    <p>{item.name}</p>
+                    <p className="item-details">
+                      ${item.price} × {item.quantity}
+                    </p>
+                    {item.discount > 0 && (
+                      <p className="item-discount">- ${item.discount}</p>
+                    )}
+                  </div>
+                ))}
+              </div>
 
-            {/* --- User Info Semi-circle --- */}
-            <div className="user-info-semicircle">
-              <p>Ordered By :</p>
-              <p className="user-name">
-                {order.info?.[0]?.firstName} {order.info?.[0]?.lastName}
-              </p>
-              <p className="user-address">{order.info?.[0]?.fullAdd}</p>
-              <p className="user-phone">📞 {order.info?.[0]?.phone}</p>
-              <p className="user-address"> {order.info?.[0]?.address}</p>
-            </div>
+              {/* --- User Info Semi-circle --- */}
+              <div className="user-info-semicircle">
+                <p>Ordered By :</p>
+                <p className="user-name">
+                  {order.info?.[0]?.firstName} {order.info?.[0]?.lastName}
+                </p>
+                <p className="user-address">{order.info?.[0]?.fullAdd}</p>
+                <p className="user-phone">📞 {order.info?.[0]?.phone}</p>
+                <p className="user-address"> {order.info?.[0]?.address}</p>
+              </div>
             </div>
 
 
@@ -177,14 +199,17 @@ const Tracking = () => {
             <div className="payment-info">
               <p><strong>Total Price:</strong> ${order.amount}</p>
               <p><strong>Payment:</strong> {order.payment ? "Paid ✅" : "Unpaid ❌"}</p>
+              {order.status === "Cancelled" && (
+                <img className="cancelled-stamp" width={240} src={assets.cancelled_stamp} alt="" />
+              )}
             </div>
 
             {/* --- Action Buttons --- */}
             <div className="actions">
-              {order.status !== "Delivered" && (
-                <button className="cancel-btn">Cancel Order</button>
+              {order.status !== "Delivered" && order.status !== "Cancelled" && order.status !== "Order on Delivery" && (
+                <button className="cancel-btn" onClick={() => handlePackingUpdate(order.userId, order._id, "Cancelled")}>Cancel Order</button>
               )}
-              <button className="contact-btn">Contact</button>
+              {order.status !== "Cancelled" && <button className="contact-btn">Contact</button>}
             </div>
           </motion.div>
         );

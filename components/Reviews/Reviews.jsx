@@ -6,15 +6,8 @@ import axios from 'axios'
 import { toast } from 'react-toastify'
 import { useToast } from '../../context/ToastContext';
 import { useNavigate } from "react-router-dom";
+      
 
-/*
-  Improved ReviewBox
-  - Keeps review list cached in localStorage per itemId so it persists across route changes/overlays
-  - Loads fresh data on mount and when itemId changes
-  - Updates cached data after add / delete / update
-  - Fixes bugs (rate counting, equality checks, render-time side-effects)
-  - Does NOT change JSX structure — only logic
-*/
 
 export default function ReviewBox({ itemId }) {
   const { historyItemsId, loadOrderHistory, userData, url } = useContext(StoreContext);
@@ -227,6 +220,7 @@ export default function ReviewBox({ itemId }) {
       formData.append("name", payload.name || name);
       formData.append("message", payload.text);
       formData.append("rating", payload.rating);
+      formData.append("status", "public");
       if (payload.image) formData.append("image", payload.image);
       formData.append("itemId", itemId);
 
@@ -239,8 +233,6 @@ export default function ReviewBox({ itemId }) {
 
       if (response.data?.success) {
         toast.success(response.data.message || "Review posted.");
-        // Either reload fully (safe) OR update locally when backend returns the actual review object
-        // Try to use returned review if present:
         const returnedReview = response.data.review || response.data.data || null;
         if (returnedReview) {
           // replace or insert
@@ -440,8 +432,7 @@ export default function ReviewBox({ itemId }) {
                           role="radio"
                           aria-checked={rating === s}
                           tabIndex={0}
-                          onKeyDown={(e) => { if (e.key === 'Enter') setRating(s) }}
-                        >
+                          onKeyDown={(e) => { if (e.key === 'Enter') setRating(s) }}  >
                           <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
                           </svg>

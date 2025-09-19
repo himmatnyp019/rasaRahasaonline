@@ -33,7 +33,7 @@ const StoreContextProvider = (props) => {
         image: ""
     });
 
-    const url = "http://localhost:5000";
+    const url = "https://sdsrasarahasa.vercel.app";
     // ------------------------------ //
     // ✅ CART LOGIC
     // ------------------------------ //

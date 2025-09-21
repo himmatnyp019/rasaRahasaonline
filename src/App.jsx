@@ -24,9 +24,7 @@ import { ToastContainer } from "react-toastify";
 import "aos/dist/aos.css";
 import Tracking from './pages/Tracking/Tracking';
 import { isTokenExpired } from "./hooks/auth.js";
-import Notification from './pages/Notification/notification.jsx';
-
-
+import Lang from "./pages/NokMart/Lang/Lang.jsx"
 const App = () => {
   const [showLogin, setShowLogin] = useState(false)  
 

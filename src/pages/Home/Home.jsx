@@ -8,7 +8,7 @@ import Address from '../../../components/Location/Address'
 import AppDownload from '../../../components/AppDownload/AppDownload'
 import Offer from '../../../components/Offer/Offer'
 import RotatingSlider from '../../../components/RotateSlide/RotatingSlide'
-import SearchOnly from '../../../components/OnlySearch/searchOnly'
+import SearchOnly from '../../../components/OnlySearch/searchOnly.jsx'
 
 const Home = () => {
   const [category, setCategory] = useState("All");

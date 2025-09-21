@@ -1,4 +1,3 @@
-import axios from 'axios'
 
 
 import logoMain from "./logo-image.png"
@@ -83,6 +82,8 @@ import species from './ChatGPT Image Jul 31, 2025, 01_37_20 PM.png'
 import drinks from './Drinks Icon.png'
 import notify_bell from './notification-bell.gif'
 import cancelled_stamp from './cancelled.png'
+
+
 export const assets = {
     logo,
     redirect,
@@ -97,6 +98,8 @@ export const assets = {
     cancelled_stamp,
     cash_pay,
     card_pay,
+    menu_1,
+    menu_2,menu_3,menu_4,menu_5,menu_6,menu_7,menu_8,menu_9,menu_10,menu_11,menu_12,menu_13,
     kakao_pay,
     cart_tomato,
     search_tomato,
@@ -172,59 +175,6 @@ export const main_section = [
 ];
 
 
-export const menu_list = [
-    {
-        menu_name: "Kitchen Items",
-        menu_image: menu_1
-    },
-    {
-        menu_name: "Soya,String Hoppers",
-        menu_image: menu_2
-    },
-    {
-        menu_name: "Species",
-        menu_image: menu_3
-    },
-    {
-        menu_name: "Noodles",
-        menu_image: menu_4
-    },
-    {
-        menu_name: "Tea",
-        menu_image: menu_5
-    },
-    {
-        menu_name: "Biscuit",
-        menu_image: menu_6
-    },
-    {
-        menu_name: "Vegetables",
-        menu_image: menu_7
-    },
-    {
-        menu_name: "Meat & Fish",
-        menu_image: menu_8
-    },
-    {
-        menu_name: "Grains & Rice",
-        menu_image: menu_9
-    },
-    {
-        menu_name: "Fruits",
-        menu_image: menu_10
-    },
-    {
-        menu_name: "Drinks & Cans",
-        menu_image: menu_11
-    },{
-        menu_name: "Chocolate",
-        menu_image: menu_12
-    }, 
-    {
-        menu_name: "Roti, Paratha, Frozen",
-        menu_image: menu_13
-    }
-]
 
 
 export const food_list = []

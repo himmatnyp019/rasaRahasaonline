@@ -3,9 +3,10 @@ import { StoreContext } from '../../context/StoreContext';
 import './DeliveryAddress.css'
 import AddAddressModal from './AddAddressModal/AddAddressModal';
 import { useToast } from '../../context/ToastContext';
-
+import { useTranslation } from 'react-i18next';
 
 const DeliveryAddress = ({ addressData }) => {
+  const {t} = useTranslation();
   const [showModal, setShowModal] = useState(false);
   const [selectedKey, setSelectedKey] = useState(null);
   const [isEdit, setIsEdit] = useState(false);
@@ -43,8 +44,8 @@ const DeliveryAddress = ({ addressData }) => {
   return (
     <div className="address-info">
       <div className="address-title-box">
-        <h2 >Delivery address.</h2>
-        <p className='title-slogen'>Use any one address while ordering.</p>
+        <h2 >{t("deliveryAddress")}</h2>
+        <p className='title-slogen'>{t("addressNote")}</p>
       </div>
 
       <div className="address-boxes">
@@ -59,7 +60,7 @@ const DeliveryAddress = ({ addressData }) => {
               key={index}
               style={{ animationDelay: `${index * 0.1 + 0.2}s` }} >
               <h3 className={`address-lebel ${item.active ? "active" : ""}`}>
-                Address {index + 1} :
+                {t("address")} {index + 1} :
               </h3>
 
               <div
@@ -74,7 +75,7 @@ const DeliveryAddress = ({ addressData }) => {
                         handleEditClick(index);
                         e.stopPropagation(); // prevent parent click
                       }} >
-                      <u>Edit address</u>
+                      <u>{t("editAddress")}</u>
                     </p>
 
                     <div className="option" onClick={() => handleActiveAddress(index, item.address)}>
@@ -91,8 +92,8 @@ const DeliveryAddress = ({ addressData }) => {
             </>
           ) : (
         <p onClick={() => handleAddressClick(index)}>
-          Address Not Found! <br />
-          <span>+ click to add</span>
+          {t("addressNotFound")} <br />
+          <span>+ {t("clickToAdd")}</span>
         </p>
                 )}
       </div>

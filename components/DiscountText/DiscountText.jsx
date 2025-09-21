@@ -1,9 +1,10 @@
 import React from 'react'
 import './DiscountText.css'
+import { useTranslation } from 'react-i18next'
 
 
 const DiscountText = ({price, discount }) => {
-
+    const {t} = useTranslation();
     let initialPrice = price
 
     let discounted = 0
@@ -22,7 +23,7 @@ const DiscountText = ({price, discount }) => {
                             <h3  data-aos="fade-up" className='initial-price'>₩{initialPrice}</h3>
                         </div>
                         <div className="saved-text-area">
-                            <p  data-aos="fade-up" data-aos-delay="200" className='discounted-price-text'>you will save ₩{discounted}</p>
+                            <p  data-aos="fade-up" data-aos-delay="200" className='discounted-price-text'>{t("youWillSave")} ₩{discounted}</p>
                         </div>
                     </div>
                     : <div  data-aos="fade-up" className='discount-texts'>

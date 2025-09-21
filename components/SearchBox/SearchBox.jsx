@@ -3,10 +3,14 @@ import "./SearchBox.css";
 import { assets } from "../../src/assets/assets";
 import { StoreContext } from "../../context/StoreContext"; // adjust path if needed
 import FoodItem from "../FoodItem/FoodItem"; // adjust path if needed
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faMagnifyingGlass
+} from "@fortawesome/free-solid-svg-icons";
+import { useTranslation } from "react-i18next";
 const SearchBox = ({ setSearchBox }) => {
   const { food_list } = useContext(StoreContext);
-
+const {t} = useTranslation();
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [query, setQuery] = useState("");
   const [selectedQuery, setSelectedQuery] = useState("");
@@ -64,7 +68,7 @@ const SearchBox = ({ setSearchBox }) => {
               }}
             />
             <button type="submit" className="button">
-              <img src={assets.search} alt="search" />
+              <FontAwesomeIcon icon={faMagnifyingGlass}/>
             </button>
           </div>
         </form>
@@ -87,7 +91,7 @@ const SearchBox = ({ setSearchBox }) => {
       {selectedQuery && (
         <div className="search-results">
           <h2 className="results-title">
-            Showing results for: <span>{selectedQuery}</span>
+            {t("showingResults")}: <span>{selectedQuery}</span>
           </h2>
           <br />
           <div className="food-display-list">
@@ -118,7 +122,7 @@ const SearchBox = ({ setSearchBox }) => {
       {topMatchedCategory && (
         <div className="matched-category">
           <h2 className="category-title">
-            Top Matched Category: <span>{topMatchedCategory}</span>
+            {t("topMatchedCategory")}: <span>{topMatchedCategory}</span>
           </h2>
           <br />
           <div className="category-items">

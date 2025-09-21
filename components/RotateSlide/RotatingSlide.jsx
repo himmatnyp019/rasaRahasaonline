@@ -2,8 +2,10 @@ import React from 'react'
 import "./RotatingSlide.css"
 import { assets } from '../../src/assets/assets'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 const RotatingSlide = () => {
+  const {t} = useTranslation();
   return (
     <div className="rotator-slide-container">
       <div className="slide-contents">
@@ -13,8 +15,8 @@ const RotatingSlide = () => {
             <img src={assets.vegetable} alt="" />
           </div>
           <div className="bottom-contents">
-            <h1>Vegetables & Fruits</h1>
-            <p>All fresh vegetables and fruits <br /> from motherland.</p>
+            <h1>{t("vegetablesFruits")}</h1>
+            <p>{t("descVegFruits")}</p>
           </div>
         </a>
 
@@ -23,8 +25,8 @@ const RotatingSlide = () => {
             <img src={assets.species} alt="" />
           </div>
           <div className="bottom-contents">
-            <h1>Species, Masala</h1>
-            <p>masala, turmeric, oils, sauces <br /> kitchen things</p>
+            <h1>{t("spicesMasala")}</h1>
+            <p>{t("descSpices")}</p>
           </div>
         </a>
 
@@ -33,8 +35,8 @@ const RotatingSlide = () => {
             <img src={assets.meat} alt="" />
           </div>
           <div className="bottom-contents">
-            <h1>Meat and Fish</h1>
-            <p>All fresh meats & fishes<br /> delivery with safety</p>
+            <h1>{t("meatFish")}</h1>
+            <p>{t("descMeatFish")}</p>
           </div>
         </a>
 
@@ -43,8 +45,8 @@ const RotatingSlide = () => {
             <img src={assets.drinks} alt="" />
           </div>
           <div className="bottom-contents">
-            <h1>Cold Drinks</h1>
-            <p>All delicous and sweet drinks <br /> pup and drink.</p>
+            <h1>{t("coldDrinks")}</h1>
+            <p>{t("descDrinks")}</p>
           </div>
         </a>
 

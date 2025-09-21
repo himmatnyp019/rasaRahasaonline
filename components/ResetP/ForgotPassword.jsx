@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import './PasswordReset.css'
 import {toast} from 'react-toastify'
+import { t } from "i18next";
 
 const ForgotPassword = ({setUpdateMode}) => {
   const [method, setMethod] = useState("");
@@ -18,39 +19,36 @@ const ForgotPassword = ({setUpdateMode}) => {
 
   return (
    <div className="forgot-container">
-      <h2 className="title">Forgot Password</h2>
-      <p className="subtitle">Choose the best method how you want to reset your password:</p>
+      <h2 className="title">{t("forgotPassword")}</h2>
+      <p className="subtitle">{t("chooseResetMethod")}</p>
 
       <div className="options">
         <div
           className={`option ${method === "email" ? "active" : ""}`}
-          onClick={() => setMethod("email")}
-        >
+          onClick={() => setMethod("email")}>
           <input
             type="radio"
             value="email"
             checked={method === "email"}
             onChange={(e) => setMethod(e.target.value)}
           />
-          <span>Reset via Email</span>
+          <span>{t("resetViaEmail")}</span>
         </div>
 
         <div
           className={`option ${method === "phone" ? "active" : ""}`}
-          onClick={() => setMethod("phone")}
-        >
+          onClick={() => setMethod("phone")} >
           <input
             type="radio"
             value="phone"
             checked={method === "phone"}
-            onChange={(e) => setMethod(e.target.value)}
-          />
-          <span>Reset via Phone (Korean number)</span>
+            onChange={(e) => setMethod(e.target.value)}/>
+          <span>{t("resetViaPhone")}</span>
         </div>
       </div>
 
       <button className="continue-btn" onClick={handleContinue}>
-        Continue
+        {t("continue")}
       </button>
     </div>
   );

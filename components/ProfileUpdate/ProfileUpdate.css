@@ -1,6 +1,6 @@
 .profile-update-card {
-  width: 60%;
   max-width: 600px;
+  width: 90%;
   background: #fff;
   padding: 25px;
   border-radius: 16px;
@@ -8,6 +8,8 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   margin: 20px auto;
   text-align: center;
+  height: 98%;
+  overflow-y: scroll;
 }
 
 

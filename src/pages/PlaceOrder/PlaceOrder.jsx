@@ -388,7 +388,7 @@ const PlaceOrder = () => {
               </div>
             </div>
             <div className="cart-order-btns">
-              <button onClick={() => goPaymentMethod(event)}>{t(makePayment)}</button>
+              <button onClick={() => goPaymentMethod(event)}>{t("makePayment")}</button>
             </div>
           </div>
 

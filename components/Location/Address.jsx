@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import './Address.css'
 import { useToast } from '../../context/ToastContext'
+import { useTranslation } from 'react-i18next';
 
 const Address = () => {
     const { showToast } = useToast();
-
+    const {t}= useTranslation();
     const [hoveredBox, setHoveredBox] = useState(null);
 
     const handleCopy = (text) => {
@@ -22,8 +23,8 @@ const Address = () => {
 
                 <div className="main-address-contents">
                     <div className="text-title">
-                        <h1 data-aos="fade-up" >We are here also ! </h1>
-                        <p data-aos="fade-up">Visit our World Mart to shop physically.</p>
+                        <h1 data-aos="fade-up" >{t("worldMart")}</h1>
+                        <p data-aos="fade-up">{t("vf")}</p>
                     </div>
                     <div  className="mart-address-box">
 

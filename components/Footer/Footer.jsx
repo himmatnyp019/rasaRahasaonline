@@ -1,8 +1,11 @@
 import React from 'react';
 import './Footer.css'
 import { assets } from '../../src/assets/assets';
+import { useTranslation } from 'react-i18next';
+
 
 const Footer = () => {
+    const {t} = useTranslation();
   return (
     <div className='footer' id='footer'>
         <div className="footer-content">
@@ -15,16 +18,16 @@ const Footer = () => {
                 </div>
             </div>
             <div className="footer-content-center">
-                <h2>COMPANY</h2>
+                <h2>{t("company")}</h2>
                 <ul>
-                    <li>Home</li>
-                    <li>About Us</li>
-                    <li>Delivery</li>
-                    <li>Privacy Policy</li>
+                    <li>{t("home")}</li>
+                    <li>{t("aboutUs")}</li>
+                    <li>{t("delivery")}</li>
+                    <li>{t("privacyPolicy")}</li>
                 </ul>
             </div>
             <div className="footer-content-right">
-                <h2>GET IN TOUCH</h2>
+                <h2>{t("getInTouch")}</h2>
                 <ul>
                     <li>+82 000 0000 0000</li>
                     <li>example@gmail.com</li>

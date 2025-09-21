@@ -2,11 +2,13 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios"; // import axios
 import "./Header.css";
 import { StoreContext } from "../../context/StoreContext";
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
   const [sliderData, setSliderData] = useState([]); // state to store slider data
   const [currentSlide, setCurrentSlide] = useState(0);
   const [fade, setFade] = useState(false);
+  const {t}=useTranslation();
   const { url }  = useContext(StoreContext);
 
   // Fetch slider data from backend
@@ -45,7 +47,7 @@ const Header = () => {
   };
 
   if (sliderData.length === 0) {
-    return <div className="slider-container">Loading...</div>; // simple loading state
+    return <div className="slider-container">Loading...</div> // simple loading state
   }
 
   return (
@@ -72,7 +74,7 @@ const Header = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <button data-aos="fade-up" data-aos-delay="300" className="view-button">View More</button>
+            <button data-aos="fade-up" data-aos-delay="300" className="view-button">{t("viewMore")}</button>
           </a>
         </div>
       </div>

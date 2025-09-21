@@ -1,42 +1,47 @@
-import React, { useState,useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./Notification.css";
-import {StoreContext} from "../../../context/StoreContext"
-
+import { StoreContext } from "../../../context/StoreContext"
+import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
 import { assets } from "../../assets/assets";
+import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 const Notification = () => {
 
   const [notifications, setNotifications] = useState([]);
-  const {url, userData} = useContext(StoreContext);
-  
-  
-    // Function to fetch notifications from backend
-   const loadNotifications = async (userId) => {
+  const { url, userData } = useContext(StoreContext);
+  const userId = userData._id;
+  const { t } = useTranslation();
+
+  // Function to fetch notifications from backend
+  const loadNotifications = async (userId) => {
+    if (userId) {
       try {
-        console.log(userId,"userID");
-        
-        const response = await fetch(url+'/api/notifications/'+userId); // Replace USER_ID with actual user ID
-        const data = await response.json();
-        if (data.success) {
-          setNotifications(data.notifications);
-          console.log("Notifications loaded:", data.notifications);
-          
+        console.log(userId, "userID");
+
+        const response = await axios.get(`${url}/api/notifications/get/${userId}`);
+        if (response.data.success) {
+          setNotifications(response.data.notifications);
+          console.log("Notifications loaded:", response.data.notifications);
+        } else {
+          console.log("No notifications found");
         }
       } catch (error) {
-        console.error("Failed to load notifications:", error);
+        console.error("Error fetching notifications:", error);
       }
     }
 
-    // fetch notifications on component mount
+  }
+
+  // fetch notifications on component mount
   useEffect(() => {
-    const userId = userData._id;
     loadNotifications(userId);
-  }, [userData]);
+  }, [userId, userData]);
 
 
   // Sample notifications data structure
-  
+
 
   const [activeNotif, setActiveNotif] = useState(null);
 
@@ -53,14 +58,17 @@ const Notification = () => {
   return (
     <div className="notification-container">
       <div className="notif-title">
-        <img src={assets.notify_bell} alt="" />
-        <h2 className="notif-header"> Notifications</h2>
+        <img src={assets.notify_bell} height={35} alt="" />
+        <h2 className="notif-header"> {t("notifications")}</h2>
 
       </div>
+      <br />
       <div className="notif-list">
-        {notifications.map((notif) => (
+        {notifications.map((notif, index) => (
           <motion.div
-            key={notif.id}
+            data-aos="fade-up"
+            data-aos-dealy={100 + (index * 10)}
+            key={notif._id}
             className="notif-card"
             whileHover={{ scale: 1.03 }}
             onClick={() => handleClick(notif)}
@@ -99,7 +107,7 @@ const Notification = () => {
                 dangerouslySetInnerHTML={{ __html: activeNotif.content }}
               />
               <button className="close-btn" onClick={closeModal}>
-                Close
+                {t("close")}
               </button>
             </motion.div>
           </motion.div>

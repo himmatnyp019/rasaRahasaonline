@@ -6,10 +6,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { assets } from "../../assets/assets";
 import axios from 'axios'
 import { useToast } from '../../../context/ToastContext'
-
+import { useTranslation } from "react-i18next";
 
 const Chat = () => {
-  const { userData, loadMyMessage, myMessage, url,productMsg, setProductMsg } = useContext(StoreContext);
+  const { userData, loadMyMessage, myMessage, url, productMsg, setProductMsg } = useContext(StoreContext);
   const CURRENT_USER_ID = userData._id;  // userID of that user that we are going to send message ??
   const [newMsg, setNewMsg] = useState("");
   const [newImage, setNewImage] = useState(null);
@@ -17,13 +17,12 @@ const Chat = () => {
   const { showToast } = useToast();
   const productId = '';
   const [messages, setMessages] = useState(myMessage);
+  const {t} = useTranslation();
 
 
-useEffect(() => {
-  console.log(productMsg, "this  is product");
-  
-
-}, [productMsg]);
+  useEffect(() => {
+    console.log(productMsg, "this  is product");
+  }, [productMsg]);
 
   const formatDisplayTime = (date) => {
     try {
@@ -61,13 +60,14 @@ useEffect(() => {
     try {
       // Prepare form data because image might be included
       const formData = new FormData();
-      formData.append("userId", CURRENT_USER_ID); 
+      formData.append("userId", CURRENT_USER_ID);
       if (newMsg) formData.append("message", newMsg);
       if (newImage) formData.append("uploadImage", newImage); // same key as multer.single()
       if (productId) formData.append("productId", productId);
-      
-      const res = await axios.post(url +"/api/chat/add", formData, {
-        headers: { 
+      if (productMsg) formData.append("product", productMsg);
+
+      const res = await axios.post(url + "/api/chat/add", formData, {
+        headers: {
           "Content-Type": "multipart/form-data",
           token
         },
@@ -90,7 +90,6 @@ useEffect(() => {
   const onDeleteHandler = async (messageId) => {
     setMessages((prev) => prev.filter((m) => m._id !== messageId));
     try {
-    
 
       const token = localStorage.getItem("token"); // adjust if you store token differently
 
@@ -106,21 +105,19 @@ useEffect(() => {
       console.error("Delete error:", err);
       alert("Error deleting message");
     } finally {
-      
+
     }
   };
 
   const handleImageUpload = (e) => {
     if (e.target.files[0]) setNewImage(e.target.files[0]);
-    // console.log(newImage, "file");
-    
   };
 
   return (
     <div className="chat-container">
       {/* Header */}
       <div className="chat-header">
-        <img alt="profile" src={assets.dommy_profile} className="profile-img" />
+        <img alt="profile" src={userData?.image ? userData.image : assets.dommy_profile} className="profile-img" />
         <h3>{userData?.name}</h3>
       </div>
 
@@ -140,8 +137,8 @@ useEffect(() => {
 
                 <div className="message-content">
                   <div className="delete-btn">
-                    {!isMe &&(
-                      
+                    {!isMe && (
+
                       <div className="delete-icon" onClick={() => onDeleteHandler(msg._id)} title="Delete message" > <FaTrash /></div>
                     )}
 
@@ -160,7 +157,7 @@ useEffect(() => {
                       <div className="product-info">
                         <h4>{msg.product.name}</h4>
                         <p>
-                          Price: ${msg.product.price} (-${msg.product.discount})
+                          {t("price")}: ${msg.product.price} (-${msg.product.discount})
                         </p>
                       </div>
                     </div>
@@ -174,6 +171,24 @@ useEffect(() => {
           })}
           <div ref={chatEndRef}></div>
         </AnimatePresence>
+        {/* if chat have product inquiry */}
+         {productMsg.name && (
+          <div className="product-box">
+            <img
+              src={productMsg.image}
+              alt={productMsg.name}
+              className="product-img"
+            />
+            <div className="product-info">
+              <h4>{productMsg.name}</h4>
+              <p>
+                {t("price")}: ${productMsg.price} (-${productMsg.discount})
+              </p>
+            </div>
+             <div className="clear-product-msg" onClick={() => setProductMsg({})}> <p>X</p> </div>
+          </div>
+          
+        )}
       </div>
 
       {/* Input area */}
@@ -181,9 +196,10 @@ useEffect(() => {
         {newImage && (
           <div className="image-preview">
             <img src={URL.createObjectURL(newImage)} alt="preview" />
-            <button onClick={() => setNewImage(null)}>x</button>
+            <button onClick={() => setNewImage(null)}>  <p>X</p> </button>
           </div>
         )}
+
         <input
           type="text"
           placeholder="Type a message..."

@@ -2,11 +2,13 @@ import React, { useContext, useState } from 'react'
 import './History.css'
 import { StoreContext } from '../../context/StoreContext'
 import Bill from '../Bill/Bill'
+import { useTranslation } from 'react-i18next'
 
 const History = ({ count }) => {
   const { orderHistory } = useContext(StoreContext)
   const [showBill, setShowBill] = useState(false)
   const [thisData, setThisData] = useState(null)
+  const {t} =useTranslation();
   let historyCount = count;
   let isLastItem = false;
 

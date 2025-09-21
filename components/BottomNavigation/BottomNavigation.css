@@ -1,65 +1,76 @@
-.bottom-navigation{
+.bottom-navigation {
     width: 100vw;
     background-color: #ffffff;
     border-top: 2px solid #6363637a;
     padding: 15px 6px;
+
     ul {
         width: 100%;
         display: flex;
         justify-content: space-evenly;
         align-items: center;
-        li{
-            transition:  all .3s ease-in-out;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        list-style: none;
-        padding: 10px;
-        width: max-content;
-        background-color: #FAEDE2;
-        border-radius: 10px;
-        
-        .Link-class{
+        gap: 1%;
+
+        li {
+            transition: all .3s ease-in-out;
             display: flex;
+            flex-direction: row;
             justify-content: center;
             align-items: center;
-            gap: 5%;
-            transition:  all .3s ease;
+            list-style: none;
+            padding: 10px;
+            width: max-content;
+            background-color: #FAEDE2;
+            border-radius: 10px;
+
+            .Link-class {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 2%;
+                transition: all .3s ease;
+            }
+
+            .nav-index-text {
+                padding: 0;
+                font-size: clamp(14px,2vw,16px);
+                color: tomato;
+                font-weight: 600;
+                width: max-content;
+                margin: 0;
+                transition: all .4s ease-in-out;
+                display: none;
+                white-space: nowrap;
+            }
+
+            .nav-index-text.active {
+                display: block;
+            }
+
+            img {
+                width: 20px;
+                height: 20px;
+                object-fit: contain;
+            }
         }
-        .nav-index-text{
-            padding: 0;
-        font-size: 16px;
-        color: tomato;
-        font-weight: 600;
-        width: min-content;
-        margin: 0;
-        transition: all .4s ease-in-out;
-        display: none;
-        }
-        .nav-index-text.active{
-            display: block;
-        }
-        
-        img{
-            width: 20px;
-            height: 20px;
-            object-fit: contain;
-        }}
-    }  
+    }
 }
-.bottom-nav-background{
+
+.bottom-nav-background {
     width: 100vw;
     position: fixed;
-    bottom: 0;left: 0;
-    z-index: 10;display: flex;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    display: flex;
     justify-content: center;
     align-items: end;
     pointer-events: all;
 }
+
 @media (min-width:1100px) {
-    .bottom-nav-background{
+    .bottom-nav-background {
         display: none;
     }
-    
+
 }

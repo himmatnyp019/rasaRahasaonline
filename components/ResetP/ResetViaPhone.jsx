@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "./PasswordReset.css";
+import { t } from "i18next";
 
 const ResetViaPhone = ({ url, setUpdateMode }) => {
   const [phone, setPhone] = useState("");
@@ -63,11 +64,11 @@ const ResetViaPhone = ({ url, setUpdateMode }) => {
 
   return (
     <div className="reset-phone">
-      <h2 className="title">Reset Password via Phone</h2>
+      <h2 className="title">{t("resetPasswordPhone")}</h2>
       {!otpSent ? (
         <>
           <p className="subtitle">
-            Enter your Korean phone number, and we’ll send you a one-time code.
+          {t("passwordResetInstruction")}
           </p>
           <div className="input-group">
             <input
@@ -77,18 +78,18 @@ const ResetViaPhone = ({ url, setUpdateMode }) => {
               onChange={(e) => setPhone(e.target.value)}
               required
             />
-            <label>Phone Number</label>
+            <label>{t("enterMobileNumber")}</label>
           </div>
           <button className="submit-btn" onClick={sendOtp}>
-            Send OTP
+           {t("sendOtp")}
           </button>
            <p className="back-link" onClick={() => setUpdateMode("resetPassword")}>
-            ← Back to Options
+            ← {t("backToOptions")}
           </p>
         </>
       ) : (
         <>
-          <p className="subtitle">Enter the 6-digit code sent to your phone:</p>
+          <p className="subtitle">{t("enterSixDigitCode")}</p>
           <div className="otp-container">
             {otp.map((digit, index) => (
               <input
@@ -111,11 +112,11 @@ const ResetViaPhone = ({ url, setUpdateMode }) => {
               onChange={(e) => setNewPassword(e.target.value)}
               required
             />
-            <label>New Password</label>
+            <label>{t("newPassword")}</label>
           </div>
 
           <button className="submit-btn" onClick={verifyOtp}>
-            Verify & Reset
+            {t("verifyAndReset")}
           </button>
          
         </>

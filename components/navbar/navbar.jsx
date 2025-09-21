@@ -4,52 +4,74 @@ import { assets } from "../../src/assets/assets";
 import { Link, Links } from 'react-router-dom';
 import { StoreContext } from '../../context/StoreContext';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Language from '../Language/Language';
+
+
 import {
-  faShoppingBasket,
+  faCartShopping,
   faUser
 } from "@fortawesome/free-solid-svg-icons";
+import { t } from 'i18next';
 
 const Navbar = ({ setShowLogin }) => {
 
   const [menu, setMenu] = useState("home");
-  const { getTotalCartAmount, token, setToken } = useContext(StoreContext);
+  const { getTotalCartAmount, token, setToken, food_list, cartItems } = useContext(StoreContext);
   const [totalAmount, amountBeforeDiscount] = getTotalCartAmount();
   return (
     <div>
       <div className="navbar" id='top'>
+
         <Link to="/" className='logo-container'> <img data-aos="fade-down" className="logo-img" src={assets.logoMain} alt="logo image" />  <img data-aos="fade-down" className="logo" src={assets.logo} alt="logo image" /></Link>
-        <Link to='/notification' className='notification-icon2'>
-            <img src={assets.notify_bell} height={70} alt="" />
+
+        <div className="content-remain">
+          <Link to='/notification' className='notification-icon'>
+            <img src={assets.notify_bell} height={35} alt="" />
           </Link>
-        {/* <ul className='navbar-menu'>
-          <Link data-aos="fade-down" data-aos-delay="0" to='/' onClick={() => setMenu("home")} className={menu === "home" ? "active" : ""}>Home</Link>
-          <a data-aos="fade-down" data-aos-delay="50" href='#exploreMenu' onClick={() => setMenu("menu")} className={menu === "menu" ? "active" : ""}>Menu</a>
-          <a data-aos="fade-down" data-aos-delay="100" href='#app-download' onClick={() => setMenu("mobile-app")} className={menu === "mobile-app" ? "active" : ""}>Mobile App</a>
-          <a data-aos="fade-down" data-aos-delay="150" href='#footer' onClick={() => setMenu("contact-us")} className={menu === "contact-us" ? "active" : ""}>Contact us</a>
-        </ul> */}
+          <Language />
+
+        </div>
 
 
         <div className="btn-container flex-row">
-          <Link to='/search'> 
-            <lord-icon
-              src="https://cdn.lordicon.com/vayiyuqd.json"
-              trigger="hover"
-              colors="primary:#ff6347" >
-            </lord-icon></Link>
-          <Link to='/notification' className='notification-icon'>
-            <img src={assets.notify_bell} height={70} alt="" />
-          </Link>
+
+
           <Link to='/track' className="track-orders">
             <img className='track-order-image' src={assets.trackTruck} alt="track-order" />
-            <p>Track Order</p>
+            <p>{t("tracking")}</p>
           </Link>
           <Link to='/Cart' className='cart-button' >
-            <div className={totalAmount === 0 ? "" : "dot"}></div>
-            <FontAwesomeIcon data-aos="fade-down" icon={faShoppingBasket} /> View Cart
+           
+            <div className="cart-button-left">
+            <FontAwesomeIcon data-aos="fade-down" icon={faCartShopping} />
+            {t("cart")}
+
+            </div>
+
+            <div className="grid-cart">
+              {Array.from({ length: 4 }).map((_, index) => {
+                const validItems = food_list.filter(item => cartItems[item._id] > 0);
+                const item = validItems[index];
+
+                return (
+                  <div key={item ? item._id : index}>
+                    <div className="quick-item-cart-button">
+                      {item ? (
+                        <img src={item.image || ""}  />
+                      ) : (
+                        <img  />
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
           </Link>
+
           {token
-            ? <Link data-aos="fade-down" className='profile-button' to='/Profile'> <FontAwesomeIcon icon={faUser} ></FontAwesomeIcon> <p>Profile </p></Link>
-            : <Link data-aos="fade-down" className='profile-button' onClick={() => { setShowLogin(true) }}>  <p>Login </p></Link>}
+            ? <Link data-aos="fade-down" className='profile-button' to='/Profile'> <FontAwesomeIcon icon={faUser} ></FontAwesomeIcon></Link>
+            : <Link data-aos="fade-down" className='profile-button' onClick={() => { setShowLogin(true) }}> <FontAwesomeIcon icon={faUser} ></FontAwesomeIcon> </Link>}
         </div>
 
       </div>
@@ -59,3 +81,21 @@ const Navbar = ({ setShowLogin }) => {
 }
 
 export default Navbar;
+
+
+
+
+
+
+
+
+
+
+
+
+{/* <ul className='navbar-menu'>
+          <Link data-aos="fade-down" data-aos-delay="0" to='/' onClick={() => setMenu("home")} className={menu === "home" ? "active" : ""}>Home</Link>
+          <a data-aos="fade-down" data-aos-delay="50" href='#exploreMenu' onClick={() => setMenu("menu")} className={menu === "menu" ? "active" : ""}>Menu</a>
+          <a data-aos="fade-down" data-aos-delay="100" href='#app-download' onClick={() => setMenu("mobile-app")} className={menu === "mobile-app" ? "active" : ""}>Mobile App</a>
+          <a data-aos="fade-down" data-aos-delay="150" href='#footer' onClick={() => setMenu("contact-us")} className={menu === "contact-us" ? "active" : ""}>Contact us</a>
+        </ul> */}

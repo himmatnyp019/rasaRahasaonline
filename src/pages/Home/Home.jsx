@@ -8,7 +8,8 @@ import Address from '../../../components/Location/Address'
 import AppDownload from '../../../components/AppDownload/AppDownload'
 import Offer from '../../../components/Offer/Offer'
 import RotatingSlider from '../../../components/RotateSlide/RotatingSlide'
- 
+import SearchOnly from '../../../components/OnlySearch/searchOnly'
+
 const Home = () => {
   const [category, setCategory] = useState("All");
   return (
@@ -19,6 +20,9 @@ const Home = () => {
      <br />
      <br />
      <Offer></Offer>
+     <br />
+     <br />
+     <SearchOnly></SearchOnly>
      <ExploreMenu category={category} setCategory={setCategory}></ExploreMenu>
      <RotatingSlider></RotatingSlider>
      <Highlight></Highlight>

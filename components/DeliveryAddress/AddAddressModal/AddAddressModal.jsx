@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import "./AddAddressModal.css";
 import { useContext } from "react";
 import { StoreContext } from "../../../context/StoreContext";
-
+import { useTranslation } from "react-i18next";
 
 const AddAddressModal = ({ onClose, onSave, isEdit, aIndex }) => {
 
   const { upadateAddress } = useContext(StoreContext);
-
+  const {t}=useTranslation();
   const [form, setForm] = useState({
     country: "",
     city: "",
@@ -36,15 +36,15 @@ const AddAddressModal = ({ onClose, onSave, isEdit, aIndex }) => {
       <div className="modal">
         <h2>{isEdit ? "Edit your Delivery Address " : "Add your Delivery Address"}</h2>
 
-        <input name="country" placeholder="Country" onChange={handleChange} required />
-        <input name="city" placeholder="City" onChange={handleChange} required />
-        <input name="streetNumber" placeholder="Street Number" onChange={handleChange} required />
-        <input name="fullAddress" placeholder="Full Address" onChange={handleChange} required />
-        <input name="zipCode" placeholder="Zip Code" onChange={handleChange} required />
+        <input name="country" placeholder={t("country")} onChange={handleChange} required />
+        <input name="city" placeholder={t("city")} onChange={handleChange} required />
+        <input name="streetNumber" placeholder={t("streetNumber")} onChange={handleChange} required />
+        <input name="fullAddress" placeholder={t("fullAddress")} onChange={handleChange} required />
+        <input name="zipCode" placeholder={t("zipCode")} onChange={handleChange} required />
 
         <div className="modal-buttons">
-          <button onClick={handleSubmit}>Save</button>
-          <button onClick={onClose} className="cancel">Cancel</button>
+          <button onClick={handleSubmit}>{t("save")}</button>
+          <button onClick={onClose} className="cancel">{t("cancel")}</button>
         </div>
       </div>
     </div>

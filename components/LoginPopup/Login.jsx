@@ -5,11 +5,14 @@ import { useContext } from 'react'
 import { StoreContext } from '../../context/StoreContext'
 import axios from 'axios'
 import { useToast } from '../../context/ToastContext';
+import { t } from 'i18next'
 
 const Login = ({ setShowLogin }) => {
   const { url, setToken } = useContext(StoreContext)
-  const {showToast} = useToast();
-  const [currState, setCurrState] = useState("Log In")
+  const { showToast } = useToast();
+
+  const [loginMethod ,setLoginMethod] = useState("email")
+  const [currState, setCurrState] = useState("login")
   const [data, setData] = useState({
     name: "",
     email: "",
@@ -23,22 +26,24 @@ const Login = ({ setShowLogin }) => {
     setData(data => ({ ...data, [name]: value }))
   }
   const onLoin = async (event) => {
+    console.log(data);
+    
     event.preventDefault();
     let newUrl = url;
-    if (currState === "Log In") {
+    if (currState === "login") {
       newUrl += "/api/user/login";
     } else {
       newUrl += "/api/user/register";
     }
- const response = await axios.post(newUrl,data);
- if (response.data.success) {
-  setToken(response.data.token);
-  localStorage.setItem("token", response.data.token);
-  setShowLogin(false);
-  showToast("Logged in successfully.")
- }else{
-  alert(response.data.message)
- }
+    const response = await axios.post(newUrl, data);
+    if (response.data.success) {
+      setToken(response.data.token);
+      localStorage.setItem("token", response.data.token);
+      setShowLogin(false);
+      showToast("Logged in successfully.")
+    } else {
+      alert(response.data.message)
+    }
   }
 
 
@@ -46,52 +51,51 @@ const Login = ({ setShowLogin }) => {
     <div className='login'>
       <form className="login-container" onSubmit={onLoin}>
 
-         <div className="login-left">
+        <div className="login-left">
           <div className="image-container">
-            <h1>Shop what the nature gave</h1>
-            <p>Fresh - Healthy - Best</p>
+            <h1>{t("slogan")}</h1>
+            <p>{t("s2")}</p>
           </div>
         </div>
 
 
         <div className="login-right">
-             <img className='close-btn' onClick={() => setShowLogin(false)} src={assets.cross_icon} alt="" />
-        <div className="login-title">
+          <div className='close-btn' onClick={() => setShowLogin(false)}  > <p>X</p> </div>
+          <div className="login-title">
             <h1>ආයුබෝවන්</h1>
-       <br />
-        </div>
-        <div className="login-inputs">
-          <p>{currState} with email </p>
-          {
-            currState === "Log In" ? <> <input type="email" name='email' onChange={onChangeHandler} value={data.email} placeholder='Enter your Email Address'/></> :
-              <div>
-                 <input type="email" name='email' onChange={onChangeHandler} value={data.email} placeholder='Enter your Email Address' required />
-                <input type="text" name="name" onChange={onChangeHandler} value={data.name} placeholder='Your Full Name' required />
+            <br />
+          </div>
+          <div className="login-inputs">
+            <p>{t(currState)} {t("withEmail")} </p>
+            {
+              currState === "login" ? <> <input type="email" name='email' onChange={onChangeHandler} value={data.email} placeholder={t("enterYourEmail")} /></> :
+                <div>
+                  <input type="email" name='email' onChange={onChangeHandler} value={data.email} placeholder={t("enterYourEmail")} required />
+                  <input type="text" name="name" onChange={onChangeHandler} value={data.name} placeholder={t("enterYourFullName")} required />
+                </div>
+            }
 
-              </div>
-          }
-         
-          {
-            currState === "Log In"? <>
-           <p className='or-text'>or</p>
-           <p>{currState} with phone </p>
-            <input type='number' name="phone" onChange={onChangeHandler} value={data.phone} placeholder='Enter Mobile Number' />
-            </> :  <input type='number' name="phone" onChange={onChangeHandler} value={data.phone} placeholder='Enter Mobile Number' required />
-          }
-         
-          <input type="password" name='password' onChange={onChangeHandler} value={data.password} placeholder='Enter Password' required />
-        </div>
-        <button type='submit'>{currState === 'Sign Up' ? "Create an Account" : "Log In"}</button>
-        <div className="login-condition">
-          <input type="checkbox" required />
-          <p>By continuing, I agree to the terms of use & Privacy Policy.</p>
-        </div>
-        {currState === 'Log In'
-          ? <p className='join-option'>Create a New Account ? <br /> <span onClick={() => setCurrState('Sign Up')}>Register today</span></p>
-          : <p className='join-option'>Already have an Account ? <br /> <span onClick={() => setCurrState('Log In')}>Login now</span></p>
-        }
+            {
+              currState === "login" ? <>
+                <p className='or-text'>{t("or")}</p>
+                <p>{t(currState)} {t("withPhone")} </p>
+                <input type='number' name="phone" onChange={onChangeHandler} value={data.phone} placeholder={t("enterMobileNumber")} />
+              </> : <input type='number' name="phone" onChange={onChangeHandler} value={data.phone} placeholder={t("enterMobileNumber")} required />
+            }
 
-       </div>
+            <input type="password" name='password' onChange={onChangeHandler} value={data.password} placeholder={t("enterPassword")} required />
+          </div>
+          <button type='submit'>{currState === t('signUp') ? t("createAnAccount") : t("loginNow")}</button>
+          <div className="login-condition">
+            <input type="checkbox" required />
+            <p>{t("termsAgreement")}</p>
+          </div>
+          {currState === 'login'
+            ? <p className='join-option'>{t("createNewAccount")} ? <br /> <span onClick={() => setCurrState('signUp')}>{t("registerToday")}</span></p>
+            : <p className='join-option'>{t("alreadyHaveAnAccount")} <br /> <span onClick={() => setCurrState('login')}>{t("loginNow")}</span></p>
+          }
+
+        </div>
       </form>
     </div>
   )

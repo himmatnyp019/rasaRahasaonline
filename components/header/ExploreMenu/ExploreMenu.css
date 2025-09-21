@@ -13,7 +13,7 @@
         margin-bottom: 5px;
     }
     p{
-        max-width: 60%;
+        max-width: 100%;
     }
     .exploreMenu-List{
         display: flex;
@@ -39,6 +39,7 @@
   margin: 10px auto;
   color: #747474;
   font-size: max(1.1vw, 16px);
+  white-space: nowrap;
 }
 .exploreMenu-List-Item img{
     width: 7.5vw;

@@ -9,17 +9,17 @@
     display: flex;
     justify-content: start;
     align-items: center;
+    gap: 1%;
+    height: 50px;
     img{
-    width: 100px;
-    height:100px;
     object-fit: contain;
   }
 }
 .notif-header {
-  color: #d34a42;
+  color: tomato;
   text-align: center;
-  margin-bottom: 20px;
-  font-size: 2rem;
+  /* margin-bottom: 20px; */
+  font-size: clamp(16px,4vw,28px);
   
 }
 
@@ -61,7 +61,7 @@
 }
 
 .notif-title {
-  color: #d34a42;
+  color: rgb(52, 52, 52);
   margin: 0;
   font-size: 1.1rem;
   font-weight: bold;

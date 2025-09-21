@@ -6,6 +6,7 @@ import axios from 'axios'
 import { toast } from 'react-toastify'
 import { useToast } from '../../context/ToastContext';
 import { useNavigate } from "react-router-dom";
+import { t } from "i18next";
       
 
 
@@ -333,13 +334,13 @@ export default function ReviewBox({ itemId }) {
     <div className="rb-root">
       <div className='reviews-container'>
         <div className="reviews-title">
-          <h2>Customer Reviews</h2>
+          <h2>C{t("customerReviews")}</h2>
           <br />
         </div>
         <div data-aos="fade-right" className="reviews-star">
           <h1 className="total-rating">4.5</h1>
           <img src={assets.rating_starts} alt="" />
-          <p>reviews by authentic purchase</p>
+          <p>{t("authenticReviews")}</p>
         </div>
         <div className="rating-count">
         </div>
@@ -405,15 +406,15 @@ export default function ReviewBox({ itemId }) {
                 <div className="rb-top-contents" style={{ display: 'flex', alignItems: 'end', justifyContent: 'space-between' }}>
                   <div>
                     <div className="rb-username">{maskedName}</div>
-                    <small style={{ color: '#9CA3AF' }}>Share your experience — it helps others</small>
+                    <small style={{ color: '#9CA3AF' }}>{t("shareYourExperience")}</small>
                   </div>
 
                   <div className="rb-actions">
                     <label className="rb-upload-btn" title="Upload profile image">
                       <input ref={fileRef} type="file" accept="image/*" style={{ display: 'none' }} onChange={handleFile} />
-                      Add Image
+                      {t("addImage")}
                     </label>
-                    <button className="rb-upload-btn" onClick={() => { setImgPreview(null); fileRef.current && (fileRef.current.value = null); }}>Clear</button>
+                    <button className="rb-upload-btn" onClick={() => { setImgPreview(null); fileRef.current && (fileRef.current.value = null); }}>{t("clear")}</button>
                   </div>
                 </div>
 
@@ -462,18 +463,18 @@ export default function ReviewBox({ itemId }) {
               {imgPreview ? (
                 <img className="rb-image" src={isOwnReview && ownReview ? ownReview.image : imgPreview} alt="no-image" />
               ) : (
-                <p className="rb-no-img-tag">no image attached</p>
+                <p className="rb-no-img-tag">{t("noImageAttached")}</p>
               )}
 
               <div className="rb-foot">
-                <div className="rb-char">{MAX - text.length} chars left</div>
+                <div className="rb-char">{MAX - text.length} {t("charsLeft")}</div>
               </div>
 
               <div className="rb-post">
                 {isOwnReview && (
-                  <button onClick={handleDelete} disabled={loading}> Delete review</button>
+                  <button onClick={handleDelete} disabled={loading}> {t("deleteReview")}</button>
                 )}
-                <button onClick={handlePost} disabled={loading}>{isOwnReview ? "Update review" : "Post your review"}</button>
+                <button onClick={handlePost} disabled={loading}>{isOwnReview ? t("updateReview") : t("postYourReview")}</button>
               </div>
             </div>
           </div>

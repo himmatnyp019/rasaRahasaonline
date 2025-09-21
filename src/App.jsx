@@ -8,7 +8,6 @@ import Footer from '../components/Footer/Footer';
 import Login from '../components/LoginPopup/Login';
 import Details from './pages/Details/Details';
 import FloatBox from '../components/FloatBox/FloatBox';
-import PaymentPage from '../components/KakaoPay/PaymentPage'
 import SearchBox from '../components/SearchBox/SearchBox';
 import ResetPassword from './pages/ResetPass/ResetPass';
 import BottomNavigation from '../components/BottomNavigation/BottomNavigation';
@@ -20,15 +19,15 @@ import useAOS from "./hooks/useAOS";
 import AOS from "aos";
 import axios from 'axios';
 import "react-toastify/dist/ReactToastify.css";
+import Notification from "./pages/Notification/Notification.jsx";
 import { ToastContainer } from "react-toastify";
 import "aos/dist/aos.css";
 import Tracking from './pages/Tracking/Tracking';
 import { isTokenExpired } from "./hooks/auth.js";
-import Notification from './pages/Notification/notification.jsx';
-
+import Lang from './pages/NokMart/Lang/Lang.jsx';
 
 const App = () => {
-  const [showLogin, setShowLogin] = useState(false)
+  const [showLogin, setShowLogin] = useState(false)  
 
   const [showBill, setShowBill] = useState(false)
   const [billData, setBillData] = useState(null)
@@ -88,6 +87,7 @@ const App = () => {
         <Route path="/reset/:token" element={<ResetPassword></ResetPassword>}></Route>
         <Route path="/notification" element={<Notification></Notification>}></Route>
         <Route path='/search' element={<SearchBox/>}>  </Route>
+        <Route path='/lang' element={<Lang/>}></Route>
 
       </Routes>
       <Footer></Footer>

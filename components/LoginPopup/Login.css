@@ -8,7 +8,10 @@
     width: 100%;
     height: 100%;
     background-color: #000000bb;
-    display: grid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
 
 .login-container {
@@ -30,6 +33,7 @@
     -ms-border-radius: 20px;
     -o-border-radius: 20px;
 }
+
 .login-container::after {
     content: '';
     position: absolute;
@@ -74,7 +78,7 @@
     display: flex;
     gap: 15px;
     border-radius: 20px;
-     padding: 15px 10px;
+    padding: 15px 10px;
     font-size: 14px;
     transition: all .4s ease-in-out;
     animation: fadeIn .5s;
@@ -83,12 +87,15 @@
     justify-content: center;
     align-items: center;
 
-    .close-btn{
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    cursor: pointer;
-}
+    .close-btn {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        cursor: pointer;
+        background-color: tomato;
+        object-fit: contain;
+        
+    }
 
     h1 {
         font-size: clamp(16px, 4vw, 30px);
@@ -137,6 +144,7 @@
     }
 
 }
+
 .login-right .login-title {
     display: flex;
     flex-direction: column;
@@ -144,7 +152,8 @@
     align-items: center;
     color: #000;
     width: 100%;
-    img{
+
+    img {
         width: 100%;
         height: 25px;
         object-fit: contain;
@@ -161,7 +170,7 @@
 .login-title img {
     width: 16px;
     cursor: pointer;
-    opacity: .7;
+    opacity: 0.7;
 }
 
 .login-inputs {
@@ -170,7 +179,8 @@
     gap: 0;
     width: 100%;
     max-width: 300px;
-    .or-text{
+
+    .or-text {
         width: 100%;
         text-align: center;
     }
@@ -200,8 +210,9 @@ input:focus {
 
 .login-container button {
     padding: 10px;
-   max-width: 300px;
+    max-width: 300px;
     font-size: 16px;
+    width: 100%;
     font-weight: 700;
     outline: none;
     border: none;
@@ -259,17 +270,21 @@ input:focus {
     }
 
 }
+
 @media (max-width:740px) {
-    .login-container{
+    .login-container {
         flex-direction: column;
-    
+
     }
-    .login-right{
+
+    .login-right {
         width: 100%;
     }
-    .login-left{
+
+    .login-left {
         width: 100%;
-        .image-container{
+
+        .image-container {
             justify-content: end;
             flex-direction: column-reverse;
             width: 100%;
@@ -278,7 +293,8 @@ input:focus {
             border-top-right-radius: 20px;
             border-top-left-radius: 20px;
             padding: 5px 0;
-            p{
+
+            p {
                 color: #fff;
             }
         }

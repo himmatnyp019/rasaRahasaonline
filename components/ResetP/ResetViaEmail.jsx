@@ -3,6 +3,8 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import './PasswordReset.css'
 import { StoreContext } from "../../context/StoreContext";
+import { t } from "i18next";
+
 
 const ResetViaEmail = ({setUpdateMode }) => {
   const [email, setEmail] = useState("");
@@ -25,7 +27,7 @@ const ResetViaEmail = ({setUpdateMode }) => {
 
   return (
    <div className="reset-email">
-      <h2 className="title">Reset Password via Email</h2>
+      <h2 className="title">{t("resetViaEmail")}</h2>
       <p className="subtitle">
         Enter your registered email address and we’ll send you a link to reset your password.
       </p>
@@ -39,16 +41,16 @@ const ResetViaEmail = ({setUpdateMode }) => {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-          <label>Email Address</label>
+          <label>{t("emailAddress")}</label>
         </div>
 
         <button type="submit" className="submit-btn">
-          Send Reset Link
+          {/* {Send Reset Link} */}
         </button> 
       </form>
 
       <p className="back-link" onClick={() => setUpdateMode("resetPassword")}>
-        ← Back to Options
+        ← {t("backToOptions")}
       </p>
     </div>
   );

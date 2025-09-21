@@ -4,11 +4,12 @@ import { StoreContext } from '../../context/StoreContext'
 import { Link } from 'react-router-dom'
 import { assets } from '../../src/assets/assets'
 import FoodItem from '../FoodItem/FoodItem'
-
+import { useTranslation } from 'react-i18next'
 
 
 const MainItems = () => {
   const { food_list, } = useContext(StoreContext)
+  const {t} = useTranslation();
   return (
     <div className='main-items-container'>
       <div className="vegetable-section" id="vegetable-section">
@@ -17,8 +18,8 @@ const MainItems = () => {
             <img src={assets.vegetable} alt="" />
           </div>
           <div className="bottom-contents">
-            <h1>Vegetables & Fruits</h1>
-            <p>All fresh vegetables and fruits from motherland.</p>
+            <h1>{t("vegetablesFruits")}</h1>
+            <p>{t("descVegFruits")}</p>
           </div>
         </div>
         <div className="food-display-list">
@@ -40,8 +41,8 @@ const MainItems = () => {
             <img src={assets.species} alt="" />
           </div>
           <div className="bottom-contents">
-            <h1>Species, Masala</h1>
-            <p>masala, turmeric, oils, sauces kitchen things</p>
+            <h1>{t("spicesMasala")}</h1>
+            <p>{t("descSpices")}</p>
           </div>
         </div>
         <div className="food-display-list">
@@ -61,8 +62,8 @@ const MainItems = () => {
             <img src={assets.meat} alt="" />
           </div>
           <div className="bottom-contents">
-            <h1>Meat and Fish</h1>
-            <p>All fresh meats & fishes delivery with safety</p>
+            <h1>{t("meatFish")}</h1>
+            <p>{t('descMeatFish')}</p>
           </div>
         </div>
         <div className="food-display-list">
@@ -82,8 +83,8 @@ const MainItems = () => {
                     <img src={assets.drinks} alt="" />
                   </div>
                   <div className="bottom-contents">
-                    <h1>Cold Drinks</h1>
-                    <p>All delicous and sweet drinks pup and drink.</p>
+                    <h1>{t("coldDrinks")}</h1>
+                    <p>{t("descDrinks")}</p>
                   </div>
                 </div>
         <div className="food-display-list">

@@ -5,12 +5,14 @@ import './Tracking.css'
 import { StoreContext } from "../../../context/StoreContext";
 import { toast } from 'react-toastify'
 import { assets } from "../../assets/assets";
+import { useTranslation } from "react-i18next";
 
 const Tracking = () => {
   const [myOrders, setMyOrders] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const { url } = useContext(StoreContext)
+  const {t} = useTranslation();
 
   let token = localStorage.getItem('token')
   // Fetch all my orders (order tracking)
@@ -38,10 +40,10 @@ const Tracking = () => {
     loadMyOrders();
   }, []);
   const STATUS_STEPS = [
-    "Order Processing...",
-    "Order Packaging...",
-    "Order on Delivery",
-    "Delivered"
+    t("orderProcessing"),
+    t("orderPackaging"),
+    t("orderOnDelivery"),
+    t("delivered")
   ];
   const handlePackingUpdate = async (userId,orderId, status) => {
     try {
@@ -66,17 +68,17 @@ const Tracking = () => {
   const getStatusDescription = (STATUS_STEPS) => {
     switch (STATUS_STEPS) {
       case "Order Processing...":
-        return "We’ve received your order after payment. It’s now stored in our system and being prepared.";
+        return t("orderProcessingDescription");
       case "Order Packaging...":
-        return "Your items are being carefully packed and prepared for shipment.";
+        return t("orderPackagingDescription");
       case "Order on Delivery":
-        return "Your package is on the way! The courier is delivering it to your address.";
+        return t("orderOnDeliveryStatus");
       case "Delivered":
-        return "Your order has been successfully delivered. Thank you for shopping with us!";
+        return t("deliveredDescription");
       case "Cancelled":
-        return "Payment has been cancelled. Refund process will initialized after checking payment status."
+        return t("cancelledDescription")
       default:
-        return "Order status is being updated. Please check back soon.If you feel something happening wrong, leave us a message.";
+        return t("orderStatusDefaultDescription");
     }
   };
 
@@ -84,36 +86,36 @@ const Tracking = () => {
   return (
     <div className="orders-container">
       <div className="page-title">
-        <h2>📦 Orders</h2>
+        <h2>📦 {t("orders")}</h2>
 
         <div className="order-header-extras">
           {/* 1. Total Orders */}
           <div className="extra-box">
-            <p>Total Orders</p>
+            <p>{t("totalOrders")}</p>
             <h3>{myOrders.length}</h3>
           </div>
 
           {/* 2. Pending */}
           <div className="extra-box">
-            <p>Pending</p>
+            <p>{t("pending")}</p>
             <h3>{myOrders.filter(o => o.status === "Order Processing...").length}</h3>
           </div>
 
           {/* 3. Delivered */}
           <div className="extra-box">
-            <p>Delivered</p>
+            <p>{t("delivered")}</p>
             <h3>{myOrders.filter(o => o.status === "Delivered").length}</h3>
           </div>
 
           {/* 4. Processing */}
           <div className="extra-box">
-            <p>Processing</p>
+            <p>{t("processing")}</p>
             <h3>{myOrders.filter(o => o.status === "Order Packaging...").length + myOrders.filter(o => o.status === "Order on Delivery").length}</h3>
           </div>
 
           {/* 5. Cancelled */}
           <div className="extra-box">
-            <p>Cancelled</p>
+            <p>{t("cancelled")}</p>
             <h3>{myOrders.filter(o => o.status === "Cancelled").length}</h3>
           </div>
         </div>
@@ -158,7 +160,7 @@ const Tracking = () => {
             {/* --- Order Details --- */}
             <div className="order-info">
               <h2> {order.time}   </h2>
-              <p><strong>Status</strong> {order.status==="Cancelled"?order?.refundStatus?.refundMethod:order.status}
+              <p><strong>{t("status")}</strong> {order.status==="Cancelled"?order?.refundStatus?.refundMethod:order.status}
               </p>
               <h4 className="status-description-text">{getStatusDescription(order.status)}</h4>
             </div>
@@ -184,7 +186,7 @@ const Tracking = () => {
 
               {/* --- User Info Semi-circle --- */}
               <div className="user-info-semicircle">
-                <p>Ordered By :</p>
+                <p>{t("orderedBy")}:</p>
                 <p className="user-name">
                   {order.info?.[0]?.firstName} {order.info?.[0]?.lastName}
                 </p>
@@ -197,8 +199,8 @@ const Tracking = () => {
 
             {/* --- Amount & Payment --- */}
             <div className="payment-info">
-              <p><strong>Total Price:</strong> ${order.amount}</p>
-              <p><strong>Payment:</strong> {order.payment ? "Paid ✅" : "Unpaid ❌"}</p>
+              <p><strong>{t("total")}:</strong> ${order.amount}</p>
+              <p><strong>{t("payment")}:</strong> {order.payment ? "Paid ✅" : "Unpaid ❌"}</p>
               {order.status === "Cancelled" && (
                 <img className="cancelled-stamp" width={240} src={assets.cancelled_stamp} alt="" />
               )}
@@ -207,9 +209,9 @@ const Tracking = () => {
             {/* --- Action Buttons --- */}
             <div className="actions">
               {order.status !== "Delivered" && order.status !== "Cancelled" && order.status !== "Order on Delivery" && (
-                <button className="cancel-btn" onClick={() => handlePackingUpdate(order.userId, order._id, "Cancelled")}>Cancel Order</button>
+                <button className="cancel-btn" onClick={() => handlePackingUpdate(order.userId, order._id, "Cancelled")}>{t("cancelOrder")}</button>
               )}
-              {order.status !== "Cancelled" && <button className="contact-btn">Contact</button>}
+              {order.status !== "Cancelled" && <button className="contact-btn">{t("contact")}</button>}
             </div>
           </motion.div>
         );

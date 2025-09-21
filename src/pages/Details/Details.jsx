@@ -7,17 +7,18 @@ import FoodItem from '../../../components/FoodItem/FoodItem';
 import Offer from '../../../components/Offer/Offer';
 import Reviews from '../../../components/Reviews/Reviews';
 import DiscountText from '../../../components/DiscountText/DiscountText';
+import { useTranslation } from 'react-i18next';
 
 
 
 const Details = () => {
   const location = useLocation();
   let { name, id, description, image, image3, image2, price, category, discount } = location.state || {};
-  // const transData = { name, id, description, image, image3, image2, price, category, discount };
   const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   const today = new Date().getDay(); // 0 = Sunday, 1 = Monday, ...
   const { cartItems, addToCart, food_list, removeFromCart, url, setShowChat, productMsg, setProductMsg, showDetails } = useContext(StoreContext);
   const [bigImg, setBigImg] = useState(image);
+  const {t} = useTranslation();
   let productId;
   if (!location.state) {
     productId = localStorage.getItem('view-product');
@@ -49,7 +50,6 @@ const Details = () => {
       price: price,
       discount: discount,
     });
-
     setShowChat(true)
   };
 
@@ -81,7 +81,7 @@ const Details = () => {
           </div>
           <div className="box product-info">
             <div className="weekday-text">
-              <h2>{days[today]} Deal</h2>
+              <h2>{days[today]} {t("deal")}</h2>
             </div>
             <h1 className="item-title"> {name}</h1>
             <div className="price-area">
@@ -101,7 +101,7 @@ const Details = () => {
                   <img onClick={() => addToCart(id)} src={assets.add_icon_green} alt="" />
                 </div>
                 : <button onClick={() => addToCart(id)}>
-                  Add to Cart <img src={assets.add_icon_white} alt="" />
+                  {t("addToCart")} <img src={assets.add_icon_white} alt="" />
                 </button>
               }
               <button onClick={() => productMsgHandler(id, name, image, price, discount)}>
@@ -125,7 +125,7 @@ const Details = () => {
           <Reviews itemId={id}></Reviews>
         </div>
         <div className='food-display' id='food-display'>
-          <h2>Related Items</h2>
+          <h2>{t("relatedItems")}</h2>
           <br />
           <hr style={{
             border: "none", height: "2px", backgroundColor: "#e2e2e2", margin: "0",

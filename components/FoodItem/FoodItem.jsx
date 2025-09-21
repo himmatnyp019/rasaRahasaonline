@@ -4,12 +4,13 @@ import { assets } from '../../src/assets/assets'
 import { StoreContext } from '../../context/StoreContext';
 import { Link } from 'react-router-dom';
 import DiscountText from '../DiscountText/DiscountText';
+import { useTranslation } from 'react-i18next';
 const FoodItem = ({ id, name, price, description, image, category, discount, image3, image2 }) => {
-
+  const { t } = useTranslation();
   const { cartItems, addToCart, removeFromCart, url, setShowDetails, showDetails } = useContext(StoreContext);
-  const onClickViewHandler =()=>{
+  const onClickViewHandler = () => {
     setShowDetails({
-      id:id, name:name, price:price, description:description, image:image, image3:image3, image2:image2, category:category, discount:discount
+      id: id, name: name, price: price, description: description, image: image, image3: image3, image2: image2, category: category, discount: discount
     })
     localStorage.setItem("view-product", id);
   }
@@ -17,9 +18,9 @@ const FoodItem = ({ id, name, price, description, image, category, discount, ima
     <div className='food-item'>
 
       <div data-aos="fade-up" className="food-item-image-container">
-        <Link to="/Details" onClick={()=>onClickViewHandler(id, name, price, description, image, image3, image2, category, discount)} state={{ id, name, price, description, image, image3, image2, category, discount }}>
+        <Link to="/Details" onClick={() => onClickViewHandler(id, name, price, description, image, image3, image2, category, discount)} state={{ id, name, price, description, image, image3, image2, category, discount }}>
           <div className="redirect-button">
-            <h6> View More</h6>
+            <h6> {t("viewMore")}</h6>
             <img src={assets.redirect} alt="" />
           </div>
           <img src={image} className='food-item-image' alt="item-image" />
@@ -27,7 +28,7 @@ const FoodItem = ({ id, name, price, description, image, category, discount, ima
         {!cartItems[id]
           ? <div onClick={() => addToCart(id)} data-aos="fade-up" className="add-to-cart">
             <img className='add' src={assets.add_icon_white} alt="" />
-            <h3 className='add-to-cart-text'>Add To Cart</h3>
+            <h3 className='add-to-cart-text'>{t("addToCart")}</h3>
           </div>
           : <div className="food-item-counter">
             <img onClick={() => removeFromCart(id)} src={assets.remove_icon_red} alt="" />

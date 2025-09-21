@@ -5,7 +5,7 @@ import { toast } from 'react-toastify'
 import { assets } from "../../src/assets/assets";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import { t } from "i18next";
 const ProfileUpdate = ({ setUpdateMode }) => {
     const { userData, token, url, loadUserData } = useContext(StoreContext);
     const navigate = useNavigate();
@@ -57,14 +57,14 @@ const ProfileUpdate = ({ setUpdateMode }) => {
 
     return (
         <div className="profile-update-card">
-            <h2 className="profile-title">Update Profile</h2>
+            <h2 className="profile-title">{t("updateProfile")}</h2>
 
             <div className="profile-image-container">
                 <div className="image-warper">
                     <img src={preview ? preview : assets.dommy_profile} alt="Profile" className="profile-image" />
                 </div>
                 <label htmlFor="imageUpload" className="upload-btn">
-                    click to change profile image
+                   {t("changeProfileImage")}
                 </label>
                 <input
                     type="file"
@@ -83,7 +83,7 @@ const ProfileUpdate = ({ setUpdateMode }) => {
                         onChange={(e) => setName(e.target.value)}
                         required
                     />
-                    <label>Name</label>
+                    <label>{t("name")}</label>
                 </div>
 
                 <div className="input-group">
@@ -93,7 +93,7 @@ const ProfileUpdate = ({ setUpdateMode }) => {
                         onChange={(e) => setEmail(e.target.value)}
                         required
                     />
-                    <label>Email</label>
+                    <label>{t("email")}</label>
                 </div>
 
                 <div className="input-group">
@@ -103,15 +103,15 @@ const ProfileUpdate = ({ setUpdateMode }) => {
                         onChange={(e) => setPhone(e.target.value)}
                         required
                     />
-                    <label>Phone</label>
+                    <label>{t("phoneNumber")}</label>
                 </div>
 
                 <button type="submit" className="update-btn">
-                    Update Profile
+                    {t("updateProfile")}
                 </button>
             </form>
 
-            <button className="reset-btn" onClick={() => setUpdateMode("resetPassword")}>Reset Password</button>
+            <button className="reset-btn" onClick={() => setUpdateMode("resetPassword")}>{t("resetPassword")}</button>
         </div>
     );
 };

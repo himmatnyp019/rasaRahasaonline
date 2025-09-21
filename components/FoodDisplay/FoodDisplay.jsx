@@ -3,11 +3,12 @@ import './FoodDisplay.css'
 import { StoreContext } from '../../context/StoreContext'
 import FoodItem from '../FoodItem/FoodItem';
 import MainItems from '../MainItems/MainItems';
+import { useTranslation } from 'react-i18next';
 
 
 
 const FoodDisplay = ({category}) => {
-
+    const {t} = useTranslation();
     const {food_list} = useContext(StoreContext);
 
   return (
@@ -22,7 +23,7 @@ const FoodDisplay = ({category}) => {
 
         }} />
         <MainItems></MainItems>
-        <h2 className='food-display-title'>Top items near you</h2>
+        <h2 className='food-display-title'>{t("topItems")}</h2>
       <div className="food-display-list">
         {food_list.map((item, index)=>{
           if (category==="All" || category===item.category) {

@@ -10,13 +10,14 @@ import ProfileUpdate from '../../../components/ProfileUpdate/ProfileUpdate';
 import ForgotPassword from '../../../components/ResetP/ForgotPassword';
 import ResetViaEmail from '../../../components/ResetP/ResetViaEmail';
 import ResetViaPhone from '../../../components/ResetP/ResetViaPhone';
+import { useTranslation } from 'react-i18next';
 
 const Profile = () => {
   const { orderHistory, token, setToken, setShowLogin, userData, url, loadUserData } = useContext(StoreContext);
   const [showAllHistory, setShowAllHistory] = useState(false);
   const [showUpdateProfile, setShowUpdateProfile] = useState(false);
   const [updateMode, setUpdateMode] = useState("updateProfile");
-
+  const {t} = useTranslation();
   let historyLength = orderHistory.length
   const navigate = useNavigate();
   let userInfo = userData;
@@ -51,10 +52,10 @@ const Profile = () => {
           <p className='user-phone-text' >{userInfo.phone}</p>
           <div className="who-can-view-info">
             <img src={assets.help} alt="info" />
-            <p>Only you can view this information.</p>
+            <p>{t("onlyYouView")}</p>
           </div>
           <p>
-            <u onClick={() => { setShowUpdateProfile(true), setUpdateMode("updateProfile") }}>edit information</u>
+            <u onClick={() => { setShowUpdateProfile(true), setUpdateMode("updateProfile") }}>{t("editInformation")}</u>
           </p>
         </div>
       </div>
@@ -75,7 +76,7 @@ const Profile = () => {
         <div className="div">
           <History count={4}></History>
           <br />
-          <button className='view-more' onClick={() => setShowAllHistory(true)}>View More</button>
+          <button className='view-more' onClick={() => setShowAllHistory(true)}>{t("viewMore")}</button>
           {showAllHistory && (
             <div className="view-all-history active">
               <p className='close-history' onClick={() => setShowAllHistory(false)}>X</p>

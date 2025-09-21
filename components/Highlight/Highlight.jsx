@@ -3,8 +3,10 @@ import './Highlight.css'
 import { assets } from '../../src/assets/assets'
 import { StoreContext } from '../../context/StoreContext'
 import FoodItem from '../FoodItem/FoodItem'
+import { useTranslation } from 'react-i18next'
 
 const Highlight = ({ id, name, price, description, image, category }) => {
+  const {t} = useTranslation();
   const handleWheel = (e) => {
     const container = e.currentTarget;
     // Prevent vertical scroll
@@ -18,7 +20,7 @@ const Highlight = ({ id, name, price, description, image, category }) => {
     <div>
       <div className="highlight-container">
         <div className="highlight-items">
-          <h1 className='highlight-title'>Available only in our store ! </h1>
+          <h1 className='highlight-title'>{t("availableOnly")} </h1>
           <div className="top">
             <div className="layer" onWheelCapture={handleWheel}>
               {

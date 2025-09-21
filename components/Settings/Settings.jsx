@@ -12,17 +12,20 @@ import {
   faAngleDown, faBagShopping,
   faAngleRight,
   faShareFromSquare
-} from "@fortawesome/free-solid-svg-icons";
+} from "@fortawesome/free-solid-svg-icons"; 
 import ForgotPassword from '../ResetP/ForgotPassword';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '../../context/ToastContext';
 import { useContext } from 'react';
 import { StoreContext } from '../../context/StoreContext';
+import Language from '../Language/Language';
+import { useTranslation } from 'react-i18next';
 
 const Settings = () => {
 
   const { url, loaduserData, setToken } = useContext(StoreContext)
   const { showToast } = useToast()
+  const {t} = useTranslation();
   const logOut = () => {
     localStorage.removeItem("token");
     setToken('');
@@ -36,11 +39,11 @@ const Settings = () => {
         <div >
 
           <FontAwesomeIcon icon={faGlobe} />
-          <h3>App Language </h3>
+          <h3>{t("appLanguage")}</h3>
         </div>
 
         <div>
-          <p className="value">English</p>
+          <Language/>
           <FontAwesomeIcon icon={faAngleDown} />
 
         </div>
@@ -51,7 +54,7 @@ const Settings = () => {
         <div >
 
           <FontAwesomeIcon icon={faCircleQuestion} />
-          <h3>Help Center</h3>
+          <h3>{t("helpCenter")}</h3>
         </div>
 
         <div>
@@ -64,7 +67,7 @@ const Settings = () => {
         <div >
 
           <FontAwesomeIcon icon={faShareFromSquare} />
-          <h3>Share App </h3>
+          <h3>{t("shareApp")} </h3>
         </div>
 
         <div>
@@ -77,7 +80,7 @@ const Settings = () => {
         <div >
 
           <FontAwesomeIcon icon={faStar} />
-          <h3>Rate and Review </h3>
+          <h3>{t("rateReview")} </h3>
         </div>
 
         <div>
@@ -88,9 +91,9 @@ const Settings = () => {
 
       <div onClick={logOut} className="profile-option-lines">
         <div >
-``
+
           <FontAwesomeIcon icon={faRightFromBracket} />
-          <h3>Sign Out </h3>
+          <h3>{t("signOut")}</h3>
         </div>
 
         <div>

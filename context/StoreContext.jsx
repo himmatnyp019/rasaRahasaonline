@@ -4,6 +4,7 @@ import axios from "axios";
 import { isTokenExpired } from "../src/hooks/auth.js"
 import { useScroll } from "framer-motion";
 import { toast } from "react-toastify";
+import i18n from "../src/i18n.js";
 
 // ✅ Creating Context
 export const StoreContext = createContext("null");
@@ -17,6 +18,7 @@ const StoreContextProvider = (props) => {
     const [food_list, setFoodList] = useState([]);
     const [activeAddress, setActiveAddress] = useState("");
     const [orderHistory, setOrderHistory] = useState([]);
+    const [activeLang, setActiveLang] = useState("");
     const [userData, setUserData] = useState({});
     const [cartItems, setCartItems] = useState({});
     const [token, setToken] = useState("");
@@ -37,7 +39,21 @@ const StoreContextProvider = (props) => {
     // ------------------------------ //
     // ✅ CART LOGIC
     // ------------------------------ //
+    // handeling langauge for easy update
 
+    const changeLanguage = (lng) => {
+        i18n.changeLanguage(lng);
+        setActiveLang(lng);
+        localStorage.setItem("lang", lng);
+        console.log(localStorage.getItem("lang"));
+    };
+
+    if (!activeLang) {
+        if (localStorage.getItem("lang")) {
+            setActiveLang(localStorage.getItem("lang"))
+           changeLanguage(localStorage.getItem("lang"));
+        }
+    }
     // ➕ Add item to cart (local + backend)
     const addToCart = async (itemId) => {
         if (!cartItems[itemId]) {
@@ -169,7 +185,7 @@ const StoreContextProvider = (props) => {
         let token = localStorage.getItem("token");
 
         if (token) {
-         const res=  await axios.post(`${url}/api/address/update`, {
+            const res = await axios.post(`${url}/api/address/update`, {
                 index,
                 newAddress: {
                     address,
@@ -246,12 +262,13 @@ const StoreContextProvider = (props) => {
         loadOrderHistory,
         loadCartData,
         deliveryAddress,
-        activeAddress,
+        activeAddress,changeLanguage,
         orderHistory,
         setCartItems,
         removeFromCart,
         getTotalCartAmount,
         getTotalDiscount,
+        activeLang, setActiveLang,
         url,
         token,
         setToken,

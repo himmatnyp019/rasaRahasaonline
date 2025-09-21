@@ -6,11 +6,13 @@ import { assets } from '../../assets/assets';
 import DiscountText from '../../../components/DiscountText/DiscountText';
 import FoodItem from '../../../components/FoodItem/FoodItem';
 import { useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const Cart = ({ setShowBill, setShowLogin, setBillData }) => {
   let itemCount = 0;
   const { cartItems, food_list, removeFromCart, addToCart, getTotalCartAmount, getTotalDiscount, url } = useContext(StoreContext);
   const [totalAmount, amountBeforeDiscount, deliveryPrice] = getTotalCartAmount();
+  const {t} = useTranslation();
   const navigate = useNavigate();
   let Category = 'noodles' //default but not fixed (should be changed)
   const handleShowBill = () => {
@@ -48,12 +50,12 @@ const Cart = ({ setShowBill, setShowLogin, setBillData }) => {
       <div className="cart-items">
         <h2 data-aos="fade-right">Cart ({Object.keys(cartItems).length})</h2>
         <div data-aos="fade-up" className="cart-items-title cart-item-naming">
-          <p>Items</p>
-          <p>Title</p>
-          <p>Price</p>
-          <p>Quantity</p>
-          <p>Total</p>
-          <p>Remove</p>
+          <p>{t("items")}</p>
+          <p>{t("title")}</p>
+          <p>{t("price")}</p>
+          <p>{t("quantity")}</p>
+          <p>{t("total")}</p>
+          <p>{t("remove")}</p>
         </div>
         <br />
         {
@@ -89,47 +91,47 @@ const Cart = ({ setShowBill, setShowLogin, setBillData }) => {
       <div className="cart-bottom">
 
         <div data-aos="fade-right" className="cart-total">
-          <h2>Cart Totals</h2>
+          <h2>{t("cartTotals")}</h2>
           <div>
             <div className="cart-total-details">
-              <p>Total Items</p>
+              <p>{t("totalItems")}</p>
               <p className='bill-count'>{itemCount}</p>
             </div>
             <hr />
             <div className="cart-total-details">
-              <p>Discount</p>
+              <p>{t("discount")}</p>
 
               <div className='bill-count'>{totalAmount === 0 ? 0 : <DiscountText key={1} price={amountBeforeDiscount} discount={getTotalDiscount()}></DiscountText>}</div>
             </div>
             <hr />
             <div className="cart-total-details">
-              <p>Price</p>
+              <p>{t('price')}</p>
               <p className='bill-count'>₩{totalAmount}</p>
             </div>
             <hr />
             <div className="cart-total-details">
-              <p>Delivery Fee</p>
+              <p>{t("formDeliveryCharge")}</p>
               <div className='bill-count'>{deliveryPrice === 0 ? <DiscountText key={2} price={(3000)} discount={3000}></DiscountText> : deliveryPrice}</div>
             </div>
             <hr />
             <div className="cart-total-details">
-              <b>Total</b>
+              <b>{t("total")}</b>
               <b className='bill-count'>₩{totalAmount === 0 ? 0 : totalAmount + deliveryPrice}</b>
             </div>
           </div>
           <div className="cart-order-btns">
-            <button onClick={() => onClickPHandler() }>CHECKOUT</button>
-            <button onClick={handleShowBill} >VIEW RECEIPT</button>
+            <button onClick={() => onClickPHandler() }>{t("checkout")}</button>
+            <button onClick={handleShowBill} >{t("viewReceipt")}</button>
           </div>
         </div>
 
         <div className="cart-promocode">
           <div data-aos="fade-right" className="delivery-charge-discount">
-            <h4>orders ₩10,0000 + </h4>
+            <h4>{t("upto100k")} + </h4>
             <DiscountText price={3000} discount={3000}></DiscountText>
             <br />
             <div className="hr"></div>
-            <h2>Free Delivery</h2>
+            <h2>{t("freeDelivery")}</h2>
           </div>
           <div data-aos="fade-left" className="delivery-charge-discount">
             <h4>orders ₩10,0000 + </h4>
@@ -141,18 +143,18 @@ const Cart = ({ setShowBill, setShowLogin, setBillData }) => {
           <div data-aos="fade-up" className="delivery-charge-discount">
 
             <h4>Our Commitment</h4>
-            Refund if package lost <br />
+           {t("refundLost")} <br />
 
-            Refund if items damaged <br />
+            {t("refundDamaged")} <br />
 
-            Refund if no delivery in 30 days
+           {t("refundNoDelivery")}
           </div>
 
         </div>
       </div><br />
       <br />
 
-      <h2 className='food-display-title'>Find related items</h2>
+      <h2 className='food-display-title'>{t("findRelated")}</h2>
       <div className="food-display-list">
         {food_list.map((item, index) => {
           if (Category === "All" || Category === item.category) {

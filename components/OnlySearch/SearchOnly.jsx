@@ -6,7 +6,7 @@ import {
 import { Link, Links } from 'react-router-dom';
 import { t } from 'i18next';
 
-const searchOnly = () => {
+const SearchOnly = () => {
   return (
     <div>
         <Link to='/search' className="search-box-1">
@@ -33,4 +33,4 @@ const searchOnly = () => {
   )
 }
 
-export default searchOnly
+export default SearchOnly

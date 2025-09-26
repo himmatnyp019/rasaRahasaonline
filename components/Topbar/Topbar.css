@@ -1,0 +1,48 @@
+.topbar-container {
+    width: 100vw;
+    height: 50px;
+
+}
+
+.topbar-background-main {
+    width: 100%;
+    height: 50px;
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+        url("https://res.cloudinary.com/dqvv7yahd/image/upload/v1758769039/food_uploads/tmhzarkbczgbtipnsuo0.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.topbar-buttons-container{
+    height: 50px;
+    position: absolute;top: 0;
+    width: 100%;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 3%;
+    ul{
+        width: max-content;
+        display:flex;
+        gap: 5px;
+        li{
+            padding: 0;
+            a{
+                text-decoration: none;
+                color: #fff;
+                font-size: clamp(14px,4vw,16px);
+                transition: all 0.3s ease-in;
+                &:hover{
+                    color: rgb(215, 215, 255);
+                }
+            }
+        }
+    }
+}
+@media (max-width:450px) {
+    .right-tbc{
+        display: none;
+    }
+}

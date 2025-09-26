@@ -1,64 +1,94 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 
-const JsonEditor = ({ lang }) => {
-  const [jsonData, setJsonData] = useState({});
-  const [loading, setLoading] = useState(true);
+const LanCheck = () => {
+  const [langs, setLangs] = useState([]);
+  const apiUrl = "http://localhost:5000/api/langs"; // adjust if backend runs elsewhere
 
-  // Load JSON
+  // Load langs on mount
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/json/${lang}`)
-      .then(res => {
-        if (res.data.success) setJsonData(res.data.data);
-        setLoading(false);
-      })
-      .catch(err => console.error(err));
-  }, [lang]);
+    loadLangs();
+  }, []);
 
-  // Handle edit
-  const handleChange = (key, value) => {
-    setJsonData({ ...jsonData, [key]: value });
+  const loadLangs = async () => {
+    try {
+      const res = await fetch(apiUrl);
+      const data = await res.json();
+      if (data.success) {
+        setLangs(data.data);
+      }
+    } catch (err) {
+      console.error("Error fetching langs:", err);
+    }
   };
 
-  // Save JSON
-  const saveJson = () => {
-    axios.post(`http://localhost:5000/api/json/${lang}`, { json: jsonData })
-      .then(res => alert(res.data.message))
-      .catch(err => console.error(err));
+  // Update single field
+  const updateField = async (id, key, value) => {
+    try {
+      const res = await fetch(`${apiUrl}/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ key, value })
+      });
+      const data = await res.json();
+      if (data.success) {
+        alert("✅ Updated successfully");
+        loadLangs(); // reload to reflect changes
+      } else {
+        alert("❌ Update failed: " + data.message);
+      }
+    } catch (err) {
+      console.error("Error updating field:", err);
+    }
   };
-
-  if (loading) return <p>Loading...</p>;
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>Editing {lang}.json</h2>
-      <table border="1" cellPadding="10" style={{ width: "100%", borderCollapse: "collapse" }}>
-        <thead>
-          <tr>
-            <th>Key</th>
-            <th>Value</th>
-          </tr>
-        </thead>
-        <tbody>
-          {Object.entries(jsonData).map(([key, value]) => (
-            <tr key={key}>
-              <td><strong>{key}</strong></td>
-              <td>
+    <div style={{ padding: "20px", fontFamily: "Arial" }}>
+      <h1>Languages Manager</h1>
+
+      {langs.map((lang) => (
+        <div
+          key={lang._id}
+          style={{
+            border: "1px solid #ccc",
+            borderRadius: "8px",
+            padding: "10px",
+            marginBottom: "20px"
+          }}
+        >
+          <h2>ID: {lang._id}</h2>
+
+          {Object.keys(lang).map((key) => {
+            if (key === "_id" || key === "__v") return null;
+
+            return (
+              <div
+                key={key}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  marginBottom: "8px"
+                }}
+              >
+                <span style={{ minWidth: "150px", fontWeight: "bold" }}>
+                  {key}
+                </span>
                 <input
                   type="text"
-                  value={value}
-                  style={{ width: "100%" }}
-                  onChange={(e) => handleChange(key, e.target.value)}
+                  defaultValue={lang[key]}
+                  style={{
+                    flex: 1,
+                    padding: "5px",
+                    marginRight: "8px"
+                  }}
+                  onBlur={(e) => updateField(lang._id, key, e.target.value)}
                 />
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <br />
-      <button onClick={saveJson}>Save</button>
+              </div>
+            );
+          })}
+        </div>
+      ))}
     </div>
   );
 };
 
-export default JsonEditor;
+export default LangManager;

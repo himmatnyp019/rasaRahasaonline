@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guidelines Violation Policy - RASA RAHASA SDS</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #8e44ad;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            border-left: 4px solid #8e44ad;
+            padding-left: 15px;
+            background-color: #f8f5ff;
+            padding: 10px 0 10px 15px;
+            margin-left: -10px;
+            border-radius: 0 5px 5px 0;
+        }
+        h3 {
+            color: #2c3e50;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            border-left: 2px solid #95a5a6;
+            padding-left: 10px;
+        }
+        .company-info {
+            background-color: #ecf0f1;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            border-left: 4px solid #34495e;
+        }
+        .contact-info {
+            background-color: #f8f5ff;
+            padding: 15px;
+            border-left: 4px solid #8e44ad;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        ul, ol {
+            padding-left: 20px;
+            margin: 15px 0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        /* Violation Level Styling */
+        .minor-violation {
+            background-color: #fff3cd;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #ffc107;
+            margin: 15px 0;
+        }
+        .moderate-violation {
+            background-color: #ffeaa7;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #fdcb6e;
+            margin: 15px 0;
+        }
+        .severe-violation {
+            background-color: #f8d7da;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #dc3545;
+            margin: 15px 0;
+        }
+        .warning-system {
+            background-color: #d1ecf1;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #17a2b8;
+            margin: 15px 0;
+        }
+        .appeal-info {
+            background-color: #d4edda;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #28a745;
+            margin: 15px 0;
+        }
+        .reporting-box {
+            background-color: #e2e3f1;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #6f42c1;
+            margin: 15px 0;
+        }
+        .penalty-box {
+            background-color: #ffe6e6;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #ff6b6b;
+            margin: 15px 0;
+        }
+        .process-steps {
+            background-color: #f0f8ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid #b3d9ff;
+        }
+        .important {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .success {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .warning {
+            color: #f39c12;
+            font-weight: bold;
+        }
+        .date-field {
+            background-color: #f8f9fa;
+            padding: 5px 10px;
+            border-radius: 3px;
+            border: 1px dashed #6c757d;
+            display: inline-block;
+        }
+        .footer-note {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 30px;
+            font-style: italic;
+            color: #6c757d;
+            text-align: center;
+        }
+        strong {
+            color: #2c3e50;
+        }
+        .section-divider {
+            border-top: 2px solid #dee2e6;
+            margin: 35px 0;
+        }
+        .violation-level-indicator {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 15px;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9em;
+            margin-right: 10px;
+        }
+        .minor-level {
+            background-color: #ffc107;
+        }
+        .moderate-level {
+            background-color: #fd7e14;
+        }
+        .severe-level {
+            background-color: #dc3545;
+        }
+        .notification-methods {
+            background-color: #e8f4f8;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .help-center-info {
+            background-color: #f0f4ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 2px solid #8e44ad;
+        }
+        .equal-treatment {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #6c757d;
+        }
+        @media (max-width:450px) {
+            .container{
+                padding: 5px;
+            }
+            body{
+                padding: 5px;
+            }
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Guidelines Violation Policy</h1>
+        
+        <div class="company-info">
+            <strong>RASA RAHASA SDS</strong><br>
+            <strong>Effective Date:</strong> <span class="date-field">2026/01/01</span><br>
+            <strong>Last Updated:</strong> <span class="date-field">2025/09/25</span>
+        </div>
+
+        <h2>1. Introduction</h2>
+        <p>This Guidelines Violation Policy ("Policy") outlines how RASA RAHASA SDS ("we," "our," "us," or "Company") handles violations of our Terms of Use, community guidelines, and platform rules. This policy ensures a safe, respectful, and secure environment for all users of our online and offline shopping platform.</p>
+        
+        <div class="contact-info">
+            <strong>Contact Information:</strong>
+            <ul>
+                <li><strong>Company:</strong> RASA RAHASA SDS</li>
+                <li><strong>Location:</strong> Busan, South Korea</li>
+                <li><strong>Email:</strong> sdsrasarahasa77@gmail.com</li>
+                <li><strong>Phone:</strong> 010-2734-2771, 010-7506-8810, 010-7525-8860</li>
+            </ul>
+        </div>
+
+        <h2>2. Violation Classification System</h2>
+        <p>We classify violations into three categories based on their severity and impact on our platform and community:</p>
+
+        <h3>2.1 Minor Violations</h3>
+        <div class="minor-violation">
+            <span class="violation-level-indicator minor-level">MINOR</span>
+            <strong>Definition:</strong> Less serious infractions that disrupt platform experience but don't pose significant security risks.
+            
+            <h4>Examples Include:</h4>
+            <ul>
+                <li><strong>Fraudulent Names:</strong> Using fake names or impersonating others</li>
+                <li><strong>Inappropriate Language:</strong> Using bad words or mild offensive language</li>
+                <li><strong>Minor Spam:</strong> Posting repetitive content or minor promotional violations</li>
+                <li><strong>Profile Misuse:</strong> Using inappropriate but non-explicit profile information</li>
+                <li><strong>Order Manipulation:</strong> Minor attempts to manipulate order processes</li>
+            </ul>
+            
+            <div class="penalty-box">
+                <strong>Penalty:</strong> <span class="warning">Temporary suspension for 1 day</span>
+            </div>
+        </div>
+
+        <h3>2.2 Moderate Violations</h3>
+        <div class="moderate-violation">
+            <span class="violation-level-indicator moderate-level">MODERATE</span>
+            <strong>Definition:</strong> More serious infractions that significantly impact user experience and platform integrity.
+            
+            <h4>Examples Include:</h4>
+            <ul>
+                <li><strong>Rude Communication:</strong> Using rude, disrespectful, or offensive words in chat boxes</li>
+                <li><strong>Inappropriate Reviews:</strong> Posting rude, offensive, or inappropriate content in review areas</li>
+                <li><strong>Harassment:</strong> Moderate level harassment of other users or staff</li>
+                <li><strong>Content Violations:</strong> Posting inappropriate content that doesn't meet severe criteria</li>
+                <li><strong>Platform Misuse:</strong> Misusing platform features in ways that affect other users</li>
+                <li><strong>Repeated Minor Violations:</strong> Multiple minor violations after warnings</li>
+            </ul>
+            
+            <h4>Immediate Actions:</h4>
+            <ul>
+                <li><strong>Immediate warning issued</strong></li>
+                <li><strong>Content removal</strong> - offending content is immediately deleted</li>
+                <li><strong>Content posting restrictions</strong> may be applied</li>
+            </ul>
+            
+            <div class="penalty-box">
+                <strong>Penalty:</strong> <span class="warning">Temporary suspension for 1 week</span>
+            </div>
+        </div>
+
+        <h3>2.3 Severe Violations</h3>
+        <div class="severe-violation">
+            <span class="violation-level-indicator severe-level">SEVERE</span>
+            <strong>Definition:</strong> Critical infractions that pose serious security risks, legal concerns, or significant harm to the platform and community.
+            
+            <h4>Examples Include:</h4>
+            
+            <strong>System Security Breaches:</strong>
+            <ul>
+                <li>Modifying internal programs or code</li>
+                <li>Attempting to crack authentication systems</li>
+                <li>Bypassing payment security measures</li>
+                <li>Unauthorized access attempts to user data or systems</li>
+            </ul>
+            
+            <strong>Cyber Attacks:</strong>
+            <ul>
+                <li>Participating in DDoS (Distributed Denial of Service) attacks</li>
+                <li>Data cracking or hacking attempts</li>
+                <li>Malware distribution or system exploitation</li>
+            </ul>
+            
+            <strong>Serious Harassment:</strong>
+            <ul>
+                <li>Harmful, threatening, or harassing content on profiles</li>
+                <li>Severe harassment in chat communications</li>
+                <li>Threatening or harmful content in reviews</li>
+                <li>Sexual harassment or explicit content</li>
+                <li>Threatening behavior toward other users or staff</li>
+            </ul>
+            
+            <div class="penalty-box">
+                <strong>Penalty:</strong> <span class="important">Permanent account termination</span> (no warnings given)
+            </div>
+        </div>
+
+        <h2>3. Warning System</h2>
+
+        <div class="warning-system">
+            <h3>3.1 Warning Process</h3>
+            <ul>
+                <li><strong>Three-Strike System:</strong> Users receive up to <strong>3 warnings</strong> before account suspension</li>
+                <li><strong>Warning Accumulation:</strong> Warnings accumulate across all violation types (except severe)</li>
+                <li><strong>Warning Reset:</strong> Warnings may reset after 6 months of good behavior</li>
+                <li><strong>Immediate Action:</strong> Severe violations result in immediate permanent termination without warnings</li>
+            </ul>
+        </div>
+
+        <h3>3.2 Warning Notifications</h3>
+        <div class="notification-methods">
+            <p>Users are notified of warnings through:</p>
+            <ul>
+                <li><strong>Email notification</strong> to registered email address</li>
+                <li><strong>Direct message</strong> within the platform</li>
+                <li><strong>Pop-up dialog box</strong> when logging into account</li>
+                <li><strong>Help Center notification</strong> accessible from user dashboard</li>
+            </ul>
+        </div>
+
+        <h3>3.3 Warning Details</h3>
+        <p>Each warning includes:</p>
+        <ul>
+            <li><strong>Specific violation</strong> description</li>
+            <li><strong>Evidence</strong> of the violation (when applicable)</li>
+            <li><strong>Policy reference</strong> that was violated</li>
+            <li><strong>Consequence</strong> of continued violations</li>
+            <li><strong>Appeal information</strong> and process</li>
+            <li><strong>Improvement guidance</strong> for future conduct</li>
+        </ul>
+
+        <h2>4. Penalty System and Enforcement</h2>
+
+        <h3>4.1 Suspension Types</h3>
+
+        <div class="process-steps">
+            <h4>Minor Violation Suspension (1 Day):</h4>
+            <ul>
+                <li><strong>Account Access:</strong> Completely restricted</li>
+                <li><strong>Duration:</strong> 24 hours from violation time</li>
+                <li><strong>Features Affected:</strong> All platform features inaccessible</li>
+                <li><strong>Orders:</strong> Existing orders continue processing</li>
+                <li><strong>Communication:</strong> User notified via email and login dialog</li>
+            </ul>
+
+            <h4>Moderate Violation Suspension (1 Week):</h4>
+            <ul>
+                <li><strong>Account Access:</strong> Completely restricted</li>
+                <li><strong>Duration:</strong> 7 days from violation time</li>
+                <li><strong>Features Affected:</strong> All platform features inaccessible</li>
+                <li><strong>Orders:</strong> Existing orders continue processing</li>
+                <li><strong>Communication:</strong> User notified via email and login dialog</li>
+                <li><strong>Content:</strong> Violating content permanently removed</li>
+            </ul>
+
+            <h4>Severe Violation Termination (Permanent):</h4>
+            <ul>
+                <li><strong>Account Access:</strong> Permanently disabled</li>
+                <li><strong>Duration:</strong> Indefinite</li>
+                <li><strong>Features Affected:</strong> Complete platform ban</li>
+                <li><strong>Orders:</strong> Current orders cancelled (refunds processed)</li>
+                <li><strong>Data:</strong> Account data retained for legal/security purposes</li>
+                <li><strong>Communication:</strong> User notified via email and login dialog</li>
+            </ul>
+        </div>
+
+        <h3>4.2 Content Removal</h3>
+        <ul>
+            <li><strong>Immediate Removal:</strong> Violating content is removed immediately upon detection</li>
+            <li><strong>No Recovery:</strong> Removed content cannot be restored</li>
+            <li><strong>Backup:</strong> We may retain copies for investigation and appeals</li>
+            <li><strong>Notification:</strong> Users are informed about content removal</li>
+        </ul>
+
+        <h2>5. Reporting System</h2>
+
+        <h3>5.1 Anonymous Reporting</h3>
+        <div class="reporting-box">
+            <ul>
+                <li><strong>Primary Method:</strong> Anonymous reporting is our main agenda and preferred approach</li>
+                <li><strong>User Privacy:</strong> Reporter identity is protected and never disclosed</li>
+                <li><strong>Optional Identification:</strong> Users may optionally provide identification for follow-up</li>
+                <li><strong>Report Types:</strong> All violation types can be reported anonymously</li>
+            </ul>
+        </div>
+
+        <h3>5.2 How to Report Violations</h3>
+        
+        <h4>Available Methods:</h4>
+        <ul>
+            <li><strong>Help Center:</strong> Dedicated reporting section in Help Center</li>
+            <li><strong>In-Platform Reporting:</strong> Report buttons on profiles, reviews, and chat messages</li>
+            <li><strong>Email Reports:</strong> Send detailed reports to sdsrasarahasa77@gmail.com</li>
+            <li><strong>Phone Reports:</strong> Call our support lines for urgent violations</li>
+        </ul>
+
+        <h4>Required Information:</h4>
+        <ul>
+            <li><strong>Violation Type:</strong> Select from minor, moderate, or severe categories</li>
+            <li><strong>User/Content Details:</strong> Specify the violating user or content</li>
+            <li><strong>Evidence:</strong> Screenshots, chat logs, or other supporting evidence</li>
+            <li><strong>Description:</strong> Detailed description of the violation</li>
+            <li><strong>Contact Info:</strong> Optional for follow-up (if not reporting anonymously)</li>
+        </ul>
+
+        <h3>5.3 Report Processing</h3>
+        <ul>
+            <li><strong>Investigation Time:</strong> All reports investigated within 24-48 hours</li>
+            <li><strong>Evidence Review:</strong> Thorough review of all submitted evidence</li>
+            <li><strong>Action Decision:</strong> Appropriate action taken based on investigation</li>
+            <li><strong>Reporter Notification:</strong> Anonymous feedback provided when contact info available</li>
+            <li><strong>Appeal Consideration:</strong> Reports may be reconsidered during appeals</li>
+        </ul>
+
+        <h2>6. Appeal Process</h2>
+
+        <h3>6.1 Appeal Eligibility</h3>
+        <div class="appeal-info">
+            <h4>Who Can Appeal:</h4>
+            <ul>
+                <li>Users with minor violation suspensions</li>
+                <li>Users with moderate violation suspensions</li>
+                <li>Users with severe violation terminations</li>
+                <li><strong>No Restrictions:</strong> All users can appeal regardless of violation type</li>
+            </ul>
+
+            <h4>When to Appeal:</h4>
+            <ul>
+                <li><strong>Immediate:</strong> Appeals can be submitted immediately after penalty</li>
+                <li><strong>Time Limit:</strong> Appeals accepted up to 30 days after penalty</li>
+                <li><strong>Multiple Appeals:</strong> Users may submit one appeal per violation</li>
+            </ul>
+        </div>
+
+        <h3>6.2 Appeal Submission Process</h3>
+
+        <div class="help-center-info">
+            <h4>Access Method:</h4>
+            <ul>
+                <li><strong>Help Center:</strong> Available to all users including banned accounts</li>
+                <li><strong>Dedicated Section:</strong> Special appeal section for suspended/terminated users</li>
+                <li><strong>Login Alternative:</strong> Banned users can access Help Center without logging in</li>
+            </ul>
+        </div>
+
+        <h4>Required Information:</h4>
+        <ul>
+            <li><strong>Account Details:</strong> Username, email, and phone number</li>
+            <li><strong>Violation Reference:</strong> Violation ID or date of penalty</li>
+            <li><strong>Appeal Reason:</strong> Detailed explanation of why the penalty should be reconsidered</li>
+            <li><strong>Evidence:</strong> Any supporting evidence or documentation</li>
+            <li><strong>Contact Method:</strong> Preferred method for appeal response</li>
+        </ul>
+
+        <h4>Submission Methods:</h4>
+        <ul>
+            <li><strong>Online Form:</strong> Through Help Center appeal form</li>
+            <li><strong>Email:</strong> Send appeal to sdsrasarahasa77@gmail.com with subject "APPEAL - [Username]"</li>
+            <li><strong>Phone:</strong> Call support lines for urgent appeal discussions</li>
+        </ul>
+
+        <h3>6.3 Appeal Review Process</h3>
+
+        <div class="process-steps">
+            <h4>Review Timeline:</h4>
+            <ul>
+                <li><strong>Initial Review:</strong> 3-5 business days for initial assessment</li>
+                <li><strong>Detailed Investigation:</strong> Up to 10 business days for complex cases</li>
+                <li><strong>Severe Cases:</strong> May require additional time for thorough investigation</li>
+                <li><strong>Emergency Appeals:</strong> Urgent cases reviewed within 24 hours</li>
+            </ul>
+
+            <h4>Review Criteria:</h4>
+            <ul>
+                <li><strong>Evidence Accuracy:</strong> Verification of original violation evidence</li>
+                <li><strong>Context Analysis:</strong> Consideration of circumstances surrounding violation</li>
+                <li><strong>User History:</strong> Review of user's overall platform conduct</li>
+                <li><strong>Policy Application:</strong> Ensuring correct policy interpretation and application</li>
+                <li><strong>Technical Issues:</strong> Investigation of potential system errors</li>
+            </ul>
+
+            <h4>Appeal Outcomes:</h4>
+            <ul>
+                <li><strong>Appeal Approved:</strong> Penalty removed, account restored, apology issued</li>
+                <li><strong>Appeal Partially Approved:</strong> Penalty reduced (e.g., permanent to temporary)</li>
+                <li><strong>Appeal Denied:</strong> Original penalty maintained, additional explanation provided</li>
+                <li><strong>Appeal Under Review:</strong> More time needed for investigation</li>
+            </ul>
+        </div>
+
+        <h2>7. Communication and Notifications</h2>
+
+        <h3>7.1 Violation Notifications</h3>
+
+        <h4>Email Notifications:</h4>
+        <ul>
+            <li><strong>Subject Line:</strong> "RASA RAHASA - Account Violation Notice"</li>
+            <li><strong>Content:</strong> Detailed violation description, policy reference, penalty information</li>
+            <li><strong>Appeal Information:</strong> Instructions for submitting appeals</li>
+            <li><strong>Contact Details:</strong> Customer service contact information</li>
+        </ul>
+
+        <h4>Platform Messages:</h4>
+        <ul>
+            <li><strong>Direct Messages:</strong> In-platform notification system</li>
+            <li><strong>Dashboard Alerts:</strong> Visible notifications on user dashboard</li>
+            <li><strong>Persistent Notices:</strong> Notifications remain until acknowledged</li>
+        </ul>
+
+        <h4>Login Dialog Boxes:</h4>
+        <ul>
+            <li><strong>Banned Account Access:</strong> Special dialog for suspended/terminated accounts</li>
+            <li><strong>Violation Summary:</strong> Brief violation description and penalty duration</li>
+            <li><strong>Appeal Links:</strong> Direct links to appeal submission process</li>
+            <li><strong>Contact Information:</strong> Immediate access to customer support</li>
+        </ul>
+
+        <h3>7.2 Appeal Status Updates</h3>
+
+        <h4>Regular Updates:</h4>
+        <ul>
+            <li><strong>Confirmation:</strong> Appeal receipt confirmation within 24 hours</li>
+            <li><strong>Progress Updates:</strong> Status updates every 3-5 days during review</li>
+            <li><strong>Final Decision:</strong> Detailed explanation of appeal outcome</li>
+            <li><strong>Next Steps:</strong> Clear instructions for next actions (if applicable)</li>
+        </ul>
+
+        <h2>8. Help Center Access</h2>
+
+        <div class="help-center-info">
+            <h3>8.1 Universal Access</h3>
+            <ul>
+                <li><strong>All Users:</strong> Available to both active and banned users</li>
+                <li><strong>No Login Required:</strong> Accessible without account login for banned users</li>
+                <li><strong>24/7 Availability:</strong> Always accessible for reporting and appeals</li>
+                <li><strong>Multiple Languages:</strong> Available in Korean, English, and other Asian languages</li>
+            </ul>
+        </div>
+
+        <h3>8.2 Help Center Features</h3>
+
+        <h4>For Banned Users:</h4>
+        <ul>
+            <li><strong>Appeal Submission:</strong> Dedicated appeal forms and processes</li>
+            <li><strong>Violation Information:</strong> Detailed explanation of violations and policies</li>
+            <li><strong>Contact Methods:</strong> Multiple ways to reach customer support</li>
+            <li><strong>FAQ Section:</strong> Common questions about violations and appeals</li>
+        </ul>
+
+        <h4>For All Users:</h4>
+        <ul>
+            <li><strong>Reporting Tools:</strong> Anonymous and identified reporting options</li>
+            <li><strong>Policy Information:</strong> Complete guidelines and violation explanations</li>
+            <li><strong>Prevention Tips:</strong> Guidance on avoiding violations</li>
+            <li><strong>Community Standards:</strong> Clear explanation of expected behavior</li>
+        </ul>
+
+        <h2>9. Data and Privacy During Violations</h2>
+
+        <h3>9.1 Data Handling</h3>
+
+        <h4>Account Data:</h4>
+        <ul>
+            <li><strong>Suspended Accounts:</strong> Data preserved during suspension period</li>
+            <li><strong>Terminated Accounts:</strong> Data retained for legal and security purposes</li>
+            <li><strong>Appeal Period:</strong> All data preserved during appeal process</li>
+            <li><strong>Privacy Protection:</strong> Data access limited to authorized personnel only</li>
+        </ul>
+
+        <h4>Evidence Preservation:</h4>
+        <ul>
+            <li><strong>Violation Evidence:</strong> Stored securely for appeals and legal purposes</li>
+            <li><strong>User Reports:</strong> Anonymous reporter information protected</li>
+            <li><strong>Communication Logs:</strong> Relevant communications preserved for investigation</li>
+            <li><strong>Retention Period:</strong> Data retained according to South Korean legal requirements</li>
+        </ul>
+
+        <h3>9.2 Privacy Rights</h3>
+
+        <h4>User Rights During Violations:</h4>
+        <ul>
+            <li><strong>Data Access:</strong> Users can request access to violation-related data</li>
+            <li><strong>Privacy Protection:</strong> Personal information remains protected</li>
+            <li><strong>Third-Party Sharing:</strong> No sharing of violation data with third parties</li>
+            <li><strong>Legal Compliance:</strong> All data handling complies with South Korean privacy laws</li>
+        </ul>
+
+        <h2>10. Special Considerations</h2>
+
+        <div class="equal-treatment">
+            <h3>10.1 Repeat Offenders</h3>
+            <ul>
+                <li><strong>Same Rules Apply:</strong> No different rules for repeat offenders</li>
+                <li><strong>Warning Reset:</strong> Warnings may reset after 6 months of good behavior</li>
+                <li><strong>Pattern Recognition:</strong> Severe violations always result in immediate termination</li>
+                <li><strong>Appeal Rights:</strong> All users maintain equal appeal rights regardless of history</li>
+            </ul>
+        </div>
+
+        <h3>10.2 Cultural and Language Considerations</h3>
+        <ul>
+            <li><strong>Language Barriers:</strong> Understanding of language differences in communication</li>
+            <li><strong>Cultural Context:</strong> Consideration of cultural differences in behavior interpretation</li>
+            <li><strong>Translation Services:</strong> Support available in multiple languages</li>
+            <li><strong>Education Approach:</strong> Focus on education rather than punishment when appropriate</li>
+        </ul>
+
+        <h3>10.3 Technical Issues</h3>
+        <ul>
+            <li><strong>System Errors:</strong> Investigation of potential technical causes for violations</li>
+            <li><strong>False Positives:</strong> Thorough review to prevent wrongful penalties</li>
+            <li><strong>Bug Reports:</strong> Consideration of system bugs that may cause apparent violations</li>
+            <li><strong>Technical Support:</strong> Assistance with technical issues that may lead to violations</li>
+        </ul>
+
+        <h2>11. Policy Updates and Changes</h2>
+
+        <h3>11.1 Policy Modifications</h3>
+
+        <h4>Update Process:</h4>
+        <ul>
+            <li><strong>Regular Review:</strong> Policy reviewed quarterly for effectiveness</li>
+            <li><strong>User Feedback:</strong> Incorporation of user feedback and suggestions</li>
+            <li><strong>Legal Compliance:</strong> Updates to maintain legal compliance</li>
+            <li><strong>Platform Evolution:</strong> Modifications based on platform growth and changes</li>
+        </ul>
+
+        <h4>Notification of Changes:</h4>
+        <ul>
+            <li><strong>Email Notifications:</strong> All users notified of significant policy changes</li>
+            <li><strong>Platform Announcements:</strong> In-platform notifications of updates</li>
+            <li><strong>Help Center Updates:</strong> Updated information available immediately</li>
+            <li><strong>Grace Period:</strong> 30-day grace period for users to understand new policies</li>
+        </ul>
+
+        <h2>12. Legal Framework</h2>
+
+        <h3>12.1 Jurisdiction and Compliance</h3>
+        <ul>
+            <li><strong>South Korean Law:</strong> All violations and penalties governed by South Korean law</li>
+            <li><strong>Legal Cooperation:</strong> Cooperation with law enforcement for severe violations</li>
+            <li><strong>Court Procedures:</strong> Legal proceedings follow South Korean legal framework</li>
+            <li><strong>International Users:</strong> All users subject to South Korean legal jurisdiction</li>
+        </ul>
+
+        <h3>12.2 Law Enforcement Cooperation</h3>
+        <ul>
+            <li><strong>Severe Violations:</strong> Reporting of criminal violations to appropriate authorities</li>
+            <li><strong>Data Sharing:</strong> Legal sharing of evidence when required by law</li>
+            <li><strong>Investigation Support:</strong> Full cooperation with official investigations</li>
+            <li><strong>User Protection:</strong> Balance between law enforcement cooperation and user privacy</li>

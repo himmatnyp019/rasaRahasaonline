@@ -22,7 +22,7 @@ const StoreContextProvider = (props) => {
     const [userData, setUserData] = useState({});
     const [cartItems, setCartItems] = useState({});
     const [token, setToken] = useState("");
-    const [langauge, setLanguage] = useState("English");
+    const [langauge, setLanguage] = useState("ko");
     const [historyItemsId, setHistoryItemsId] = useState([]);
     const [myMessage, setMyMessage] = useState([]);
     const [showChat, setShowChat] = useState(false);
@@ -35,7 +35,8 @@ const StoreContextProvider = (props) => {
         image: ""
     });
 
-    const url = "https://sdsrasarahasa.vercel.app";
+    // const url = "https://sdsrasarahasa.vercel.app";
+    const url = "http://localhost:5000"
     // ------------------------------ //
     // ✅ CART LOGIC
     // ------------------------------ //
@@ -52,7 +53,7 @@ const StoreContextProvider = (props) => {
         if (localStorage.getItem("lang")) {
             setActiveLang(localStorage.getItem("lang"))
            changeLanguage(localStorage.getItem("lang"));
-        }
+        }else(setActiveLang("en"))
     }
     // ➕ Add item to cart (local + backend)
     const addToCart = async (itemId) => {
@@ -132,7 +133,6 @@ const StoreContextProvider = (props) => {
         const response = await axios.get(`${url}/api/food/list`);
         setFoodList(response.data.data);
     };
-
 
 
     // ------------------------------ //

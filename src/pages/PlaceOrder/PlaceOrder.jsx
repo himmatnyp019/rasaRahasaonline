@@ -7,6 +7,7 @@ import DiscountText from '../../../components/DiscountText/DiscountText';
 import { useToast } from '../../../context/ToastContext';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PaymentPage from '../../../components/KakaoPay/PaymentPage'
+import { useTranslation } from 'react-i18next';
 
 import {
   faUpDown
@@ -16,8 +17,10 @@ import PortOne from "@portone/browser-sdk/v2";
 import ProcessingPayment from '../../../components/ProcessingPayment/ProcessingPayment';
 import { toast } from 'react-toastify';
 
+
 const PlaceOrder = () => {
   const [checked, setChecked] = useState(-1);
+  const {t} = useTranslation();
   const { getTotalCartAmount, token, food_list, activeAddress, cartItems, userData, loadUserData, getTotalDiscount,loadCartData, url } = useContext(StoreContext)
   let mainAddr = ""
   const navigate = useNavigate();
@@ -386,7 +389,7 @@ const PlaceOrder = () => {
               </div>
             </div>
             <div className="cart-order-btns">
-              <button onClick={() => goPaymentMethod(event)}>{t(makePayment)}</button>
+              <button onClick={() => goPaymentMethod(event)}>{t("makePayment")}</button>
             </div>
           </div>
 

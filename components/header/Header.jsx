@@ -69,13 +69,16 @@ const Header = () => {
         <div className="slider-text">
           <h2 data-aos="fade-left">{sliderData[currentSlide].title}</h2>
           <p data-aos="fade-left">{sliderData[currentSlide].description}</p>
+          {
+            sliderData[currentSlide].link &&(
           <a
             href={sliderData[currentSlide].link}
             target="_blank"
-            rel="noopener noreferrer"
-          >
+            rel="noopener noreferrer" >
             <button data-aos="fade-up" data-aos-delay="300" className="view-button">{t("viewMore")}</button>
           </a>
+            )
+          }
         </div>
       </div>
 

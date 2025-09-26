@@ -6,11 +6,10 @@ import { useTranslation } from 'react-i18next'
 const DiscountText = ({price, discount }) => {
     const {t} = useTranslation();
     let initialPrice = price
-
     let discounted = 0
     let isDiscount = true;
-    discount ? discounted = discount : isDiscount = false
-    let finalPrice = initialPrice - discounted
+    discount ? discounted = discount : isDiscount = false;
+    let finalPrice = initialPrice - discounted;
 
 
     return (

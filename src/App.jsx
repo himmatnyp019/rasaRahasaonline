@@ -24,11 +24,12 @@ import { ToastContainer } from "react-toastify";
 import "aos/dist/aos.css";
 import Tracking from './pages/Tracking/Tracking';
 import { isTokenExpired } from "./hooks/auth.js";
-import Notification from './pages/Notification/notification.jsx';
+import Lang from "./pages/NokMart/Lang/Lang.jsx"
+import Topbar from '../components/Topbar/Topbar.jsx';
 
 
 const App = () => {
-  const [showLogin, setShowLogin] = useState(false)  
+  const [showLogin, setShowLogin] = useState(false)
 
   const [showBill, setShowBill] = useState(false)
   const [billData, setBillData] = useState(null)
@@ -50,12 +51,8 @@ const App = () => {
   }, [location.pathname]);
 
 
- 
   return (
     <div className={`app ${location.pathname === "/PlaceOrder" ? "set-back" : ""}`}>
-
-
-      
 
       <ToastContainer
         position="top-right"   // other: top-left, bottom-right, bottom-left
@@ -74,8 +71,9 @@ const App = () => {
       {showBill && <Bill setShowBill={setShowBill} data={billData} />}
       <BottomNavigation setShowLogin={setShowLogin}></BottomNavigation>
       <FloatBox />
-
-      <Navbar  setShowBill={setShowBill}></Navbar>
+     <Topbar/>
+      <Navbar setShowBill={setShowBill}></Navbar>
+    
       <Routes>
         <Route path='/' element={<Home />}></Route>
         <Route path="/Cart" element={<Cart setShowBill={setShowBill} setShowLogin={setShowLogin} setBillData={setBillData} />} />
@@ -87,9 +85,8 @@ const App = () => {
         <Route path='/track' element={<Tracking></Tracking>}></Route>
         <Route path="/reset/:token" element={<ResetPassword></ResetPassword>}></Route>
         <Route path="/notification" element={<Notification></Notification>}></Route>
-        <Route path='/search' element={<SearchBox/>}>  </Route>
-        <Route path='/lang' element={<Lang/>}></Route>
-
+        <Route path='/search' element={<SearchBox />}>  </Route>
+        <Route path='/lang' element={<Lang />}></Route>
       </Routes>
       <Footer></Footer>
     </div>

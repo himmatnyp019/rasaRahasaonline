@@ -3,9 +3,10 @@ import {
   faMagnifyingGlass
 } from "@fortawesome/free-solid-svg-icons";
 import { Link, Links } from 'react-router-dom';
-import { t } from 'i18next';
+import { useTranslation } from "react-i18next";
 
 const SearchOnly = () => {
+  const {t} = useTranslation(); 
   return (
     <div>
         <Link to='/search' className="search-box-1">

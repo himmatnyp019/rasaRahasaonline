@@ -56,17 +56,17 @@ const Chat = () => {
 
   // Send message to backend
   const handleSend = async () => {
+    console.log(JSON.stringify(productMsg),"is stringed productMsg");
+    const stringProductMsg = JSON.stringify(productMsg);
     if (!newMsg && !newImage) return;
     try {
       // Prepare form data because image might be included
-      const formData = new FormData();
-      formData.append("userId", CURRENT_USER_ID);
-      if (newMsg) formData.append("message", newMsg);
-      if (newImage) formData.append("uploadImage", newImage); // same key as multer.single()
-      if (productId) formData.append("productId", productId);
-      if (productMsg) formData.append("product", productMsg);
-
-      const res = await axios.post(url + "/api/chat/add", formData, {
+      const res = await axios.post(url + "/api/chat/add", {
+        userId: CURRENT_USER_ID,
+        message:newMsg,
+        thisProduct:productMsg,
+        uploadImage:newImage,
+      }, {
         headers: {
           "Content-Type": "multipart/form-data",
           token
@@ -82,8 +82,8 @@ const Chat = () => {
       setNewMsg("");
       setNewImage(null);
     } catch (error) {
-      console.error("Send message failed:", error);
-      showToast("Failed to send message.")
+      console.error("Send message failed:", error); 
+      showToast("Failed to send message.");   
     }
   };
 
@@ -92,7 +92,6 @@ const Chat = () => {
     try {
 
       const token = localStorage.getItem("token"); // adjust if you store token differently
-
       const res = await axios.delete(url + "/api/chat/delete/" + messageId, { headers: { token }, });
 
       if (res.data.success) {
@@ -147,17 +146,17 @@ const Chat = () => {
                   {msg.uploadImage && (
                     <img src={msg.uploadImage} alt="image" className="msg-image" />
                   )}
-                  {msg.product && (
+                  {msg.thisProduct && (
                     <div className="product-box">
                       <img
-                        src={msg.product.image}
-                        alt={msg.product.name}
+                        src={msg.thisProduct.image}
+                        alt={msg.thisProduct.name}
                         className="product-img"
-                      />
+                      /> 
                       <div className="product-info">
-                        <h4>{msg.product.name}</h4>
+                        <h4>{msg.thisProduct.name}</h4>
                         <p>
-                          {t("price")}: ${msg.product.price} (-${msg.product.discount})
+                          {t("price")}: ${msg.thisProduct.price} (-${msg.thisProduct.discount})
                         </p>
                       </div>
                     </div>
@@ -171,6 +170,7 @@ const Chat = () => {
           })}
           <div ref={chatEndRef}></div>
         </AnimatePresence>
+
         {/* if chat have product inquiry */}
          {productMsg.name && (
           <div className="product-box">

@@ -33,15 +33,15 @@ const Address = () => {
                             onMouseLeave={() => setHoveredBox(null)}>
                             <img src="/components/Location/res/nongon-mart.png" alt="mart-img" />
                             <div className="text-content">
-                                <h1>Nongong Mart</h1>
+                                <h1>Noksan Mart</h1>
                                 <div className="row">
 
 
-                                    <a href="https://kko.kakao.com/6yjWYGI5mD" target='blank'><img src="/components/Location/res/kakaoMap.png" alt="" /></a>
+                                    <a href="https://kko.kakao.com/lDBZdH3E1x" target='blank'><img src="/components/Location/res/kakaoMap.png" alt="" /></a>
                                     <img
                                         src="/components/Location/res/copy.jpg"
                                         alt="copy"
-                                        onClick={() => handleCopy("대구 달성군 논공읍 북리 824-8 1층")}
+                                        onClick={() => handleCopy("부산광역시 강서구 녹산산단335로 24-8")}
 
                                     />
                                 </div>
@@ -70,15 +70,15 @@ const Address = () => {
                             onMouseLeave={() => setHoveredBox(null)}>
                             <img src="/components/Location/res/geoje-mart.png" alt="mart-img" />
                             <div className="text-content">
-                                <h1>Nongong Mart</h1>
+                                <h1>Geoje Mart</h1>
                                 <div className="row">
 
 
-                                    <a href="https://kko.kakao.com/6yjWYGI5mD" target='blank'><img src="/components/Location/res/kakaoMap.png" alt="" /></a>
+                                    <a href="https://kko.kakao.com/nLEYJ3LAmT" target='blank'><img src="/components/Location/res/kakaoMap.png" alt="" /></a>
                                     <img
                                         src="/components/Location/res/copy.jpg"
                                         alt="copy"
-                                        onClick={() => handleCopy("대구 달성군 논공읍 북리 824-8 1층")}
+                                        onClick={() => handleCopy("경남 거제시 장평3로7길 13")}
 
                                     />
                                 </div>

@@ -15,9 +15,8 @@ import { t } from 'i18next';
 
 const Navbar = ({ setShowLogin }) => {
 
-  const [menu, setMenu] = useState("home");
-  const { getTotalCartAmount, token, setToken, food_list, cartItems } = useContext(StoreContext);
-  const [totalAmount, amountBeforeDiscount] = getTotalCartAmount();
+  const { token, food_list, cartItems } = useContext(StoreContext);
+
   return (
     <div>
       <div className="navbar" id='top'>
@@ -26,16 +25,12 @@ const Navbar = ({ setShowLogin }) => {
 
         <div className="content-remain">
           <Link to='/notification' className='notification-icon'>
-            <img src={assets.notify_bell} height={35} alt="" />
+            <img src={assets.notify_bell} height={35}  />
           </Link>
           <Language />
 
         </div>
-
-
         <div className="btn-container flex-row">
-
-
           <Link to='/track' className="track-orders">
             <img className='track-order-image' src={assets.trackTruck} alt="track-order" />
             <p>{t("tracking")}</p>
@@ -75,7 +70,7 @@ const Navbar = ({ setShowLogin }) => {
         </div>
 
       </div>
-
+<br />
     </div>
   )
 }

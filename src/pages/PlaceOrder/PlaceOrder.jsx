@@ -7,8 +7,7 @@ import DiscountText from '../../../components/DiscountText/DiscountText';
 import { useToast } from '../../../context/ToastContext';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTranslation } from 'react-i18next';
-import PaymentPage from '../../../components/KakaoPay/PaymentPage'
-import { useTranslation } from 'react-i18next';
+import PaymentPage from '../../../components/KakaoPay/PaymentPage';
 
 import {
   faUpDown

@@ -53,7 +53,7 @@ const StoreContextProvider = (props) => {
         if (localStorage.getItem("lang")) {
             setActiveLang(localStorage.getItem("lang"))
            changeLanguage(localStorage.getItem("lang"));
-        }else(setActiveLang("en"))
+        }else{setActiveLang("en")}
     }
     // ➕ Add item to cart (local + backend)
     const addToCart = async (itemId) => {

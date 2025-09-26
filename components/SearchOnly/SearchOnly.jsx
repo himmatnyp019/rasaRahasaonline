@@ -33,4 +33,4 @@ const SearchOnly = () => {
   )
 }
 
-export default SearchOnly
+export default SearchOnly;

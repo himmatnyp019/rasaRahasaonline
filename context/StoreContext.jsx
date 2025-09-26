@@ -35,8 +35,8 @@ const StoreContextProvider = (props) => {
         image: ""
     });
 
-    // const url = "https://sdsrasarahasa.vercel.app";
-    const url = "http://localhost:5000"
+    const url = "https://sdsrasarahasa.vercel.app";
+    // const url = "http://localhost:5000"
     // ------------------------------ //
     // ✅ CART LOGIC
     // ------------------------------ //

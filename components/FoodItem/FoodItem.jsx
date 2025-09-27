@@ -13,6 +13,8 @@ const FoodItem = ({ id, name, price, description, image, category, discount, ima
       id: id, name: name, price: price, description: description, image: image, image3: image3, image2: image2, category: category, discount: discount
     })
     localStorage.setItem("view-product", id);
+    window.scrollTo(0, 0);
+
   }
   return (
     <div className='food-item'>

@@ -26,7 +26,8 @@ import Tracking from './pages/Tracking/Tracking';
 import { isTokenExpired } from "./hooks/auth.js";
 import Lang from "./pages/NokMart/Lang/Lang.jsx"
 import Topbar from '../components/Topbar/Topbar.jsx';
-
+import HelpCenter from './pages/HelpCenter/Helpcenter.jsx';
+import Test from './pages/Test/Test.jsx';
 
 const App = () => {
   const [showLogin, setShowLogin] = useState(false)
@@ -87,6 +88,9 @@ const App = () => {
         <Route path="/notification" element={<Notification></Notification>}></Route>
         <Route path='/search' element={<SearchBox />}>  </Route>
         <Route path='/lang' element={<Lang />}></Route>
+        <Route path='/helpcenter' element={<HelpCenter />}></Route>
+        <Route path='/test' element={<Test />}></Route>
+
       </Routes>
       <Footer></Footer>
     </div>

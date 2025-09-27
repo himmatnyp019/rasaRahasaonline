@@ -1,129 +1,461 @@
+/* Offer Component - Professional Design */
 .offer-container {
-    display: flex;
-    width: 100%;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    /* border-bottom: 2px solid #e2e2e2; */
-
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 0 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-.delivery-system {
-    display: flex;
+
+.offer-subtitle {
+  font-size: 1.1rem;
+  color: #666;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* Grid Layout */
+.offer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+/* Card Styles */
+.offer-card {
+  background: white;
+  border-radius: 20px;
+  padding:10px 10px;
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(255, 99, 71, 0.05);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.offer-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #ff6347, #ff4757);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.offer-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(255, 99, 71, 0.1);
+}
+
+.offer-card:hover::before {
+  opacity: 1;
+}
+
+/* Gone state for office time card */
+.offer-card.gone {
+  opacity: 0.6;
+  transform: scale(0.98);
+}
+
+.offer-card.gone:hover {
+  transform: scale(0.98) translateY(-4px);
+}
+
+/* Card Header */
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 5px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #f0f1f2;
+}
+
+.icon-container {
+  width: 60px;
+  height: 60px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.icon-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: inherit;
+  opacity: 0.1;
+  transition: all 0.3s ease;
+}
+
+.offer-card:hover .icon-container::before {
+  opacity: 0.2;
+  transform: scale(1.1);
+}
+
+.points-icon {
+  background: linear-gradient(135deg, #ff6347, #ff4757);
+}
+
+.time-icon {
+  background: linear-gradient(135deg, #4ecdc4, #44a08d);
+}
+
+.delivery-icon {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.card-icon {
+  font-size: 1.8rem;
+  color: white;
+  position: relative;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.offer-card:hover .card-icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.card-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #333;
+  margin: 0;
+}
+
+/* Card Content */
+.card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Offer Items */
+.offer-item {
+  background: #f8f9fa;
+  border-radius: 15px;
+  padding: 10px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.offer-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 99, 71, 0.1), transparent);
+  transition: left 0.6s ease;
+}
+
+.offer-item:hover::before {
+  left: 100%;
+}
+
+.offer-item.highlighted {
+  background: linear-gradient(135deg, #fff5f5, #ffe8e8);
+  border: 2px solid rgba(255, 99, 71, 0.2);
+}
+
+.offer-item.closed-item {
+  background: linear-gradient(135deg, #f5f5f5, #eeeeee);
+  border: 2px solid rgba(128, 128, 128, 0.2);
+}
+
+.item-header {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 5px;
+}
+
+.item-icon {
+  font-size: 1.2rem;
+  color: #ff6347;
+  transition: all 0.3s ease;
+}
+
+.item-icon.closed-icon {
+  color: #999;
+}
+
+.offer-item:hover .item-icon {
+  transform: scale(1.2);
+}
+
+.item-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+/* Price Styles */
+.item-value {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.price {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #333;
+  transition: all 0.3s ease;
+  margin: 0;
+}
+
+.price.cut-price {
+  text-decoration: line-through;
+  color: #999;
+  font-size: 1.1rem;
+}
+
+.price.special,
+.price.free {
+  background: linear-gradient(135deg, #ff6347, #ff4757);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+
+.price-label {
+  font-size: 0.9rem;
+  color: #666;
+  font-weight: 500;
+}
+
+/* Badge Styles */
+.bonus-badge,
+.free-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #ff6347, #ff4757);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: 8px;
+  box-shadow: 0 4px 12px rgba(255, 99, 71, 0.3);
+  animation: badge-glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes badge-glow {
+  0% { box-shadow: 0 4px 12px rgba(255, 99, 71, 0.3); }
+  100% { box-shadow: 0 6px 20px rgba(255, 99, 71, 0.5); }
+}
+
+/* Time Information */
+.time-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.working-hours {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.time-slot {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.lunch-break {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px;
+  background: rgba(255, 99, 71, 0.1);
+  border-radius: 10px;
+  border-left: 4px solid #ff6347;
+}
+
+.break-label {
+  font-size: 0.9rem;
+  color: #ff6347;
+  font-weight: 600;
+}
+
+.break-time {
+  font-size: 1rem;
+  color: #333;
+  font-weight: 500;
+}
+
+/* Closed Information */
+.closed-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.closed-days {
+  font-size: 1.1rem;
+  color: #666;
+  font-weight: 600;
+  padding: 8px 12px;
+  background: rgba(128, 128, 128, 0.1);
+  border-radius: 8px;
+  border-left: 4px solid #999;
+}
+
+/* Footer */
+.offer-footer {
+  text-align: center;
+  padding: 30px 0;
+}
+
+.footer-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  border-radius: 50px;
+  border: 2px solid rgba(255, 99, 71, 0.1);
+  font-size: 0.95rem;
+  color: #666;
+  font-weight: 500;
+}
+
+.check-icon {
+  color: #ff6347;
+  font-size: 1.1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .offer-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .offer-container {
+    margin: 40px auto;
+    padding: 0 15px;
+  }
+
+  .offer-main-title {
+    font-size: 2rem;
+  }
+
+  .offer-subtitle {
+    font-size: 1rem;
+  }
+
+  .offer-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .offer-card {
+    padding: 25px;
+  }
+
+  .card-header {
+    gap: 12px;
+  }
+
+  .icon-container {
+    width: 50px;
+    height: 50px;
+  }
+
+  .card-icon {
+    font-size: 1.5rem;
+  }
+
+  .card-title {
+    font-size: 1.2rem;
+  }
+
+  .offer-item {
+    padding: 18px;
+  }
+
+  .price {
+    font-size: 1.2rem;
+  }
+
+  .price.special,
+  .price.free {
+    font-size: 1.3rem;
+  }
+
+  .time-slot {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .offer-main-title {
+    font-size: 1.8rem;
+  }
+
+  .offer-card {
+    padding: 20px;
+  }
+
+  .card-header {
     flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+
+  .item-header {
     justify-content: center;
-    align-items: center;
-    margin: 5px;
-    position: relative;
-    width: max-content;
-    border-radius: 20px;
-    padding: 10px 15px;
-    background-color: #f4f3f3;
-    border: 1px solid #e6e6e6;
-    transition: all .3s ease-in-out;
+  }
 
-    &:hover {
-        background-color: #e9e9e9;
-        border: 1px solid #e6e6e6;
-    }
+  .working-hours,
+  .closed-info {
+    text-align: center;
+  }
 
-    h1 {
-        font-size: 18px;
-        font-weight: 600;
-        margin: 0;
-        color: rgb(45, 45, 45);
-    }
+  .lunch-break {
+    text-align: center;
+  }
 
-    ul li {
-        padding: 8px;
-        margin: 5px 0;
-        text-decoration: none;
-        color: #FF6347;
-
-        h3 {
-            font-size: 16px;
-            font-weight: 500;
-        }
-
-        div {
-            color: #626262;
-            display: flex;
-            gap: 5px;
-
-            p {
-                font-size: 16px;
-                margin: 2px 0;
-            }
-
-            .cut-price {
-                position: relative;
-            }
-
-            .cut-price::after {
-                content: '';
-                display: table;
-                position: absolute;
-                height: 2px;
-                width: 80%;
-                background-color: red;
-                top: 50%;
-                left: 14px;
-                opacity: .4;
-            }
-
-        }
-
-        .closed-days {
-            color: grey;
-        }
-    }
-
+  .footer-note {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
 }
 
-.delivery-system::before {
-    content: "";
-    display: table;
-    height: 5px;
-    width: 100%;
-    left: 0px;
-    bottom: -30px;
-    position: absolute;
-    background-color: rgba(128, 128, 128, 0.884);
-    border-radius: 50%;
-    box-shadow: 0px 0px 10px 10px rgba(128, 128, 128, 0.885);
-    opacity: .1;
-    transform: scale(.8) rotateY(15deg);
-
-}
-
-.delivery-system.gone {
-    display: none;
-}
-
-@media (max-width:460px) {
-    .delivery-system {
-        padding: 2%;
-    }
-
-    .delivery-system ul li {
-        div {
-            display: flex;
-            flex-direction: column;
-
-            .cut-price {
-                width: max-content;
-            }
-        }
-
-        p {
-            font-size: 14px;
-        }
-
-        h3 {
-            font-size: 16px;
-        }
-    }
-
-
+/* Animation Performance */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

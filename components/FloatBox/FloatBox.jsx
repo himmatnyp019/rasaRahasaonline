@@ -36,7 +36,7 @@ const FloatBox = () => {
             </Link>
           )
           }
-          <Link className="float-box">
+          <Link to='/helpcenter' className="float-box">
             <div className="icon"><FaQuestionCircle /></div>
             <h4 className='float-box-title' >{t("helpCenter")}</h4>
           </Link>

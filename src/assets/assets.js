@@ -79,6 +79,7 @@ import trackTruck from './tracktruck.gif'
 import vegetable from './ChatGPT Image Jul 31, 2025, 11_04_17 AM.png'
 import meat from './ChatGPT Image Jul 31, 2025, 11_12_28 AM.png'
 import species from './ChatGPT Image Jul 31, 2025, 01_37_20 PM.png'
+import sdsproduct from './ChatGPT Image Sep 27, 2025, 01_17_35 PM.png'
 import drinks from './Drinks Icon.png'
 import notify_bell from './notification-bell.gif'
 import cancelled_stamp from './cancelled.png'
@@ -96,6 +97,7 @@ export const assets = {
     drinks,
     trackTruck,
     cancelled_stamp,
+    sdsproduct,
     cash_pay,
     card_pay,
     menu_1,

@@ -91,7 +91,7 @@ const Details = () => {
               <p>{description}</p>
             </div>
             <div className="offer-area">
-              <Offer key="no" status="no"></Offer>
+             
             </div>
             <div className="product-buttons">
               {cartItems[id]
@@ -101,11 +101,11 @@ const Details = () => {
                   <img onClick={() => addToCart(id)} src={assets.add_icon_green} alt="" />
                 </div>
                 : <button onClick={() => addToCart(id)}>
-                  {t("addToCart")} <img src={assets.add_icon_white} alt="" />
+                  {t("addToCart")} <img src={assets.add_icon_white} />
                 </button>
               }
               <button onClick={() => productMsgHandler(id, name, image, price, discount)}>
-                Chat with supplier <img src={assets.chat} alt="" />
+                Chat with supplier <img src={assets.chat}  />
               </button>
             </div>
           </div>
@@ -122,6 +122,7 @@ const Details = () => {
             backgroundColor: "#e2e2e2",
             border: "none"
           }} />
+           <Offer key="no" status="noy"></Offer>
           <Reviews itemId={id}></Reviews>
         </div>
         <div className='food-display' id='food-display'>

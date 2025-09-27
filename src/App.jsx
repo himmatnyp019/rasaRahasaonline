@@ -26,7 +26,7 @@ import Tracking from './pages/Tracking/Tracking';
 import { isTokenExpired } from "./hooks/auth.js";
 import Lang from "./pages/NokMart/Lang/Lang.jsx"
 import Topbar from '../components/Topbar/Topbar.jsx';
-import HelpCenter from './pages/HelpCenter/Helpcenter.jsx';
+import HelpCenter from './pages/HelpCenter/HelpCenter.jsx';
 import Test from './pages/Test/Test.jsx';
 
 const App = () => {

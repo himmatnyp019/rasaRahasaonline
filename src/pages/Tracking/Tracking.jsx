@@ -6,13 +6,31 @@ import { StoreContext } from "../../../context/StoreContext";
 import { toast } from 'react-toastify'
 import { assets } from "../../assets/assets";
 import { useTranslation } from "react-i18next";
+import React from 'react';
+import './OrderTracking.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { 
+  faShoppingCart, 
+  faBox, 
+  faTruck, 
+  faCheckCircle,
+  faTimesCircle,
+  faPhone,
+  faMapMarkerAlt,
+  faUser,
+  faCalendarAlt,
+  faCreditCard,
+  faInfoCircle,
+  faEye
+} from '@fortawesome/free-solid-svg-icons';
+
 
 const Tracking = () => {
   const [myOrders, setMyOrders] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const { url } = useContext(StoreContext)
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
   let token = localStorage.getItem('token')
   // Fetch all my orders (order tracking)
@@ -43,15 +61,15 @@ const Tracking = () => {
     t("orderProcessing"),
     t("orderPackaging"),
     t("orderOnDelivery"),
-    t("delivered")
+    t("delivered"),
   ];
-  const handlePackingUpdate = async (userId,orderId, status) => {
+  const handlePackingUpdate = async (userId, orderId, status) => {
     try {
       const res = await axios.post(`${url}/api/order/update`, {
         orderId: orderId,   // backend expects "orderId"
-        userId:userId,
+        userId: userId,
         status: status,
-        refundStatus:null
+        refundStatus: null
       });
       if (res.data.success) {
         alert("Order cancelled successfully!");
@@ -77,8 +95,34 @@ const Tracking = () => {
         return t("deliveredDescription");
       case "Cancelled":
         return t("cancelledDescription")
+      case "Refund Done":
+        return t("refundCompletedMessage");
+      case "Not eligible for refund.":
+        return t("refundFailedNoPayment");
       default:
         return t("orderStatusDefaultDescription");
+    }
+  };
+
+  //all for redesign.........
+    const getStatusIcon = (STATUS_STEPS) => {
+    switch (STATUS_STEPS) {
+      case 'Order Processing...': return faShoppingCart;
+      case 'Order Packaging...': return faBox;
+      case 'Order on Delivery': return faTruck;
+      case 'Delivered': return faCheckCircle;
+      case 'Cancelled': return faTimesCircle;
+      default: return faShoppingCart;
+    }
+  };
+  const getStatusColor = (STATUS_STEPS) => {
+    switch (STATUS_STEPS) {
+      case 'Order Processing...': return '#ff6347';
+      case 'Order Packaging...': return '#ffa500';
+      case 'Order on Delivery': return '#4ecdc4';
+      case 'Delivered': return '#2ecc71';
+      case 'Cancelled': return '#e74c3c';
+      default: return '#ff6347';
     }
   };
 
@@ -128,99 +172,214 @@ const Tracking = () => {
         </div>
       </div>
 
-      {myOrders.map((order, index) => {
+ {myOrders.map((order, index) => {
         const currentStep = STATUS_STEPS.indexOf(order.status);
+        const statusColor = getStatusColor(order.status);
 
         return (
           <motion.div
             key={order._id || index}
-            className="order-card"
+            className={`order-card ${order.status.toLowerCase().replace(/\s+/g, '-')}`}
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: index * 0.1 }} >
-            {/* --- Tracking Status Bar --- */}
-            <div className="status-bar">
-              {STATUS_STEPS.map((step, i) => (
-                <div key={i} className="status-step">
-                  <div
-                    className={`circle ${i <= currentStep ? "active" : ""}`}
-                  />
-                  {i < STATUS_STEPS.length - 1 && (
-                    <div
-                      className={`line ${i < currentStep ? "active" : ""}`}
-                    />
-                  )}
-                  <p className={`status-label ${i <= currentStep ? "active" : ""}`}>
-                    {step}
-                  </p>
+            transition={{ duration: 0.4, delay: index * 0.1 }}
+          >
+            {/* Header Section */}
+            <div className="order-header">
+              <div className="header-left">
+                <div className="order-date">
+                  <FontAwesomeIcon icon={faCalendarAlt} className="date-icon" />
+                  <h2 className="order-time">{order.time}</h2>
                 </div>
-              ))}
+                <div className="order-status-info">
+                  <div className="status-badge" style={{ backgroundColor: statusColor }}>
+                    <FontAwesomeIcon icon={getStatusIcon(order.status)} className="status-icon" />
+                    <span className="status-text">
+                      {order.status === "Cancelled" ? t(order?.refundStatus?.refundMethod) : t(order.status)}
+                    </span>
+                  </div>
+                  <p className="status-description">{getStatusDescription(order.status)}</p>
+                </div>
+              </div>
+              
+              <div className="header-right">
+                <div className="order-actions-header">
+                  {order.status !== "Delivered" && order.status !== "Cancelled" && order.status !== "Order on Delivery" && order.status !== "Refund Done" && (
+                    <button 
+                      className="cancel-btn-header" 
+                      onClick={() => handlePackingUpdate(order.userId, order._id, "Cancelled")}
+                    >
+                      {t("cancelOrder")}
+                    </button>
+                  )}
+                  {order.status !== "Cancelled" && (
+                    <button className="contact-btn-header">
+                      {t("contact")}
+                    </button>
+                  )}
+                </div>
+              </div>
             </div>
 
-            {/* --- Order Details --- */}
-            <div className="order-info">
-              <h2> {order.time}   </h2>
-              <p><strong>{t("status")}</strong> {order.status==="Cancelled"?order?.refundStatus?.refundMethod:order.status}
-              </p>
-              <h4 className="status-description-text">{getStatusDescription(order.status)}</h4>
-            </div>
-
-            {/* --- Items --- */}
-            {/* --- Items Grid --- */}
-            <div className="middle-part">
-
-              <div className="items-container">
-                {order.items.map((item, idx) => (
-                  <div key={idx} className="item-card">
-                    <img src={item.image} alt={item.name} />
-                    <p>{item.name}</p>
-                    <p className="item-details">
-                      ${item.price} × {item.quantity}
+            {/* Progress Tracking Bar */}
+            <div className="progress-tracking">
+              <div className="tracking-container">
+                {STATUS_STEPS.map((step, i) => (
+                  <div key={i} className="tracking-step">
+                    <div className="step-connector-line">
+                      <div 
+                        className={`connector-fill ${i <= currentStep ? "active" : ""}`}
+                        style={{ backgroundColor: i <= currentStep ? statusColor : '#e0e0e0' }}
+                      />
+                    </div>
+                    <div 
+                      className={`step-circle ${i <= currentStep ? "active" : ""}`}
+                      style={{ 
+                        backgroundColor: i <= currentStep ? statusColor : '#e0e0e0',
+                        borderColor: i <= currentStep ? statusColor : '#e0e0e0'
+                      }}
+                    >
+                      <FontAwesomeIcon 
+                        icon={getStatusIcon(step)} 
+                        className="step-icon"
+                      />
+                    </div>
+                    <p className={`step-label ${i <= currentStep ? "active" : ""}`}>
+                      {t(step) || step}
                     </p>
-                    {item.discount > 0 && (
-                      <p className="item-discount">- ${item.discount}</p>
-                    )}
                   </div>
                 ))}
-              </div>
-
-              {/* --- User Info Semi-circle --- */}
-              <div className="user-info-semicircle">
-                <p>{t("orderedBy")}:</p>
-                <p className="user-name">
-                  {order.info?.[0]?.firstName} {order.info?.[0]?.lastName}
-                </p>
-                <p className="user-address">{order.info?.[0]?.fullAdd}</p>
-                <p className="user-phone">📞 {order.info?.[0]?.phone}</p>
-                <p className="user-address"> {order.info?.[0]?.address}</p>
+                
               </div>
             </div>
 
+            {/* Main Content Section */}
+            <div className="order-content">
+              
+              {/* Left Side - Items */}
+              <div className="items-section">
+                <div className="section-header">
+                  <FontAwesomeIcon icon={faBox} className="section-icon" />
+                  <h3 className="section-title">{t("orders")}</h3>
+                </div>
+                
+                <div className="items-grid">
+                  {order.items.map((item, idx) => (
 
-            {/* --- Amount & Payment --- */}
-            <div className="payment-info">
-              <p><strong>{t("total")}:</strong> ${order.amount}</p>
-              <p><strong>{t("payment")}:</strong> {order.payment ? "Paid ✅" : "Unpaid ❌"}</p>
+                    <div key={idx} className="item-card">
+                      <div className="item-image-container">
+                        <img src={item.image} alt={item.name} className="item-image" />
+                        {item.discount > 0 && (
+                          <div className="discount-badge">
+                            -{item.discount}₩
+                          </div>
+                        )}
+                      </div>
+                      
+                      <div className="item-details">
+                        <h4 className="item-name">{item.name}</h4>
+                        <div className="item-pricing">
+                          <span className="item-price">${item.price}</span>
+                          <span className="item-quantity">× {item.quantity}</span>
+                        </div>
+                        {item.discount > 0 && (
+                          <div className="item-discount">
+                            <span className="discount-label">Discount:</span>
+                            <span className="discount-amount">-${item.discount}</span>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Right Side - Customer Info */}
+              <div className="customer-section">
+                <div className="section-header">
+                  <FontAwesomeIcon icon={faUser} className="section-icon" />
+                  <h3 className="section-title">{t("orderedBy")}</h3>
+                </div>
+                
+                <div className="customer-card">
+                  <div className="customer-avatar">
+                    <FontAwesomeIcon icon={faUser} className="avatar-icon" />
+                  </div>
+                  
+                  <div className="customer-details">
+                    <div className="customer-name">
+                      {order.info?.[0]?.firstName} {order.info?.[0]?.lastName}
+                    </div>
+                    
+                    <div className="contact-info">
+                      <div className="contact-item">
+                        <FontAwesomeIcon icon={faPhone} className="contact-icon" />
+                        <span className="contact-text">{order.info?.[0]?.phone}</span>
+                      </div>
+                      
+                      <div className="contact-item">
+                        <FontAwesomeIcon icon={faMapMarkerAlt} className="contact-icon" />
+                        <span className="contact-text">{order.info?.[0]?.address}</span>
+                      </div>
+                      
+                      {order.info?.[0]?.fullAdd && (
+                        <div className="full-address">
+                          <span className="address-label">Full Address:</span>
+                          <span className="address-text">{order.info?.[0]?.fullAdd}</span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Footer Section - Payment & Total */}
+            <div className="order-footer">
+              <div className="payment-summary">
+                <div className="summary-item">
+                  <FontAwesomeIcon icon={faCreditCard} className="summary-icon" />
+                  <div className="summary-details">
+                    <span className="summary-label">{t("total")}:</span>
+                    <span className="summary-value total-amount">${order.amount}</span>
+                  </div>
+                </div>
+                
+                <div className="summary-item">
+                  <FontAwesomeIcon icon={faInfoCircle} className="summary-icon" />
+                  <div className="summary-details">
+                    <span className="summary-label">{t("payment")}:</span>
+                    <span className={`summary-value payment-status ${order.payment ? 'paid' : 'unpaid'}`}>
+                      {order.payment ? "Paid ✅" : "Unpaid ❌"}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Cancelled Stamp */}
               {order.status === "Cancelled" && (
-                <img className="cancelled-stamp" width={240} src={assets.cancelled_stamp} alt="" />
+                <div className="cancelled-stamp-container">
+                  <img 
+                    className="cancelled-stamp" 
+                    src={assets.cancelled_stamp} 
+                    alt="Cancelled" 
+                  />
+                </div>
               )}
             </div>
 
-            {/* --- Action Buttons --- */}
-            <div className="actions">
-              {order.status !== "Delivered" && order.status !== "Cancelled" && order.status !== "Order on Delivery" && (
-                <button className="cancel-btn" onClick={() => handlePackingUpdate(order.userId, order._id, "Cancelled")}>{t("cancelOrder")}</button>
-              )}
-              {order.status !== "Cancelled" && <button className="contact-btn">{t("contact")}</button>}
-            </div>
+            {/* Status Overlay for Visual Enhancement */}
+            {/* <div className="status-overlay" style={{ backgroundColor: `${statusColor}10` }}></div> */}
+            
           </motion.div>
         );
       })}
+
+
+
     </div>
   );
 };
-
-
 
 
 

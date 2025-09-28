@@ -77,8 +77,8 @@ const Notification = () => {
               <img src={notif.image} alt="notif" className="notif-image" />
             )}
             <div className="notif-content">
-              <h3 className="notif-title">{notif.title}</h3>
-              <p className="notif-desc">{notif.description}</p>
+              <h3 className="notif-title">{t(notif.title)}</h3>
+              <p className="notif-desc">{t(notif.description)}</p>
               <span className="notif-date">{notif.date}</span>
             </div>
           </motion.div>

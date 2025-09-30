@@ -79,7 +79,7 @@ const Details = () => {
               <img className='main-big-img' src={bigImg} alt="image" />
             </div>
           </div>
-          <div className="box product-info">
+          <div className="box product-info-x">
             <div className="weekday-text">
               <h2>{days[today]} {t("deal")}</h2>
             </div>

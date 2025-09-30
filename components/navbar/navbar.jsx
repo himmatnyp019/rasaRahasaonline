@@ -21,7 +21,7 @@ const Navbar = ({ setShowLogin }) => {
     <div>
       <div className="navbar" id='top'>
 
-        <Link to="/" className='logo-container'> <img data-aos="fade-down" className="logo-img" src={assets.logoMain} alt="logo image" />  <img data-aos="fade-down" className="logo" src={assets.logo} alt="logo image" /></Link>
+        <Link to="/" className='logo-container'> <img data-aos="fade-down" className="logo-img" src={assets.logoMain} alt="logo image" />  </Link>
 
         <div className="content-remain">
           <Link to='/notification' className='notification-icon'>

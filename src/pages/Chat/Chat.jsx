@@ -15,14 +15,8 @@ const Chat = () => {
   const [newImage, setNewImage] = useState(null);
   const chatEndRef = useRef();
   const { showToast } = useToast();
-  const productId = '';
   const [messages, setMessages] = useState(myMessage);
   const {t} = useTranslation();
-
-
-  useEffect(() => {
-    console.log(productMsg, "this  is product");
-  }, [productMsg]);
 
   const formatDisplayTime = (date) => {
     try {
@@ -147,13 +141,13 @@ const Chat = () => {
                     <img src={msg.uploadImage} alt="image" className="msg-image" />
                   )}
                   {msg.thisProduct && (
-                    <div className="product-box">
+                    <div className="product-box-1">
                       <img
                         src={msg.thisProduct.image}
                         alt={msg.thisProduct.name}
                         className="product-img"
                       /> 
-                      <div className="product-info">
+                      <div className="product-info-1">
                         <h4>{msg.thisProduct.name}</h4>
                         <p>
                           {t("price")}: ${msg.thisProduct.price} (-${msg.thisProduct.discount})
@@ -173,13 +167,13 @@ const Chat = () => {
 
         {/* if chat have product inquiry */}
          {productMsg.name && (
-          <div className="product-box">
+          <div className="product-box-1">
             <img
               src={productMsg.image}
               alt={productMsg.name}
               className="product-img"
             />
-            <div className="product-info">
+            <div className="product-info-1">
               <h4>{productMsg.name}</h4>
               <p>
                 {t("price")}: ${productMsg.price} (-${productMsg.discount})

@@ -167,6 +167,9 @@
     position: relative;
     z-index: 1;
 }
+.progress-tracking.hidden {
+    display: none;
+}   
 
 .tracking-container {
     display: flex;

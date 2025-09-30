@@ -222,7 +222,7 @@ const Tracking = () => {
             </div>
 
             {/* Progress Tracking Bar */}
-            <div className="progress-tracking">
+            <div className={`progress-tracking ${order.status === "Cancelled" || order.status === "Refund Done" ? "hidden" : ""}`}>
               <div className="tracking-container">
                 {STATUS_STEPS.map((step, i) => (
                   <div key={i} className="tracking-step">

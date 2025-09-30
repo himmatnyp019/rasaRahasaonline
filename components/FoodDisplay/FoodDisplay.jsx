@@ -5,8 +5,6 @@ import FoodItem from '../FoodItem/FoodItem';
 import MainItems from '../MainItems/MainItems';
 import { useTranslation } from 'react-i18next';
 
-
-
 const FoodDisplay = ({category}) => {
     const {t} = useTranslation();
     const {food_list} = useContext(StoreContext);

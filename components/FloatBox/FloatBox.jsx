@@ -5,7 +5,6 @@ import { StoreContext } from '../../context/StoreContext'
 import Chat from '../../src/pages/Chat/Chat'
 import { FaCartPlus, FaComments, FaQuestionCircle, FaTimes } from "react-icons/fa";
 import { useTranslation } from 'react-i18next'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCartShopping,
 } from "@fortawesome/free-solid-svg-icons";
@@ -14,7 +13,7 @@ const FloatBox = () => {
   const [totalAmount] = getTotalCartAmount();
   const { t } = useTranslation();
   return (
-    <div className='float-box-container'>
+    <div className={`float-box-container ${showChat ? "chat-open" : ""}`}>
       <div className="layering">
         <div className="floating-btn-section">
           <Link className='float-box' to="/Cart">

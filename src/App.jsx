@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import Navbar from "../components/navbar/navbar";
 import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 import Home from './pages/Home/Home'
@@ -17,7 +17,6 @@ import Bill from '../components/Bill/Bill';
 import CatView from './pages/Category/CatView';
 import useAOS from "./hooks/useAOS";
 import AOS from "aos";
-import axios from 'axios';
 import "react-toastify/dist/ReactToastify.css";
 import Notification from "./pages/Notification/Notification.jsx";
 import { ToastContainer } from "react-toastify";
@@ -28,14 +27,16 @@ import Lang from "./pages/NokMart/Lang/Lang.jsx"
 import Topbar from '../components/Topbar/Topbar.jsx';
 import HelpCenter from './pages/HelpCenter/HelpCenter.jsx';
 import Test from './pages/Test/Test.jsx';
+import FoodReels from "./pages/Reels/FoodReels.jsx";
+import { StoreContext } from '../context/StoreContext.jsx';
 
 const App = () => {
-  const [showLogin, setShowLogin] = useState(false)
+  const [showLogin, setShowLogin] = useState(false);
 
-  const [showBill, setShowBill] = useState(false)
-  const [billData, setBillData] = useState(null)
+  const [showBill, setShowBill] = useState(false);
+  const [billData, setBillData] = useState(null);
   const [tid, setTid] = useState("");
-
+  const { showChat } = useContext(StoreContext);
   useAOS();
   const location = useLocation();
 
@@ -55,6 +56,7 @@ const App = () => {
   return (
     <div className={`app ${location.pathname === "/PlaceOrder" ? "set-back" : ""}`}>
 
+
       <ToastContainer
         position="top-right"   // other: top-left, bottom-right, bottom-left
         autoClose={3000}       // auto close in ms
@@ -70,11 +72,13 @@ const App = () => {
       {showLogin ? <Login setShowLogin={setShowLogin}></Login> : <></>}
 
       {showBill && <Bill setShowBill={setShowBill} data={billData} />}
-      <BottomNavigation setShowLogin={setShowLogin}></BottomNavigation>
+      { showChat ? null :
+        <BottomNavigation setShowLogin={setShowLogin}></BottomNavigation>
+      }
       <FloatBox />
-     <Topbar/>
+      <Topbar />
       <Navbar setShowBill={setShowBill}></Navbar>
-    
+
       <Routes>
         <Route path='/' element={<Home />}></Route>
         <Route path="/Cart" element={<Cart setShowBill={setShowBill} setShowLogin={setShowLogin} setBillData={setBillData} />} />
@@ -90,6 +94,7 @@ const App = () => {
         <Route path='/lang' element={<Lang />}></Route>
         <Route path='/helpcenter' element={<HelpCenter />}></Route>
         <Route path='/test' element={<Test />}></Route>
+        <Route path='/reel' element={<FoodReels />}></Route>
 
       </Routes>
       <Footer></Footer>

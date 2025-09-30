@@ -3,15 +3,21 @@
     height: 98vh;
     padding: 5px;
     overflow: hidden;
-    margin: 10px;
+    margin: 0 10px;
     position: fixed;
     top: 0%;
     left: 20px;
-    gap:0;
+    gap: 0;
     align-items: start;
     z-index: 2;
     pointer-events: fill;
+    transition: all .3s ease-in-out;
 
+}
+
+.float-box-container.chat-open {
+    width: 100%;
+    background-color: #464646ca;
 }
 
 .floating-btn-section {
@@ -23,10 +29,11 @@
     flex-direction: column;
     gap: 0;
     padding: 5px;
-    .float-box{
-       h4{
-           font-size: 0px;
-    }
+
+    .float-box {
+        h4 {
+            font-size: 0px;
+        }
     }
 }
 
@@ -106,11 +113,13 @@
     }
 
 }
+
 @media (max-width:1100px) {
-    
+
     .float-box-container {
-    height: 90vh;}
-    
+        height: 90vh;
+    }
+
 }
 
 
@@ -127,7 +136,7 @@
     border-radius: 50px;
     width: 70px;
 
-    .fa-cart-btn{
+    .fa-cart-btn {
         margin: 5px;
     }
 
@@ -144,14 +153,17 @@
 .quick-view-basket2 {
     flex-direction: column;
     gap: 5px;
+
     .quick-item-check {
         height: 50px;
         margin: 0;
         border-radius: 50px;
         margin: 0;
+
         img {
             width: 50px;
         }
+
         .quick-price.float {
             font-size: 10px;
         }
@@ -163,39 +175,48 @@
     .float-box-container {
         left: -10px;
     }
+
     .floating-btn-section {
         width: 40px;
         gap: 0;
         padding: 0;
     }
+
     .float-box {
         margin: 0;
         padding: 5px 7px;
+
         h4 {
             font-size: 16px;
         }
+
         .icon {
             width: 25px;
             height: 25px;
             font-size: 14px;
         }
     }
-    .cart-items-quick.float{
+
+    .cart-items-quick.float {
         width: min-content;
         padding: 7px 3px;
     }
+
     .quick-view-basket2 {
-    gap: 5px;
-    .quick-item-check {
-        height: 30px;
-        img {
-            width: 30px;
-        }
-        .quick-price.float {
-            font-size: 10px;
+        gap: 5px;
+
+        .quick-item-check {
+            height: 30px;
+
+            img {
+                width: 30px;
+            }
+
+            .quick-price.float {
+                font-size: 10px;
+            }
         }
     }
-}
 
 
 }
@@ -205,7 +226,8 @@
 /* ---------- chat view design ------------- */
 
 .chat-view-area {
-    padding: 0;display: flex;
+    padding: 0;
+    display: flex;
     justify-self: start;
     align-items: start;
     margin-left: 2px;

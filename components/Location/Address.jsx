@@ -31,7 +31,7 @@ const Address = () => {
                         <div className="box box1"
                             onMouseEnter={() => setHoveredBox('box1')}
                             onMouseLeave={() => setHoveredBox(null)}>
-                            <img src="/components/Location/res/nongon-mart.png" alt="mart-img" />
+                            <img src="https://res.cloudinary.com/dqvv7yahd/image/upload/v1759239224/food_uploads/zupwvczfvtabteyumzbi.jpg" alt="mart-img" />
                             <div className="text-content">
                                 <h1>Noksan Mart</h1>
                                 <div className="row">
@@ -49,7 +49,7 @@ const Address = () => {
                             </div>
                         </div>
                         <div className={`box box2 ${hoveredBox ? 'transform' : ''}`}>
-                            <img src="/components/Location/res/noksan-mart.png" alt="mart-img" />
+                            <img src="https://res.cloudinary.com/dqvv7yahd/image/upload/v1759281567/food_uploads/ysorgzh2yblerpt8mdyi.png" alt="mart-img" />
                             <div className="text-content">
                                 <h1>Nongong Mart</h1>
                                 <div className="row">
@@ -68,7 +68,7 @@ const Address = () => {
                         <div className="box box3"
                             onMouseEnter={() => setHoveredBox('box3')}
                             onMouseLeave={() => setHoveredBox(null)}>
-                            <img src="/components/Location/res/geoje-mart.png" alt="mart-img" />
+                            <img src="https://res.cloudinary.com/dqvv7yahd/image/upload/v1759281509/food_uploads/hwiaamgdyedz5s3aa6ik.png" alt="mart-img" />
                             <div className="text-content">
                                 <h1>Geoje Mart</h1>
                                 <div className="row">

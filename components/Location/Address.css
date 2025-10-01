@@ -75,6 +75,8 @@
         height: 70%;
         margin: 10px;
         border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+        transform: rotate(180deg);
+        object-fit: cover;
       }
       .text-content{
         position: absolute;

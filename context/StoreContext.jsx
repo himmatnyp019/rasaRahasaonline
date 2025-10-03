@@ -26,6 +26,7 @@ const StoreContextProvider = (props) => {
     const [historyItemsId, setHistoryItemsId] = useState([]);
     const [myMessage, setMyMessage] = useState([]);
     const [showChat, setShowChat] = useState(false);
+    const [showPolicies, setShowPolicies] = useState(false);
     const [showDetails, setShowDetails] = useState({ id: "", name: "", price: "", description: "", image: "", image3: "", image2: "", category: "", discount: "" });
     const [productMsg, setProductMsg] = useState({
         productId: "",
@@ -34,9 +35,12 @@ const StoreContextProvider = (props) => {
         discount: "",
         image: ""
     });
+    const [pointsData, setPointsData] = useState(null);
 
     const url = "https://sdsrasarahasa.vercel.app";
     // const url = "http://localhost:5000"
+
+    
     // ------------------------------ //
     // ✅ CART LOGIC
     // ------------------------------ //
@@ -52,8 +56,8 @@ const StoreContextProvider = (props) => {
     if (!activeLang) {
         if (localStorage.getItem("lang")) {
             setActiveLang(localStorage.getItem("lang"))
-           changeLanguage(localStorage.getItem("lang"));
-        }else{setActiveLang("en")}
+            changeLanguage(localStorage.getItem("lang"));
+        } else { setActiveLang("en") }
     }
     // ➕ Add item to cart (local + backend)
     const addToCart = async (itemId) => {
@@ -101,7 +105,6 @@ const StoreContextProvider = (props) => {
                 }
             }
         }
-
         return [totalAmount, amountBeforeDiscount, deliveryPrice];
     };
 
@@ -114,7 +117,6 @@ const StoreContextProvider = (props) => {
                 let itemInfo = food_list.find(
                     product => String(product._id) === String(item)
                 );
-
                 if (itemInfo) { // ✅ safety check
                     totalDiscount += itemInfo.discount * cartItems[item];
                 }
@@ -176,7 +178,6 @@ const StoreContextProvider = (props) => {
                 const activeAddr = ThreeAddr[index].address;
                 setActiveAddress(activeAddr);
             }
-
         }
 
     }, [userData, activeAddress]);
@@ -213,29 +214,35 @@ const StoreContextProvider = (props) => {
     // ✅ REVIEW LOGIC
     // ------------------------------ //
 
-    //get all the review
-
-
     // ------------------------------ //
     // ✅ GET ALL MY CHAT MESSAGE
     // ------------------------------ //
-
     const loadMyMessage = async (token) => {
         const response = await axios.get(`${url}/api/chat/me`, { headers: { token } })
         setMyMessage(response.data.data);
     }
     // ------------------------------ //
-    // ✅ GET ALL MY Orders
+    // ✅ GET POINTS DATA FROM BACKEND
     // ------------------------------ //
+    const fetchPointsData = async (token) => {
+        try {
+            const response = await axios.get(`${url}/api/points/`, { headers: { token :token } })
+            setPointsData(response.data.userPoints);
+            console.log(response.data.userPoints);
+            
+            return response.data.userPoints;
+        } catch (error) {
+            console.error("Error fetching points data:", error.response?.data || error.message);
+            return null;
+        }
+    };
 
     // ------------------------------ //
     // ✅ INIT DATA LOADING ON MOUNT
     // ------------------------------ //
     useEffect(() => {
-
         async function loadData() {
             await fetchFoodList();
-
             const storedToken = localStorage.getItem("token");
             if (storedToken) {
                 setToken(storedToken);
@@ -243,6 +250,7 @@ const StoreContextProvider = (props) => {
                 await loadUserData(storedToken);
                 await loadOrderHistory(storedToken);
                 await loadMyMessage(storedToken)
+                await fetchPointsData(storedToken);
                 // await loadReviewData(storedToken);
             }
         }
@@ -262,7 +270,8 @@ const StoreContextProvider = (props) => {
         loadOrderHistory,
         loadCartData,
         deliveryAddress,
-        activeAddress,changeLanguage,
+        activeAddress, changeLanguage,fetchPointsData,
+        pointsData, setPointsData,
         orderHistory,
         setCartItems,
         removeFromCart,
@@ -286,7 +295,7 @@ const StoreContextProvider = (props) => {
         showDetails,
         setShowDetails,
         myMessage, showChat, setShowChat,
-        productMsg, setProductMsg
+        productMsg, setProductMsg,showPolicies, setShowPolicies
     };
 
     // ------------------------------ //

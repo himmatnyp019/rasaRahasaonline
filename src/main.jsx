@@ -5,7 +5,7 @@ import App from './App.jsx'
 import {BrowserRouter} from 'react-router-dom'
 import { ToastProvider } from '../context/ToastContext.jsx'
 import StoreContextProvider from '../context/StoreContext.jsx'
-import './i18n.js'
+import './i18n.js'   
 createRoot(document.getElementById('root')).render(
  <BrowserRouter>
    <StoreContextProvider>

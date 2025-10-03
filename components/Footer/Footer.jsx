@@ -27,7 +27,7 @@ const Footer = () => {
             <li><a href="../../public/docs/privacypolicy.html" target="_blank" rel="noopener noreferrer">{t("privacyPolicy")}</a></li>
             <li><a href="../../public/docs/termsofuse.html" target="_blank" rel="noopener noreferrer">{t("termsOfUse")}</a></li>
 
-            <li><a href="../../public/docs/violation.html" target='_blank' rel='noopener noreferrer'>{t("Guidelines Violation Policy")}</a></li>
+            <li><a href="../../public/docs/violation.html" target='_blank' rel='noopener noreferrer'>{t("guidelinesViolationPolicy")}</a></li>
             <li> 사업자등록번호 : 515-81-53560</li>
           </ul>
         </div>

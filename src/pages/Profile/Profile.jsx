@@ -11,6 +11,7 @@ import ForgotPassword from '../../../components/ResetP/ForgotPassword';
 import ResetViaEmail from '../../../components/ResetP/ResetViaEmail';
 import ResetViaPhone from '../../../components/ResetP/ResetViaPhone';
 import { useTranslation } from 'react-i18next';
+import PointSystem from '../../../components/Points/PointSystem';
 
 const Profile = () => {
   const { orderHistory, token, setToken, setShowLogin, userData, url, loadUserData } = useContext(StoreContext);
@@ -68,6 +69,8 @@ const Profile = () => {
         backgroundColor: "#e2e2e2",
         border: "none"
       }} />
+
+      <PointSystem></PointSystem>
 
       <div className="user-shop-info">
         <DeliveryAddress addressData={userInfo.address}></DeliveryAddress>

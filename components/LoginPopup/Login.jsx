@@ -6,12 +6,14 @@ import { StoreContext } from '../../context/StoreContext'
 import axios from 'axios'
 import { useToast } from '../../context/ToastContext';
 import { t } from 'i18next'
+import Policies from '../Policies/Policies'
 
 const Login = ({ setShowLogin }) => {
   const { url, setToken } = useContext(StoreContext)
   const { showToast } = useToast();
+  const { showPolicies, setShowPolicies } = useContext(StoreContext);
+  const [loginMethod, setLoginMethod] = useState("email")
 
-  const [loginMethod ,setLoginMethod] = useState("email")
   const [currState, setCurrState] = useState("login")
   const [data, setData] = useState({
     name: "",
@@ -27,7 +29,7 @@ const Login = ({ setShowLogin }) => {
   }
   const onLoin = async (event) => {
     console.log(data);
-    
+
     event.preventDefault();
     let newUrl = url;
     if (currState === "login") {
@@ -86,6 +88,9 @@ const Login = ({ setShowLogin }) => {
             <input type="password" name='password' onChange={onChangeHandler} value={data.password} placeholder={t("enterPassword")} required />
           </div>
           <button type='submit'>{currState === t('signUp') ? t("createAnAccount") : t("loginNow")}</button>
+
+          <p className='policy-view-button' onClick={() => setShowPolicies(true)}>{t("companyPolicyAndAgreement")}</p>
+
           <div className="login-condition">
             <input type="checkbox" required />
             <p>{t("termsAgreement")}</p>
@@ -94,7 +99,7 @@ const Login = ({ setShowLogin }) => {
             ? <p className='join-option'>{t("createNewAccount")} ? <br /> <span onClick={() => setCurrState('signUp')}>{t("registerToday")}</span></p>
             : <p className='join-option'>{t("alreadyHaveAnAccount")} <br /> <span onClick={() => setCurrState('login')}>{t("loginNow")}</span></p>
           }
-
+          <Policies></Policies>
         </div>
       </form>
     </div>

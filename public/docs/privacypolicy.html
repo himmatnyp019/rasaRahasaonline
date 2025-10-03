@@ -25,24 +25,27 @@
             border-bottom: 3px solid #3498db;
             padding-bottom: 10px;
             margin-bottom: 30px;
+            text-align: center;
         }
         h2 {
             color: #34495e;
-            margin-top: 30px;
-            margin-bottom: 15px;
+            margin-top: 40px;
+            margin-bottom: 20px;
             border-left: 4px solid #3498db;
             padding-left: 15px;
         }
         h3 {
             color: #2c3e50;
-            margin-top: 20px;
-            margin-bottom: 10px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-weight: 600;
         }
         .company-info {
             background-color: #ecf0f1;
             padding: 20px;
             border-radius: 5px;
             margin: 20px 0;
+            border: 1px solid #dcdcdc;
         }
         .contact-info {
             background-color: #e8f4f8;
@@ -51,18 +54,18 @@
             margin: 15px 0;
         }
         ul, ol {
-            padding-left: 20px;
-            margin: 10px 0;
+            padding-left: 25px;
+            margin: 15px 0;
         }
         li {
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
         .highlight {
             background-color: #fff3cd;
             padding: 15px;
             border-radius: 5px;
             border-left: 4px solid #ffc107;
-            margin: 15px 0;
+            margin: 20px 0;
         }
         .important {
             color: #e74c3c;
@@ -74,21 +77,57 @@
             border-radius: 3px;
             border: 1px dashed #6c757d;
             display: inline-block;
+            font-weight: bold;
         }
         .footer-note {
             background-color: #f8f9fa;
             padding: 20px;
             border-radius: 5px;
-            margin-top: 30px;
+            margin-top: 40px;
             font-style: italic;
             color: #6c757d;
+            text-align: center;
         }
         strong {
             color: #2c3e50;
         }
         .section-divider {
             border-top: 1px solid #dee2e6;
-            margin: 30px 0;
+            margin: 40px 0;
+        }
+        .preamble {
+            text-align: center;
+            font-style: italic;
+            color: #555;
+            margin-bottom: 30px;
+        }
+        .toc {
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        .toc h2 {
+            margin-top: 0;
+            border-left: none;
+            padding-left: 0;
+            text-align: center;
+            color: #2c3e50;
+        }
+        .toc ol {
+            list-style-type: decimal;
+            padding-left: 20px;
+        }
+        .toc ol li {
+            margin-bottom: 5px;
+        }
+        .toc a {
+            text-decoration: none;
+            color: #3498db;
+        }
+        .toc a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -97,180 +136,316 @@
         <h1>Privacy Policy</h1>
         
         <div class="company-info">
-            <strong>RASA RAHASA SDS</strong><br>
-            <strong>Effective Date:</strong> <span class="date-field">[Insert Date]</span><br>
-            <strong>Last Updated:</strong> <span class="date-field">[Insert Date]</span>
+            <strong>Company:</strong> RASA RAHASA SDS<br>
+            <strong>Effective Date:</strong> <span class="date-field">October 3, 2025</span><br>
+            <strong>Last Updated:</strong> <span class="date-field">October 3, 2025</span>
+        </div>
+        
+        <p class="preamble">
+            Your privacy is a cornerstone of our business. We believe in transparency and empowering our users to understand and control their data. This document outlines our commitment to protecting the information you entrust to us.
+        </p>
+        
+        <!-- Table of Contents -->
+        <div class="toc">
+            <h2>Table of Contents</h2>
+            <ol>
+                <li><a href="#section1">Introduction and Our Commitment</a></li>
+                <li><a href="#section2">Definitions</a></li>
+                <li><a href="#section3">Scope of This Policy</a></li>
+                <li><a href="#section4">Information We Collect</a></li>
+                <li><a href="#section5">How and Why We Use Your Information (Legal Basis for Processing)</a></li>
+                <li><a href="#section6">Information Sharing and Disclosure</a></li>
+                <li><a href="#section7">Payment Processing</a></li>
+                <li><a href="#section8">Technology, Cookies, and Analytics</a></li>
+                <li><a href="#section9">Data Security: Our Commitment to Protecting Your Information</a></li>
+                <li><a href="#section10">Your Rights and Choices Over Your Information</a></li>
+                <li><a href="#section11">Data Retention: How Long We Keep Your Information</a></li>
+                <li><a href="#section12">Children's Privacy</a></li>
+                <li><a href="#section13">Geographic Scope and Data Residency</a></li>
+                <li><a href="#section14">Offline Operations</a></li>
+                <li><a href="#section15">Third-Party Links and Services</a></li>
+                <li><a href="#section16">Changes to This Privacy Policy</a></li>
+                <li><a href="#section17">How to Contact Us</a></li>
+                <li><a href="#section18">Dispute Resolution</a></li>
+            </ol>
         </div>
 
-        <h2>1. Introduction</h2>
-        <p>Welcome to RASA RAHASA SDS ("we," "our," or "us"). We operate an online and offline shopping platform specializing in Asian products in South Korea. We are committed to protecting your privacy and personal information.</p>
+        <div class="section-divider"></div>
+
+        <h2 id="section1">1. Introduction and Our Commitment</h2>
+        <p>Welcome to RASA RAHASA SDS ("we," "our," or "us"). We operate an online e-commerce platform and physical retail stores (collectively, the "Service") specializing in Asian food products for a diverse community of customers residing in South Korea. Our mission is to connect you with the flavors you love, and we are equally dedicated to protecting the personal information you share with us.</p>
+        <p>This comprehensive Privacy Policy has been created to provide you with a clear and detailed understanding of:</p>
+        <ul>
+            <li>What personal information we collect from you.</li>
+            <li>Why we collect this information and the legal basis for doing so.</li>
+            <li>How we use, store, and protect your information.</li>
+            <li>With whom we share this information, and under what circumstances.</li>
+            <li>What rights and choices you have regarding your personal data.</li>
+        </ul>
+        <p>By registering for an account, making a purchase, or otherwise using our Service, you acknowledge that you have read, understood, and agree to the terms of this Privacy Policy. If you do not agree with our policies and practices, your choice is not to use our Service.</p>
+
+        <div class="section-divider"></div>
+
+        <h2 id="section2">2. Definitions</h2>
+        <p>To ensure clarity, here are some key terms used throughout this document:</p>
+        <ul>
+            <li><strong>Personal Information (or Personal Data):</strong> Any information that relates to an identified or identifiable individual. This includes, but is not limited to, your name, address, email address, phone number, and account username.</li>
+            <li><strong>User ("you" or "your"):</strong> Any individual who accesses or uses our Service, including browsing our website, creating an account, or making a purchase online or in-store.</li>
+            <li><strong>Service:</strong> The combined offering of our online shopping website, mobile applications (if any), and our physical retail locations in South Korea.</li>
+            <li><strong>Processing:</strong> Any operation performed on Personal Information, such as collection, recording, organization, storage, use, disclosure, or deletion.</li>
+            <li><strong>Data Controller:</strong> The entity that determines the purposes and means of the processing of Personal Information. For the purposes of this policy, RASA RAHASA SDS is the Data Controller.</li>
+            <li><strong>Third-Party:</strong> Any natural or legal person, public authority, agency, or body other than the User or RASA RAHASA SDS.</li>
+        </ul>
+
+        <div class="section-divider"></div>
+
+        <h2 id="section3">3. Scope of This Policy</h2>
+        <p>This Privacy Policy applies to all Personal Information processed by RASA RAHASA SDS through:</p>
+        <ul>
+            <li>Our official website and any future mobile applications.</li>
+            <li>Interactions with our customer service team via email, phone, or in person.</li>
+            <li>Purchases and interactions at our physical retail locations in South Korea.</li>
+        </ul>
+        <p>This policy does not apply to the practices of companies that we do not own or control, or to individuals that we do not employ or manage. This includes our third-party payment processors and social media platforms, which operate under their own privacy policies.</p>
         
-        <div class="contact-info">
-            <strong>Contact Information:</strong>
+        <div class="section-divider"></div>
+
+        <h2 id="section4">4. Information We Collect</h2>
+        <p>We collect information in a few different ways, always with the goal of providing a secure and efficient service. We are committed to collecting only the data that is necessary for our operations.</p>
+        
+        <h3>4.1. Information You Provide to Us Directly</h3>
+        <p>This is information you knowingly and voluntarily provide when you interact with our Service.</p>
+        <ul>
+            <li><strong>Account Registration Data:</strong> When you create an online account, we collect your <strong>Username</strong> (to identify your account), <strong>Email address</strong> (for authentication, communication, and password resets), and your <strong>Password</strong> (which is immediately encrypted and never stored in plain text).</li>
+            <li><strong>Order and Delivery Data:</strong> When you place an order, we collect <strong>Your Full Name</strong>, a precise <strong>Delivery Address</strong> in South Korea, and a <strong>Contact Phone Number</strong>. This is essential for us and our delivery partners to fulfill your order.</li>
+            <li><strong>Profile Personalization Data (Optional):</strong> You have the option to upload a <strong>Profile Image</strong>. This is not required to use our service and is used solely for personalizing your account interface.</li>
+            <li><strong>Customer Support Communications:</strong> If you contact us via email or phone, we will collect your name, contact information, and the content of your query to provide assistance and maintain a record of our correspondence.</li>
+        </ul>
+        
+        <h3>4.2. Information Related to Your Transactions</h3>
+        <p>While we do not handle your sensitive payment details directly, we do collect information about your transactions.</p>
+        <ul>
+            <li><strong>Payment Status:</strong> Our system receives a confirmation from our payment partners (PortOne, Kakao Pay) indicating whether a transaction was a <strong>success</strong> or a <strong>failure</strong>.</li>
+            <li><strong>Transaction Records:</strong> We store a record of the products you purchased, the date and time of the transaction, and the order total. This is necessary for order fulfillment, customer support (e.g., returns or issues), and our own financial accounting.</li>
+        </ul>
+
+        <h3>4.3. Information Collected Automatically</h3>
+        <p>We keep automatic data collection to a minimum to respect your privacy.</p>
+        <ul>
+            <li><strong>Login Time and IP Address:</strong> For security purposes, we log the time, date, and IP address associated with each login to your account. This helps us detect and prevent unauthorized access and protect your account's integrity.</li>
+        </ul>
+
+        <div class="highlight">
+            <strong>What We Intentionally DO NOT Collect:</strong>
+            <p>To build trust and protect your privacy, we want to be explicit about the data we avoid collecting:</p>
             <ul>
-                <li><strong>Company:</strong> RASA RAHASA SDS</li>
-                <li><strong>Location:</strong> Busan, South Korea</li>
-                <li><strong>Email:</strong> sdsrasarahasa77@gmail.com</li>
-                <li><strong>Phone:</strong> 010-2734-2771, 010-7506-8810, 010-7525-8860</li>
+                <li><span class="important">Sensitive Financial Data:</span> We <span class="important">never</span> see, collect, or store your full credit card number, CVV code, or bank account details. This is all handled securely by our payment partners.</li>
+                <li><span class="important">Tracking Cookies for Advertising:</span> We do not use cookies or similar technologies to track your browsing habits across other websites for the purpose of targeted advertising.</li>
+                <li><span class="important">Precise Geolocation Data:</span> We do not track your device's real-time location.</li>
+                <li><span class="important">Device and Browser Fingerprinting:</span> We do not collect detailed information about your browser version, operating system, plugins, or screen resolution for profiling purposes.</li>
+            </ul>
+        </div>
+        
+        <div class="section-divider"></div>
+
+        <h2 id="section5">5. How and Why We Use Your Information (Legal Basis for Processing)</h2>
+        <p>Under data protection laws, we are required to have a valid legal basis for processing your Personal Information. We use your data for the following purposes, grounded in the corresponding legal bases:</p>
+
+        <h3>5.1. To Fulfill Our Contract with You</h3>
+        <p>Much of our data processing is necessary to perform the service you have requested from us.</p>
+        <ul>
+            <li><strong>Processing Orders:</strong> Using your name, address, and order details to prepare and ship your products.</li>
+            <li><strong>Managing Your Account:</strong> Authenticating you when you log in and maintaining your account settings and order history.</li>
+            <li><strong>Providing Customer Support:</strong> Responding to your inquiries and resolving issues related to your orders or account.</li>
+            <li><strong>Facilitating Deliveries:</strong> Sharing necessary delivery information with our logistics partners.</li>
+        </ul>
+
+        <h3>5.2. For Our Legitimate Business Interests</h3>
+        <p>We also process data for legitimate interests, provided these interests do not override your rights and freedoms.</p>
+        <ul>
+            <li><strong>Security and Fraud Prevention:</strong> Monitoring login activity and transaction data to detect and prevent fraudulent activity and protect our Service and your account.</li>
+            <li><strong>Service Improvement:</strong> Analyzing non-identifiable, aggregated data about which products are popular to manage our inventory and improve our offerings.</li>
+            <li><strong>System Maintenance:</strong> Using technical logs to diagnose and fix problems with our website.</li>
+        </ul>
+
+        <h3>5.3. To Comply with Legal Obligations</h3>
+        <p>We are subject to South Korean laws and may need to process your data to comply with them.</p>
+        <ul>
+            <li><strong>Financial Record-Keeping:</strong> Retaining transaction records for the period required by South Korean tax and commercial law.</li>
+            <li><strong>Responding to Legal Requests:</strong> Disclosing information to law enforcement, courts, or government authorities when we receive a valid legal request.</li>
+        </ul>
+        
+        <div class="highlight">
+            <span class="important">We Will Not Use Your Data For:</span>
+            <ul>
+                <li>Sending unsolicited marketing or promotional emails and text messages.</li>
+                <li>Creating detailed profiles of your personal life or shopping habits for advertising purposes.</li>
+                <li>Selling or renting your Personal Information to data brokers or marketing companies.</li>
             </ul>
         </div>
 
-        <h2>2. Information We Collect</h2>
+        <div class="section-divider"></div>
+
+        <h2 id="section6">6. Information Sharing and Disclosure</h2>
+        <p>We do not share your Personal Information with third parties except in the limited circumstances described below. We ensure that any third party with access to your data is contractually obligated to keep it confidential and secure.</p>
         
-        <h3>Personal Information We Collect:</h3>
+        <h3>6.1. Essential Service Providers</h3>
+        <p>We work with trusted partners who perform essential functions on our behalf. They are only given access to the information necessary to perform their specific task.</p>
         <ul>
-            <li><strong>Username:</strong> To identify your account</li>
-            <li><strong>Email address:</strong> For authentication and delivery updates</li>
-            <li><strong>Phone number:</strong> For delivery coordination and important updates</li>
-            <li><strong>Password:</strong> Stored in encrypted format for account security</li>
-            <li><strong>Login time:</strong> To track account activity and security</li>
-            <li><strong>Address:</strong> For product delivery purposes</li>
-            <li><strong>Profile image:</strong> Optional, for account personalization</li>
+            <li><strong>Delivery and Logistics Partners:</strong> We share your <strong>name, delivery address, and phone number</strong> with courier companies to facilitate the delivery of your orders.</li>
+            <li><strong>Payment Gateway Providers:</strong> We share your <strong>email address and order details</strong> with PortOne and Kakao Pay to process your payment and for them to send you a receipt.</li>
+            <li><strong>IT and Cloud Hosting Providers:</strong> Our website and database are hosted on servers managed by third-party providers. They do not have direct access to the data but are responsible for the physical and network security of the infrastructure.</li>
         </ul>
 
-        <h3>How We Collect Information:</h3>
-        <ul>
-            <li><strong>Registration forms:</strong> When you create an account on our platform</li>
-            <li><strong>Direct input:</strong> When you provide information during checkout or profile updates</li>
-        </ul>
+        <h3>6.2. Legal and Law Enforcement Requests</h3>
+        <p>We may be required to disclose your Personal Information in response to a subpoena, court order, or other governmental request, if we believe in good faith that the disclosure is required by law and necessary to protect our rights, your safety, or the safety of others.</p>
+
+        <h3>6.3. Business Transfers</h3>
+        <p>In the event that RASA RAHASA SDS is involved in a merger, acquisition, or sale of all or a portion of its assets, your Personal Information may be transferred as part of that transaction. We will notify you via email and/or a prominent notice on our website of any change in ownership or uses of your Personal Information, as well as any choices you may have regarding your data.</p>
         
+        <div class="section-divider"></div>
+        
+        <h2 id="section7">7. Payment Processing</h2>
+        <p>We are committed to ensuring the security of your payment information. To this end, we have chosen to partner with industry-leading, secure payment gateways.</p>
+        <h3>Our Process:</h3>
+        <ol>
+            <li>When you are ready to pay, you are redirected from our website to the secure, encrypted environment of our payment partner (e.g., <strong>PortOne</strong> or <strong>Kakao Pay</strong>).</li>
+            <li>You enter your payment details directly into their system. At no point does this information pass through or get stored on our servers.</li>
+            <li>They process the transaction and send us a secure notification confirming whether the payment was successful or not, along with a unique transaction identifier.</li>
+            <li>We then update your order status in our system based on this notification.</li>
+        </ol>
+        <p>This process ensures that your most sensitive financial data is handled with the highest level of security, in compliance with the Payment Card Industry Data Security Standard (PCI DSS).</p>
+
+        <div class="section-divider"></div>
+
+        <h2 id="section8">8. Technology, Cookies, and Analytics</h2>
+        <h3>8.1. Our Use of Cookies</h3>
+        <p>Cookies are small text files stored on your device. We use them sparingly and only for essential functionality.</p>
+        <ul>
+            <li><strong>Session Cookies:</strong> These are essential for the website to function. For example, they keep track of the items in your shopping cart and keep you logged in as you navigate the site. These are temporary and are deleted when you close your browser.</li>
+            <li><strong>Preference Cookies:</strong> We may use cookies to remember certain choices you make (like your preferred language) so you don't have to re-select them on every visit.</li>
+        </ul>
         <div class="highlight">
-            <strong>We do NOT collect:</strong> Browser information, device information, or use tracking cookies
+            As stated before, <span class="important">we do not use cookies for tracking you across the web or for targeted advertising</span>. You can control or delete cookies through your browser settings, but be aware that disabling essential cookies may impact the functionality of our website.
         </div>
-
-        <h2>3. How We Use Your Information</h2>
-        <p>We use your personal information for the following purposes:</p>
-
-        <h3>Primary Uses:</h3>
+        
+        <h3>8.2. Analytics</h3>
         <ul>
-            <li><strong>Customer identification:</strong> To recognize you and locate your orders and preferences</li>
-            <li><strong>Order processing:</strong> To fulfill your online purchases and manage your shopping experience</li>
-            <li><strong>Delivery coordination:</strong> To ensure successful delivery of your purchased items</li>
-            <li><strong>Customer communication:</strong> To inform you about order updates, delivery status, and important account information</li>
-            <li><strong>User authentication:</strong> To verify your identity and secure your account</li>
+            <li><strong>Google Analytics:</strong> We may occasionally use Google Analytics to gather aggregated and anonymized website traffic data. This helps us understand user behavior (e.g., which pages are most visited, how users find our site) in a way that does not personally identify you. This information is used solely to improve our website's performance and user experience. We have configured our Google Analytics implementation to respect user privacy.</li>
         </ul>
 
-        <h3>Communication:</h3>
+        <h3>8.3. Social Media Integration</h3>
         <ul>
-            <li><strong>Phone contact:</strong> To provide delivery updates and important notifications about your orders</li>
-            <li><strong>Email communication:</strong> To send delivery updates and authenticate user accounts</li>
+            <li>Our website may contain links to our social media pages (e.g., Facebook) or embed content (e.g., YouTube videos). Interacting with these features is governed by the privacy policy of the respective social media company, not this one.</li>
         </ul>
         
-        <div class="highlight">
-            <span class="important">We do NOT:</span> Send marketing emails or promotional content
-        </div>
+        <div class="section-divider"></div>
 
-        <h2>4. Information Sharing</h2>
-        <p>We share your personal information only when necessary for service delivery:</p>
-
-        <h3>Third-Party Sharing:</h3>
+        <h2 id="section9">9. Data Security: Our Commitment to Protecting Your Information</h2>
+        <p>We take our responsibility to protect your information very seriously. We have implemented a multi-layered security strategy that includes technical, administrative, and physical safeguards designed to protect your Personal Information from loss, misuse, and unauthorized access, disclosure, alteration, and destruction.</p>
+        <h3>9.1. Technical Measures</h3>
         <ul>
-            <li><strong>Delivery companies:</strong> We share your name, address, and phone number to ensure successful delivery of your orders</li>
-            <li><strong>Payment processors:</strong> We share your email address for receipt delivery and user verification</li>
+            <li><strong>Encryption in Transit:</strong> Our website uses Secure Sockets Layer (SSL) / Transport Layer Security (TLS) to encrypt all data transmitted between your browser and our servers.</li>
+            <li><strong>Encryption at Rest:</strong> Your password is not stored in a readable format. It is processed with a strong, one-way cryptographic hashing algorithm (including a "salt") before being stored in our database.</li>
+            <li><strong>Firewalls and Network Security:</strong> Our servers are protected by industry-standard firewalls and network security configurations to prevent unauthorized access.</li>
         </ul>
+        <h3>9.2. Organizational Measures</h3>
+        <ul>
+            <li><strong>Access Control:</strong> Access to Personal Information is strictly limited to authorized RASA RAHASA SDS personnel who have a legitimate business need to access it.</li>
+            <li><strong>Data Protection Policies:</strong> We maintain internal policies and procedures to ensure that your data is handled consistently and securely.</li>
+            <li><strong>Incident Response Plan:</strong> In the event of a data breach, we have a plan in place to promptly assess the situation, mitigate the impact, and notify affected individuals and relevant authorities as required by South Korean law.</li>
+        </ul>
+        <h3>9.3. Your Responsibility</h3>
+        <p>While we do our part, security is a shared responsibility. We urge you to take steps to protect your account, such as using a strong, unique password and logging out after using a shared computer.</p>
+        <p>Despite our best efforts, no method of transmission over the Internet or method of electronic storage is 100% secure. Therefore, we cannot guarantee its absolute security.</p>
         
-        <div class="highlight">
-            <span class="important">We do NOT:</span> Sell, rent, or trade your personal information to third parties for marketing purposes
-        </div>
+        <div class="section-divider"></div>
 
-        <h3>Information Security:</h3>
+        <h2 id="section10">10. Your Rights and Choices Over Your Information</h2>
+        <p>In accordance with South Korea's Personal Information Protection Act (PIPA) and global best practices, we recognize and uphold your rights over your data. You have the full ability to exercise these rights at any time.</p>
         <ul>
-            <li><strong>Payment information:</strong> We store only payment proof and receipts for validation purposes</li>
-            <li><span class="important">We do NOT store:</span> Credit card numbers, PINs, or sensitive financial data</li>
+            <li><strong>The Right to Access:</strong> You have the right to request a copy of the Personal Information we hold about you.</li>
+            <li><strong>The Right to Rectification:</strong> You have the right to request the correction of any inaccurate or incomplete Personal Information.</li>
+            <li><strong>The Right to Erasure (The "Right to be Forgotten"):</strong> You have the right to request the deletion of your account and all associated Personal Information, subject to our legal and contractual retention obligations.</li>
+            <li><strong>The Right to Withdraw Consent:</strong> Where we rely on consent for processing, you have the right to withdraw that consent at any time.</li>
+            <li><strong>The Right to Lodge a Complaint:</strong> You have the right to lodge a complaint with the relevant data protection authority in South Korea if you believe your privacy rights have been violated.</li>
         </ul>
-
-        <h2>5. Technology and Analytics</h2>
-
-        <h3>Analytics:</h3>
-        <ul>
-            <li><strong>Google Analytics:</strong> We occasionally use Google Analytics to understand website traffic patterns and improve user experience</li>
-            <li><strong>Social Media Integration:</strong> We embed content from YouTube and Facebook and provide links to our social media pages</li>
-        </ul>
-        
-        <div class="highlight">
-            <span class="important">We do NOT use:</span> Cookies for tracking, behavioral advertising, or user profiling
-        </div>
-
-        <h2>6. Data Security</h2>
-        <p>We implement appropriate security measures to protect your personal information:</p>
-        <ul>
-            <li><strong>Password encryption:</strong> All passwords are stored in encrypted format</li>
-            <li><strong>Secure data handling:</strong> We follow industry-standard practices for data protection</li>
-            <li><strong>Limited access:</strong> Only authorized personnel have access to personal information</li>
-        </ul>
-
-        <h2>7. Your Rights and Choices</h2>
-        <p>You have full control over your personal information:</p>
-
-        <h3>Your Rights Include:</h3>
-        <ul>
-            <li><strong>Access:</strong> View all personal information we have about you</li>
-            <li><strong>Modify:</strong> Update or change your personal information at any time</li>
-            <li><strong>Delete:</strong> Remove your personal information from our systems</li>
-            <li><strong>Full CRUD Operations:</strong> Create, Read, Update, and Delete your data as needed</li>
-        </ul>
-
         <h3>How to Exercise Your Rights:</h3>
+        <p>You can exercise these rights easily through the following methods:</p>
         <ul>
-            <li><strong>Online:</strong> Through your user account dashboard</li>
-            <li><strong>Email:</strong> Contact us at sdsrasarahasa77@gmail.com</li>
-            <li><strong>Phone:</strong> Call us at 010-2734-2771, 010-7506-8810, or 010-7525-8860</li>
+            <li><strong>Online Account Dashboard:</strong> The easiest way to view and update your information is by logging into your account on our website.</li>
+            <li><strong>Contacting Us Directly:</strong> For requests such as account deletion or a full data export, please contact us via email or phone using the details in the "Contact Us" section below. We will respond to your request within a reasonable timeframe as stipulated by law. We may need to verify your identity before processing your request.</li>
+        </ul>
+        
+        <div class="section-divider"></div>
+
+        <h2 id="section11">11. Data Retention: How Long We Keep Your Information</h2>
+        <p>We retain your Personal Information only for as long as necessary to fulfill the purposes for which it was collected, including for the purposes of satisfying any legal, accounting, or reporting requirements.</p>
+        <ul>
+            <li><strong>Account Information:</strong> We retain your account profile information for as long as your account remains active.</li>
+            <li><strong>Transaction Information:</strong> We are required by South Korean law to retain records of commercial transactions for a period of <strong>5 years</strong>.</li>
+            <li><strong>After Account Deletion:</strong> If you request to delete your account, we will erase your personal profile information. However, we will retain anonymized transaction data and any information required for our legal obligations.</li>
+        </ul>
+        <p>When the retention period expires, we will securely delete or anonymize your Personal Information so that it can no longer be associated with you.</p>
+
+        <div class="section-divider"></div>
+
+        <h2 id="section12">12. Children's Privacy</h2>
+        <p>Our Service is intended for a general audience and is not directed at children under the age of 14 (as per South Korean law). We do not knowingly collect Personal Information from children under this age without parental consent.</p>
+        <p>Our product catalog does not contain any items restricted to adults, such as alcohol or tobacco. However, if we become aware that we have inadvertently collected Personal Information from a child under 14 without proper consent, we will take immediate steps to delete that information from our systems.</p>
+
+        <div class="section-divider"></div>
+
+        <h2 id="section13">13. Geographic Scope and Data Residency</h2>
+        <p>Our operations are based entirely within South Korea.</p>
+        <ul>
+            <li><strong>Service Area:</strong> Our Service is intended for customers residing in South Korea.</li>
+            <li><strong>Data Storage:</strong> All Personal Information we collect is processed and stored on secure servers located within the Republic of Korea.</li>
+            <li><strong>Governing Law:</strong> This Privacy Policy and our data processing practices are governed by the laws of the Republic of Korea, including the Personal Information Protection Act (PIPA).</li>
         </ul>
 
-        <h2>8. Children's Privacy</h2>
-        <p>Our platform is safe for children as we do not sell adult products such as:</p>
+        <div class="section-divider"></div>
+
+        <h2 id="section14">14. Offline Operations</h2>
+        <p>This Privacy Policy also extends to our physical retail locations. Any Personal Information you provide to us in-store (for example, to sign up for a delivery or special order) is protected by the same principles and safeguards outlined in this document.</p>
+        
+        <div class="section-divider"></div>
+        
+        <h2 id="section15">15. Third-Party Links and Services</h2>
+        <p>Our Service may contain links to other websites or services that are not operated by us. If you click on a third-party link, you will be directed to that third party's site. We strongly advise you to review the Privacy Policy of every site you visit. We have no control over and assume no responsibility for the content, privacy policies, or practices of any third-party sites or services.</p>
+
+        <div class="section-divider"></div>
+
+        <h2 id="section16">16. Changes to This Privacy Policy</h2>
+        <p>We may update this Privacy Policy from time to time in response to changing legal, technical, or business developments. When we update our Privacy Policy, we will take appropriate measures to inform you, consistent with the significance of the changes we make.</p>
         <ul>
-            <li>Alcoholic beverages</li>
-            <li>Tobacco products</li>
-            <li>Adult-oriented content</li>
-            <li>Other age-restricted items</li>
+            <li>We will revise the "Last Updated" date at the top of this policy.</li>
+            <li>For significant changes, we will notify you by posting a prominent notice on our website or by sending you an email notification before the change becomes effective.</li>
         </ul>
-        <p>However, we recommend parental supervision for users under 13 years of age.</p>
+        <p>We encourage you to review this Privacy Policy periodically for any changes. Your continued use of the Service after such modifications will constitute your acknowledgment of the modified Privacy Policy.</p>
 
-        <h2>9. Geographic Scope</h2>
+        <div class="section-divider"></div>
 
-        <h3>Service Area:</h3>
-        <ul>
-            <li><strong>Primary operation:</strong> South Korea only</li>
-            <li><strong>Customer base:</strong> Primarily users from Asian countries including Korea, Bangladesh, Nepal, Pakistan, India, Sri Lanka, Vietnam, China, and Japan</li>
-            <li><strong>Legal compliance:</strong> We comply with South Korean privacy laws and regulations</li>
-        </ul>
-
-        <h2>10. Offline Operations</h2>
-        <p>In addition to our online platform, we operate physical retail locations in South Korea where we sell Asian products. Information collected in our offline stores is subject to the same privacy protections outlined in this policy.</p>
-
-        <h2>11. Data Retention</h2>
-        <p>We retain your personal information only as long as necessary to:</p>
-        <ul>
-            <li>Provide our services to you</li>
-            <li>Comply with legal obligations</li>
-            <li>Resolve disputes</li>
-            <li>Enforce our agreements</li>
-        </ul>
-
-        <h2>12. Changes to This Privacy Policy</h2>
-        <p>We may update this Privacy Policy from time to time. When we make changes:</p>
-        <ul>
-            <li>We will update the "Last Updated" date</li>
-            <li>We will notify you via email or prominent notice on our website</li>
-            <li>Continued use of our services after changes constitutes acceptance of the updated policy</li>
-        </ul>
-
-        <h2>13. Contact Us</h2>
-        <p>If you have any questions, concerns, or requests regarding this Privacy Policy or your personal information, please contact us:</p>
+        <h2 id="section17">17. How to Contact Us</h2>
+        <p>If you have any questions, concerns, or complaints about this Privacy Policy, or if you wish to exercise your rights, please do not hesitate to contact our privacy team:</p>
         
         <div class="contact-info">
+            <strong>Company:</strong> RASA RAHASA SDS<br>
             <strong>Email:</strong> sdsrasarahasa77@gmail.com<br>
             <strong>Phone:</strong> 010-2734-2771, 010-7506-8810, 010-7525-8860<br>
             <strong>Address:</strong> RASA RAHASA SDS, Busan, South Korea
         </div>
         
-        <p>We are committed to addressing your privacy concerns promptly and effectively.</p>
-
+        <p>We are committed to working with you to obtain a fair resolution of any complaint or concern about privacy.</p>
+        
         <div class="section-divider"></div>
         
+        <h2 id="section18">18. Dispute Resolution</h2>
+        <p>In the unlikely event that we are unable to resolve your privacy concerns, you have the right to file a complaint with the local data protection authority. For residents of South Korea, this is the Personal Information Protection Commission (PIPC).</p>
+        <p>However, we kindly ask that you contact us first to give us the opportunity to resolve your issue directly.</p>
+
         <div class="footer-note">
-            <strong>Note:</strong> This Privacy Policy is designed to comply with South Korean privacy laws and international best practices. We recommend consulting with a legal professional to ensure full compliance with all applicable regulations.
+            <strong>Note:</strong> This Privacy Policy is provided for informational purposes and is designed to be compliant with South Korean law. It does not constitute legal advice. We recommend consulting with a legal professional for guidance on specific legal compliance matters.
         </div>
     </div>
 </body>

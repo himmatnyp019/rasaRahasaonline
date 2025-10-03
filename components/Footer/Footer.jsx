@@ -28,7 +28,7 @@ const Footer = () => {
             <li><a href="../../public/docs/termsofuse.html" target="_blank" rel="noopener noreferrer">{t("termsOfUse")}</a></li>
 
             <li><a href="../../public/docs/violation.html" target='_blank' rel='noopener noreferrer'>{t("guidelinesViolationPolicy")}</a></li>
-            <li> 사업자등록번호 : 515-81-53560</li>
+            <li> 사업자등록번호 : 5244-11-01717</li>
           </ul>
         </div>
         <div className="footer-content-right">

@@ -10,17 +10,18 @@
     gap: 10px;
    
     .profile-option-lines{
-        margin: 5px 0;
         border-radius: 10px;
         background-color: rgb(235, 235, 235);
-        border: 1px solid rgb(176, 176, 176);
-        padding: 15px 20px;
+        /* border: 1px solid rgb(176, 176, 176); */
+        padding: 25px 30px;
         display: flex;
         align-items: center;
         justify-content: space-between;
         cursor: pointer;
-        margin: 10px 0;
+        margin: 30px 0;
         transition:  all .3s ease;
+        color: tomato;
+
         div{
             display: flex;
             align-items: center;
@@ -30,6 +31,7 @@
         h3{
             font-size: clamp(16px, 2vw, 20px);
             font-weight: 600;
+            color: rgb(62, 62, 62);
         }
         .value{
             font-weight: 600;

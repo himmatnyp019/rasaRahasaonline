@@ -26,6 +26,7 @@ const StoreContextProvider = (props) => {
     const [historyItemsId, setHistoryItemsId] = useState([]);
     const [myMessage, setMyMessage] = useState([]);
     const [showChat, setShowChat] = useState(false);
+    const [showFooter, setShowFooter] = useState(true);
     const [showPolicies, setShowPolicies] = useState(false);
     const [showDetails, setShowDetails] = useState({ id: "", name: "", price: "", description: "", image: "", image3: "", image2: "", category: "", discount: "" });
     const [productMsg, setProductMsg] = useState({
@@ -294,7 +295,7 @@ const StoreContextProvider = (props) => {
         loadMyMessage,
         showDetails,
         setShowDetails,
-        myMessage, showChat, setShowChat,
+        myMessage, showChat, setShowChat,showFooter, setShowFooter,
         productMsg, setProductMsg,showPolicies, setShowPolicies
     };
 

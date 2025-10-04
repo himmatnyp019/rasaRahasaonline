@@ -2,6 +2,7 @@
     padding: 50px 14%;
 
 }
+
 .profile-user-info {
     display: flex;
     flex-wrap: wrap;
@@ -78,8 +79,8 @@
 }
 
 .user-shop-info {
-  width: 100%;
-  gap: 10px;
+    width: 100%;
+    gap: 10px;
 
     .div {
         flex: 1 1 350px;
@@ -87,23 +88,46 @@
         flex-direction: column;
 
         .view-more {
-            padding: 10px 30px;
-            border: 2px solid #2c2c2c;
-            border-radius: 10px;
-            color: #2c2c2c;
-            font-weight: 600;
+            width: max-content;
+            padding: 16px 6%;
             margin: 0 auto;
-            font-size: 16px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            background-color: tomato;
+            border: none;
+            outline: none;
+            color: white;
+            border-radius: 10px;
             cursor: pointer;
-            scale: 1;
-            transition: .3s all ease-in-out;
+            transition: all .3s ease-in-out;
+            position: relative;
+            overflow: hidden;
 
             &:hover {
-                scale: 1.02;
-                border: 2px solid tomato;
-                color: tomato;
+                background-color: #e5533d;
 
             }
+        }
+
+        .view-more::before {
+            content: '';
+            position: absolute;
+            width: 0px;
+            height: 0px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.218);
+            pointer-events: none;
+            /* animation: shine 2s infinite; */
+            z-index: 1;
+            transition: all .3s ease-in-out;
+        }
+
+        .view-more:hover::before {
+            width: 200px;
+            height: 200px;
         }
     }
 }
@@ -181,18 +205,18 @@
 /* ---------------responsive---text--------------------- */
 @media (max-width:1000px) {
     .profile {
-    padding: 50px 5%;
-}
+        padding: 50px 5%;
+    }
 }
 
 @media (max-width:400px) {
     .profile {
-    padding: 25px 1%;
-}
-    
+        padding: 25px 1%;
+    }
+
 }
 
- /* ----------------update profile component--------------------- */
+/* ----------------update profile component--------------------- */
 .profile-update-container {
     position: fixed;
     top: 0;
@@ -209,6 +233,7 @@
     transition: opacity 0.3s ease, visibility 0.3s ease;
     z-index: 10;
 }
+
 .close-update-profile {
     position: absolute;
     top: 20px;

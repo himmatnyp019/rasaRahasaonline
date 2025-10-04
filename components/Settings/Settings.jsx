@@ -35,7 +35,7 @@ const Settings = () => {
 
   return (
     <div className='setting-container'>
-      <div className="profile-option-lines">
+      <div className="profile-option-lines faq-item">
         <div >
 
           <FontAwesomeIcon icon={faGlobe} />
@@ -50,7 +50,7 @@ const Settings = () => {
       </div>
 
 
-      <div className="profile-option-lines">
+      <div className="profile-option-lines faq-item">
         <div >
 
           <FontAwesomeIcon icon={faCircleQuestion} />
@@ -63,7 +63,7 @@ const Settings = () => {
 
         </div>
       </div>
-      <div className="profile-option-lines">
+      <div className="profile-option-lines faq-item">
         <div >
 
           <FontAwesomeIcon icon={faShareFromSquare} />
@@ -76,7 +76,7 @@ const Settings = () => {
 
         </div>
       </div>
-      <div className="profile-option-lines">
+      <div className="profile-option-lines faq-item">
         <div >
 
           <FontAwesomeIcon icon={faStar} />

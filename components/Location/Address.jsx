@@ -68,7 +68,7 @@ const Address = () => {
                         <div className="box box3"
                             onMouseEnter={() => setHoveredBox('box3')}
                             onMouseLeave={() => setHoveredBox(null)}>
-                            <img src="https://res.cloudinary.com/dqvv7yahd/image/upload/v1759281509/food_uploads/hwiaamgdyedz5s3aa6ik.png" alt="mart-img" />
+                            <img src="https://res.cloudinary.com/dqvv7yahd/image/upload/v1759281466/food_uploads/l3vmoztvtaiprngzs8xx.png" alt="mart-img" />
                             <div className="text-content">
                                 <h1>Geoje Mart</h1>
                                 <div className="row">

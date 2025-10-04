@@ -30,25 +30,31 @@ import Test from './pages/Test/Test.jsx';
 import FoodReels from "./pages/Reels/FoodReels.jsx";
 import { StoreContext } from '../context/StoreContext.jsx';
 
+
 const App = () => {
   const [showLogin, setShowLogin] = useState(false);
 
   const [showBill, setShowBill] = useState(false);
   const [billData, setBillData] = useState(null);
   const [tid, setTid] = useState("");
-  const { showChat } = useContext(StoreContext);
+  const { showChat,showFooter, setShowFooter } = useContext(StoreContext);
   useAOS();
   const location = useLocation();
 
   useEffect(() => {
     AOS.refresh(); // refresh when route changes
     console.log(location.pathname);
-
     const token = localStorage.getItem("token");
 
     if (!token || isTokenExpired(token)) {
       localStorage.removeItem("token");
       setShowLogin(true);   // ✅ show login page
+    }
+
+    if (location.pathname === "/Chat") {
+      setShowFooter(false);
+    }else {
+      setShowFooter(true);
     }
   }, [location.pathname]);
 
@@ -95,9 +101,10 @@ const App = () => {
         <Route path='/helpcenter' element={<HelpCenter />}></Route>
         <Route path='/test' element={<Test />}></Route>
         <Route path='/reel' element={<FoodReels />}></Route>
-
       </Routes>
-      <Footer></Footer>
+      {
+        showFooter ? <Footer></Footer> : <div><br /> <br /><h1> - </h1></div>
+      }
     </div>
   )
 }

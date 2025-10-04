@@ -334,7 +334,7 @@ export default function ReviewBox({ itemId }) {
     <div className="rb-root">
       <div className='reviews-container'>
         <div className="reviews-title">
-          <h2>C{t("customerReviews")}</h2>
+          <h2>{t("customerReviews")}</h2>
           <br />
         </div>
         <div data-aos="fade-right" className="reviews-star">

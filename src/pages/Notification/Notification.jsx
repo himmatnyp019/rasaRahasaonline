@@ -20,7 +20,7 @@ const Notification = () => {
       try {
         console.log(userId, "userID");
 
-        const response = await axios.get(`${url}/api/notifications/get/${userId}`);
+      const response = await axios.get(`${url}/api/notifications/get/${userId}`);
         if (response.data.success) {
           setNotifications(response.data.notifications);
           console.log("Notifications loaded:", response.data.notifications);

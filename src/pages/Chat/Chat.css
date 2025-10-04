@@ -9,10 +9,11 @@
   border-radius: 12px;
   display: flex;
   flex-direction: column;
-  height: 95vh;
+  height: 100%;
   overflow: hidden;
   margin: 0;
   font-family: "Arial", sans-serif;
+  margin: 0 auto;
  
 }
 
@@ -70,6 +71,11 @@
 }
 .chat-message.admin {
   justify-content: flex-start;
+  .message-content{
+    .text{
+      text-align: start;
+    }
+  }
 }
 .message-content {
   position: relative;

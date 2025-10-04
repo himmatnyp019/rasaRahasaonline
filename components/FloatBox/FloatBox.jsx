@@ -22,7 +22,8 @@ const FloatBox = () => {
           </Link>
           {
             !showChat && (
-              <Link className="float-box" onClick={() => setShowChat(true)}>
+              //onClick={() => setShowChat(true)}
+              <Link to='./Chat' className="float-box" >
                 <div className="icon"><FaComments /></div>
                 <h4 className='float-box-title' >{t("message")}</h4>
               </Link>

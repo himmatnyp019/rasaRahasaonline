@@ -131,10 +131,8 @@ const Chat = () => {
                 <div className="message-content">
                   <div className="delete-btn">
                     {!isMe && (
-
                       <div className="delete-icon" onClick={() => onDeleteHandler(msg._id)} title="Delete message" > <FaTrash /></div>
                     )}
-
                   </div>
                   {msg.message && <p className="text">{msg.message}</p>}
                   {msg.uploadImage && (

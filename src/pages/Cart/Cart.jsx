@@ -1,5 +1,6 @@
 import { useContext, useEffect } from 'react';
-import "./Cart.css";
+// import "./Cart.css";
+import './Cart2.css';
 import { StoreContext } from '../../../context/StoreContext';
 import { useNavigate } from 'react-router-dom';
 import { assets } from '../../assets/assets';
@@ -7,6 +8,7 @@ import DiscountText from '../../../components/DiscountText/DiscountText';
 import FoodItem from '../../../components/FoodItem/FoodItem';
 import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+
 
 const Cart = ({ setShowBill, setShowLogin, setBillData }) => {
   let itemCount = 0;
@@ -21,7 +23,7 @@ const Cart = ({ setShowBill, setShowLogin, setBillData }) => {
       totalPrice: totalAmount,
       discount: getTotalDiscount(),
       date: "2024-79-12, wed",
-      deliveryCharge: 3000
+      deliveryCharge: deliveryPrice
     });
     setShowBill(true);
   };
@@ -74,9 +76,9 @@ const Cart = ({ setShowBill, setShowLogin, setBillData }) => {
                     <p className='sr-1' >= ₩{(item.price - item.discount) * cartItems[item._id]}</p>
 
                     <div className="food-item-counter">
-                      <img onClick={() => removeFromCart(item._id)} src={assets.remove_icon_red} alt="" />
+                      <div className='add-remove-cart-btns' onClick={() => removeFromCart(item._id)} style={{ backgroundImage: `url(${assets.remove_icon_red})`, backgroundPosition:"center", backgroundSize:"contain" }} />
                       <p>{cartItems[item._id]}</p>
-                      <img onClick={() => addToCart(item._id)} src={assets.add_icon_green} alt="" />
+                      <img className='add-remove-btns' onClick={() => addToCart(item._id)} src={assets.add_icon_green} alt="" />
                     </div>
 
                   </div>

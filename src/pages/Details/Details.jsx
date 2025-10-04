@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import "./Details.css"
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { StoreContext } from '../../../context/StoreContext';
 import { assets } from '../../assets/assets';
 import FoodItem from '../../../components/FoodItem/FoodItem';
@@ -50,7 +50,6 @@ const Details = () => {
       price: price,
       discount: discount,
     });
-    setShowChat(true)
   };
 
   const handleImgChange = (index) => {
@@ -104,9 +103,9 @@ const Details = () => {
                   {t("addToCart")} <img src={assets.add_icon_white} />
                 </button>
               }
-              <button onClick={() => productMsgHandler(id, name, image, price, discount)}>
+              <Link className='chat-to-suppilers' to="/Chat" onClick={() => productMsgHandler(id, name, image, price, discount)}>
                 Chat with supplier <img src={assets.chat}  />
-              </button>
+              </Link>
             </div>
           </div>
         </div>

@@ -135,6 +135,9 @@
     align-items: center;
     border-radius: 50px;
     width: 70px;
+    max-height: 250px;
+    overflow-y: scroll;
+    scrollbar-width: thin;
 
     .fa-cart-btn {
         margin: 5px;
@@ -151,17 +154,18 @@
 }
 
 .quick-view-basket2 {
+    display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 0px;
 
     .quick-item-check {
         height: 50px;
         margin: 0;
         border-radius: 50px;
-        margin: 0;
 
         img {
             width: 50px;
+            height: 50px;
         }
 
         .quick-price.float {
@@ -203,7 +207,7 @@
     }
 
     .quick-view-basket2 {
-        gap: 5px;
+        gap: 0px;
 
         .quick-item-check {
             height: 30px;

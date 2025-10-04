@@ -11,7 +11,8 @@ import ForgotPassword from '../../../components/ResetP/ForgotPassword';
 import ResetViaEmail from '../../../components/ResetP/ResetViaEmail';
 import ResetViaPhone from '../../../components/ResetP/ResetViaPhone';
 import { useTranslation } from 'react-i18next';
-import PointSystem from '../../../components/Points/PointSystem';
+// import PointSystem from '../../../components/Points/PointSystem';
+//later use this component for point system
 
 const Profile = () => {
   const { orderHistory, token, setToken, setShowLogin, userData, url, loadUserData } = useContext(StoreContext);
@@ -70,15 +71,14 @@ const Profile = () => {
         border: "none"
       }} />
 
-      <PointSystem></PointSystem>
+ 
 
       <div className="user-shop-info">
         <DeliveryAddress addressData={userInfo.address}></DeliveryAddress>
         <br />
         <br />
         <div className="div">
-          <History count={4}></History>
-          <br />
+          <History count={0}></History>
           <button className='view-more' onClick={() => setShowAllHistory(true)}>{t("viewMore")}</button>
           {showAllHistory && (
             <div className="view-all-history active">

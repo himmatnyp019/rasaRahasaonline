@@ -214,6 +214,7 @@ const HelpCenter = () => {
                       />
                     </div>
                   </div>
+                  
                   <div className={`faq-answer ${openFAQ === faq.id ? 'open' : ''}`}>
                     <div className="answer-content">
                       <p>{faq.answer}</p>
